@@ -1,8 +1,24 @@
+body {
+  background-color: #222222;
+}
+
 #container {
   display: grid; 
-  margin: 0 auto;
+  margin: 150px auto 0 auto;
   width: 300px;
+  text-align: center;
   grid-template-columns: repeat(3, 1fr);
+}
+
+#homescreen {
+  margin-top: 100px;
+  width: 300px;
+  height: 100px;
+  font-size: 2em;
+  background-color: #111111;
+  color: blanchedalmond;
+  opacity: 0.5;
+  transition: 2s;
 }
 
 [id^='cell-'] {
@@ -15,52 +31,89 @@
   outline: inherit;
   width: 100px;
   height: 100px;
+  margin: 0 auto;
+  font-size: 75px;
+  color: burlywood;
+  font-weight: bolder;
+  line-height: 1.5em;
+  background-color: #222222;
+  opacity: 0.5;
 }
 
 #cell-0x0 {
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-right: 1px solid blanchedalmond;
+  border-bottom: 1px solid blanchedalmond;
 }
 
 #cell-0x1 {
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-left: 1px solid blanchedalmond;
+  border-right: 1px solid blanchedalmond;
+  border-bottom: 1px solid blanchedalmond;
 }
 
 #cell-0x2 {
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  border-left: 1px solid blanchedalmond;
+  border-bottom: 1px solid blanchedalmond;
 }
 
 #cell-1x0 {
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid blanchedalmond;
+  border-right: 1px solid blanchedalmond;
+  border-bottom: 1px solid blanchedalmond;
 }
 
 #cell-1x1 {
-  border: 1px solid black;
+  border: 1px solid blanchedalmond;
 }
 
 #cell-1x2 {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid blanchedalmond;
+  border-left: 1px solid blanchedalmond;
+  border-bottom: 1px solid blanchedalmond;
 }
 
 #cell-2x0 {
-  border-top: 1px solid black;
-  border-right: 1px solid black;
+  border-top: 1px solid blanchedalmond;
+  border-right: 1px solid blanchedalmond;
 }
 
 #cell-2x1 {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-top: 1px solid blanchedalmond;
+  border-left: 1px solid blanchedalmond;
+  border-right: 1px solid blanchedalmond;
 }
 
 #cell-2x2 {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
+  border-top: 1px solid blanchedalmond;
+  border-left: 1px solid blanchedalmond;
+}
+
+.hover {
+  color: burlywood;
+}
+
+.blink {
+  background-color: burlywood;
+  border-color: #222222;
+  color: #222222;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.glow {
+  background-color: blanchedalmond;
+  color: burlywood;
+  text-shadow: 1px 1px 1px #222222;
+  opacity: 0.5;
+  transition: 1s;
+}
+
+.dim {
+  background: none;
+  color: #111111;
+}
+
+.blackout {
+  background-color: #111111;
+  transition: 1s;
 }
