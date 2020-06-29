@@ -10,6 +10,7 @@ body {
   height: 95vh;
   text-align: center;
   grid-template-columns: repeat(3, 1fr);
+  transition: 1s;
 }
 
 #homescreen {
@@ -26,7 +27,7 @@ body {
   font-weight: bolder;
   text-align: center;
   color: #222222;
-  opacity: 0.7;
+  cursor: default;
   transition: 3.5s;
 }
 
@@ -37,6 +38,7 @@ body {
   text-align: center;
   color: #222222;
   opacity: 0.2;
+  cursor: default;
   transition: 5.5s;
 }
 
@@ -60,7 +62,6 @@ body {
 #one-player,
 #two-player {
   visibility: hidden;
-  transition: 250ms;
 }
 
 #one-player {
@@ -136,7 +137,8 @@ body {
   font-size: 7vh;
   font-weight: bolder;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  transition: 3s;
+  cursor: default;
+  transition: 500ms;
 }
 
 #end {
@@ -155,7 +157,7 @@ body {
   background: none;
   background-color: #222222;
   color: inherit;
-  border: 1px dotted burlywood;
+  border: 1.5px dotted burlywood;
   padding: 0;
   font: inherit;
   cursor: pointer;
@@ -164,6 +166,7 @@ body {
   height: 31.5vh;
   margin: 0 auto;
   font-size: 24.25vh;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: blanchedalmond;
   font-weight: bolder;
   opacity: 0.6;
@@ -231,11 +234,13 @@ body {
   #login:hover,
   #login:focus {
     border-color: blanchedalmond;
+    opacity: 1;
   }
 
   #login:active { 
     border-color: burlywood;
     color: blanchedalmond;
+    opacity: 0.7;
   }
 
   #login-one:hover,
@@ -262,8 +267,8 @@ body {
   }
 
   .hover {
-    background-color: #111111;
-    opacity: 0.15;
+    border-color: blanchedalmond;
+    opacity: 1;
   }
 
   .blink {

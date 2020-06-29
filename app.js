@@ -19,17 +19,11 @@ const virtualBoard = (() => {
         game.clickHandler(event);
       });
     };
-    const _getNullCoords = () => command('nulls');
-    const getMatrix = () => _matrix;
-    const clear = () => {
-      return _matrix = [];
-    };
-    const command = (elem) => {
+    const _prompt = (elem) => {
       // handle incoming arguments
       const _buildBoard = () => (elem === 'init-board');
       const _buildMatrix = () => (elem === 'init-matrix');
       const _checkForWin = () => (elem === 'XXX' || elem === 'OOO');
-      const _checkForTie = () => (elem[0] === 'tie');
       const _findNulls = () => (elem === 'nulls');
       const _stopClick = () => (elem === 'disable-click');
       const _showChamp = () => (elem[0] === 'champ');
@@ -38,12 +32,10 @@ const virtualBoard = (() => {
       const _matrix = (
         _buildMatrix() ||
         _checkForWin() ||
-        _checkForTie() ||
         _showDraw()    ||
         _findNulls()  ) ? getMatrix() : null;
 
       const _coords = (_showChamp()) ? elem[1] : null;
-      const _player = (_checkForTie()) ? elem[1] : null;
       const _nulls = (_findNulls()) ? [] : null;
 
       for (let _row = 0; _row < 3; _row++) {
@@ -51,7 +43,7 @@ const virtualBoard = (() => {
         if (_buildMatrix()) _createRow();
 
         if (_checkForWin() && elem === _matrix[_row].join('')) {
-          command('disable-click');
+          _prompt('disable-click');
           return [[_row, 0], [_row, 1], [_row, 2], 'coords'];
         }
 
@@ -63,28 +55,15 @@ const virtualBoard = (() => {
           if (_checkForWin()) {
             _pillar += _matrix[_column][_row];
           }
-          if (_checkForTie() && _matrix[_row][_column] === null) {
-            //////////////////////    check out findNulls   \\\\\\\\\\\\\\\\\\\\\
-            _matrix[_row][_column] = _player;
-
-            if (command(_player.repeat(3))[3] !== 'coords' && _row + _column === 4) {
-              command('disable-click');
-              return command('draw');
-            }
-            else {
-              _matrix[_row][_column] = null;
-            }
-
-          }
           if (_findNulls() && _matrix[_row][_column] === null) {
             _nulls.push([_row, _column]);
           }
           if (_stopClick()) display.cell.grab(_row, _column).disabled = true;
-          if (_showChamp()) display.animateChampion(_row, _column, _coords);
-          if (_showDraw()) display.animateDraw(_row, _column);
+          if (_showChamp()) display.animate.champion(_row, _column, _coords);
+          if (_showDraw()) display.animate.tie(_row, _column);
         }
         if (_checkForWin() && elem === _pillar) {
-          command('disable-click');
+          _prompt('disable-click');
           return [[0, _row], [1, _row], [2, _row], 'coords'];
         }
       }
@@ -93,11 +72,48 @@ const virtualBoard = (() => {
 
       return elem;
     };
+    const getMatrix = () => _matrix;
+    const clear = () => {
+      return _matrix = [];
+    };
+    const command = (elem) => _prompt(elem); 
+
   return { getMatrix, clear, command };
   })();
 
   const ai = (() => {
-    
+    const _nulls = () => matrix.command('nulls');
+
+    const tieOrAutoWin = (currentMark) => {
+      let _matrix = matrix.getMatrix();
+      let _which = (currentMark === 'X');
+      let _mark = (_which) ? currentMark : 'O';
+      let _otherMark = (_which) ? 'O' : 'X';
+      let _spaces = _nulls();
+      let _coord = (_spaces !== []) ? _spaces.pop() : false;
+
+      if (_coord) {
+        _matrix[ _coord[0] ][ _coord[1] ] = _mark;
+
+        if (matrix.command(_mark.repeat(3))[3] !== 'coords') {
+          return tieOrAutoWin(_otherMark);
+        }
+        else {
+          let _turn = (_which) ? 0 : 1;
+          players.winner.save(_turn);
+          display.cell.renderMark(_coord[0], _coord[1], _mark);
+          return matrix.command(['champ', matrix.command(_mark.repeat(3))]);
+        }
+      }
+      else {
+        matrix.command('disable-click');
+        return matrix.command('draw');
+      }
+    };
+
+    return {
+      tieOrAutoWin,
+    }
   })();
 
   const players = (() => {
@@ -131,7 +147,7 @@ const virtualBoard = (() => {
 
   const display = (() => {
 
-    const _toggleButtonHover = (currentButton, otherButton) => {
+    const _toggle = (currentButton, otherButton) => {
       currentButton.classList.remove('btn-group-inactive');
       currentButton.classList.add('btn-group-active');
       otherButton.classList.remove('btn-group-active');
@@ -170,102 +186,78 @@ const virtualBoard = (() => {
     };
     const home = () => {
       const _homescreen = document.createElement('p');
-      const logo = document.createElement('p');
-      const author = document.createElement('p');
-      const onePlayer = document.createElement('button');               //  TODO
-      const twoPlayer = document.createElement('button');
-
       _homescreen.id = 'homescreen';
 
+      const logo = document.createElement('p');
       logo.id = 'logo';
       logo.innerText = 'TIC TAC TOE';
 
+      const author = document.createElement('p');
       author.id = 'author';
       author.innerText = 'by matchewbie'
 
-      onePlayer.id = 'one-player';
-      onePlayer.innerText = 's i n g l e';
-      onePlayer.classList.add('btn-group-active');
-      onePlayer.onmouseenter = () => _toggleButtonHover(onePlayer, twoPlayer);
-      onePlayer.disabled = true;                                  // delete later
-      
-      twoPlayer.id = 'two-player';
-      twoPlayer.innerText = 'v s';
-      twoPlayer.classList.add('btn-group-inactive');
-      twoPlayer.onmouseenter = () => _toggleButtonHover(twoPlayer, onePlayer);
-      twoPlayer.onclick = () => nextScreen(login, 0);
-
-
+      const onePlayer = document.createElement('button');
+      const twoPlayer = document.createElement('button');
+      const _stylePlayerSelect = (howMany) => {
+        let _which = (howMany === 'one');
+        let _player = (_which) ? onePlayer : twoPlayer;
+        let _other = (_which) ? twoPlayer : onePlayer;
+        let btnStatus = (_which) ? 'btn-group-active' : 'btn-group-inactive';
+        _player.id = `${howMany}-player`;
+        _player.innerText = (_which) ? 's i n g l e' : 'v s';
+        _player.classList.add(btnStatus);
+        _player.onmouseenter = () => _toggle(_player, _other);
+        if (_which) {
+          _player.disabled = true;
+        }
+        else {
+          _player.onclick = () => nextScreen(login, 0);
+        }
+      };
+      _stylePlayerSelect('one');
+      _stylePlayerSelect('two');
       [logo, onePlayer, twoPlayer, author].forEach(elem => {
         _homescreen.appendChild(elem);
       });
-
-      return container.appendChild(_homescreen),
-             setTimeout(() => {
-               let _message = document.getElementById('logo');
-               _message.style.color = 'blanchedalmond';
-             }, 250),
-             setTimeout(() => {
-               let _author = document.getElementById('author');
-               _author.style.color = 'burlywood';
-             }, 250),
-             setTimeout(() => {
-               let _single = document.getElementById('one-player');
-               let _vs = document.getElementById('two-player');
-               _single.style.visibility = 'visible';
-               _vs.style.visibility = 'visible';
-             }, 1250);;
+      return container.appendChild(_homescreen), animate.homeLoad();
     };
     const login = () => {
-      const _name = (player, funk) => {
-        if (player.value === '') {
-          return funk(player.placeholder);
-        }
-        else {
-          return funk(player.value);
-        }
-      };
       const _playerOne = document.createElement('input');
       const _playerTwo = document.createElement('input');
+      const _stylePrompt = (mark) => {
+        let _which = (mark === 'X');
+        let _player = (_which) ? _playerOne : _playerTwo;
+        _player.id = (_which) ? 'login-one' : 'login-two';
+        _player.placeholder = `Player ${mark}`;
+        _player.style.visibility = 'hidden';
+
+      };
+      _stylePrompt('X');
+      _stylePrompt('O');
+
       const _login = document.createElement('button');
-
-      _playerOne.id = 'login-one';
-      _playerOne.placeholder = 'Player X';
-      _playerOne.style.visibility = 'hidden';
-
-      _playerTwo.id = 'login-two';
-      _playerTwo.placeholder = 'Player O';
-      _playerTwo.style.visibility = 'hidden';
-      
+      const _name = (user, createPlayer) => {
+        if (user.value === '') {
+          return createPlayer(user.placeholder);
+        }
+        else {
+          return createPlayer(user.value);
+        }
+      };
       _login.id = 'login';
       _login.innerText = 'l o g i n';
       _login.style.opacity = '0';
       _login.onclick = () => {
         _name(_playerOne, players.playerOne);
         _name(_playerTwo, players.playerTwo);
-        return game.start();
+        return animate.gameOpening.start();
       };
 
       [_playerOne, _playerTwo, _login].forEach(elem => {
         container.appendChild(elem);
       });
 
-      const p1 = document.getElementById('login-one');
-      const p2 = document.getElementById('login-two');
-      const log = document.getElementById('login');
-
-      return [p1, p2].forEach(elem => {
-        setTimeout(() => {
-            elem.style.visibility = 'visible';
-        }, 425);
-      }),
-        setTimeout(() => {
-          log.style.transition = '2s';
-          log.style.opacity = '1';
-        }, 250),
-        setTimeout(() => {
-          log.style.transition = '250ms';
-        }, 2000);;
+      animate.loginLoad();
     };
     const nav = (drawOrWin) => {
       const _reset = document.createElement('button');
@@ -274,16 +266,17 @@ const virtualBoard = (() => {
       _reset.id = 'reset';
       _reset.innerText = 'r e s e t';
       _reset.classList.add('btn-group-active');
-      _reset.onmouseenter = () => _toggleButtonHover(_reset, _logout);
+      _reset.onmouseenter = () => _toggle(_reset, _logout);
       _reset.onclick = () => game.reset();
 
       _logout.id = 'logout';
       _logout.innerText = 'l o g o u t';
       _logout.classList.add('btn-group-inactive');
-      _logout.onmouseenter = () => _toggleButtonHover(_logout, _reset);
+      _logout.onmouseenter = () => _toggle(_logout, _reset);
       _logout.onclick = () => {
-        game.reset();
-        virtualBoard.players.clear();
+        container.innerHTML = '';
+        game.reset(false);
+        players.clear();
         return nextScreen(home, 0);
       };
 
@@ -296,7 +289,7 @@ const virtualBoard = (() => {
       const _message = document.createElement('div');
       _draw.id = 'end';
       _message.id = 'message';
-      _message.innerText = 'D R A W';
+      _message.innerText = 'a w  ,  D R A W';
       _draw.appendChild(_message);
       nav(_draw);
       return container.appendChild(_draw),
@@ -309,7 +302,7 @@ const virtualBoard = (() => {
     const win = () => {
       const _win = document.createElement('div');
       const _message = document.createElement('p');
-      let _winner = players.winner.grab().name;
+      let _winner = players.winner.grab().name();
       _win.id = 'end';
       _message.id = 'message';
       _message.innerText = `Well done, ${_winner}`;
@@ -321,53 +314,166 @@ const virtualBoard = (() => {
                _message.style.color = 'blanchedalmond';
              }, 250);
     };
-    const animateBlackout = (spot, coords, milliseconds) => {
-      cell.renderMark(coords[0], coords[1], 'blackout');
-      spot.classList.add('blackout');
-      spot.style.borderColor = '#222222';
-      setTimeout(() => {
-        spot.style.background = 'none';
-      }, milliseconds);
-    };
-    const animateDraw = (row, column) => {
-      let _cell = display.cell.grab(row, column);
-      display.animateBlackout(_cell, [row, column], 310);
-      if (row + column === 4) {
-        return nextScreen(draw, 1030);
-      }
-    };
-    const animateChampion = (row, column, coords) => {
-      // extract winning squares' coordinates from elem to complete ids
-      const _champCell1 = () => `cell-${coords[0][0]}x${coords[0][1]}`;
-      const _champCell2 = () => `cell-${coords[1][0]}x${coords[1][1]}`;
-      const _champCell3 = () => `cell-${coords[2][0]}x${coords[2][1]}`;
-                                       // return current cell of matrix
-      const _displayedCell = () => cell.getId(row, column);
+    const animate = (() => {
+      const homeLoad = () => {
+        const _message = document.getElementById('logo');
+        const _author = document.getElementById('author');
+        const _single = document.getElementById('one-player');
+        const _vs = document.getElementById('two-player');
 
-      const _tic = () => (_displayedCell() === _champCell1());
-      const _tac = () => (_displayedCell() === _champCell2());
-      const _toe = () => (_displayedCell() === _champCell3());
-
-      let _cell = cell.grab(row, column);
-
-      if (_tic() || _tac() || _toe()) {
-        _cell.classList.remove('blackout');
-        _cell.classList.add('blink');
-        _cell.style.borderColor = '#222222';
-        _cell.classList.add('glow');
-        _cell.classList.remove('blink');
+        return setTimeout(() => {
+          _message.style.color = 'blanchedalmond';
+        }, 250),
         setTimeout(() => {
-          _cell.classList.add('blackout');
-        }, 1315);
+          _author.style.color = 'burlywood';
+        }, 250),
         setTimeout(() => {
-          _cell.style.opacity = 0;
-        }, 2325);
+          _single.style.visibility = 'visible';
+          _vs.style.visibility = 'visible';
+        }, 1250);
+      };
+      const loginLoad = () => {
+        const p1 = document.getElementById('login-one');
+        const p2 = document.getElementById('login-two');
+        const log = document.getElementById('login');
+  
+        return [p1, p2].forEach(elem => {
+          setTimeout(() => {
+              elem.style.visibility = 'visible';
+          }, 250);
+        }),
+          setTimeout(() => {
+            log.style.transition = '2s';
+            log.style.opacity = '1';
+          }, 250),
+          setTimeout(() => {
+            log.style.transition = 'none';
+          }, 1000);
       }
-      else {
-        animateBlackout(_cell, [row, column], 2523);
+      const gameOpening = (() => {
+        let _board = matrix.getMatrix();
+  
+        const tic = () => {
+          _board[1][0] = cell.renderMark(1,0,'T');
+          _board[1][1] = cell.renderMark(1,1,'I');
+          _board[1][2] = cell.renderMark(1,2,'C');
+          matrix.command('disable-click');
+          return matrix.command(['champ', [[1, 0], [1, 1], [1, 2]]]);
+        };
+        const tac =  () => {
+          game.reset();
+          _board[0][1] = cell.renderMark(0,1,'T');
+          _board[1][1] = cell.renderMark(1,1,'A');
+          _board[2][1] = cell.renderMark(2,1,'C');
+          matrix.command('disable-click');
+          return matrix.command(['champ', [[0, 1], [1, 1], [2, 1]]]);
+        };
+        const toe = () => {
+          game.reset();
+          _board[0][0] = cell.renderMark(0,0,'T');
+          _board[1][1] = cell.renderMark(1,1,'O');
+          _board[2][2] = cell.renderMark(2,2,'E');
+          matrix.command('disable-click');
+          return matrix.command(['champ', [[0, 0], [1, 1], [2, 2]]]);
+        };
+        const start = (funk) => {
+          _funk = funk || tic;
+          game.start();
+          return _funk();
+        };
+  
+        return {
+          tic,
+          tac,
+          toe,
+          start
+        }
+      })();
+      const _ticTacToe = (cell, previousCell) => {
+        if (cell.innerText === 'C') {
+          const _nextWord = (funk) => {
+            return setTimeout(() => {
+              gameOpening.start(funk);
+            }, 1250);
+          };
+          let _previous = document.getElementById(previousCell).innerText;
+  
+          if (_previous === 'I') {
+            return _nextWord(gameOpening.tac);
+          }
+          if (_previous === 'A') {
+            return _nextWord(gameOpening.toe);
+          }
+        }
+        if (cell.innerText === 'E') {
+          return setTimeout(() => {
+            container.style.opacity = '0';
+            setTimeout(() => {
+              game.reset();
+              container.style.opacity = '1';
+            }, 1000);
+          }, 1500);
+        }
+      };
+      const _blackout = (spot, coords, milliseconds) => {
+        cell.renderMark(coords[0], coords[1], 'blackout');
+        spot.classList.add('blackout');
+        spot.style.borderColor = '#222222';
+        setTimeout(() => {
+          spot.style.background = 'none';
+        }, milliseconds);
+      };
+      const tie = (row, column) => {
+        let _cell = cell.grab(row, column);
+        _blackout(_cell, [row, column], 310);
+        if (row + column === 4) {
+          return nextScreen(draw, 1030);
+        }
+      };
+      const champion = (row, column, coords) => {
+        let _command = (coords[3] === 'coords') ? coords.pop() : 'opening';
+  
+        // extract winning squares' coordinates from elem to complete ids
+        const _champCell1 = () => `cell-${coords[0][0]}x${coords[0][1]}`;
+        const _champCell2 = () => `cell-${coords[1][0]}x${coords[1][1]}`;
+        const _champCell3 = () => `cell-${coords[2][0]}x${coords[2][1]}`;
+                                         // return current cell of matrix
+        const _displayedCell = () => cell.getId(row, column);
+  
+        const _tic = () => (_displayedCell() === _champCell1());
+        const _tac = () => (_displayedCell() === _champCell2());
+        const _toe = () => (_displayedCell() === _champCell3());
+  
+        let _cell = cell.grab(row, column);
+  
+        if (_tic() || _tac() || _toe()) {
+          _cell.classList.remove('blackout');
+          _cell.classList.add('blink');
+          _cell.style.borderColor = '#222222';
+          _cell.classList.add('glow');
+          _cell.classList.remove('blink');
+          setTimeout(() => {
+            _cell.classList.add('blackout');
+          }, 1315);
+          setTimeout(() => {
+            _cell.style.opacity = 0;
+          }, 2325);
+        }
+        else {
+          _blackout(_cell, [row, column], 2523);
+        }
+  
+        if (_command === 'opening') _ticTacToe(_cell, _champCell2());
+        if (_command === 'coords') nextScreen(win, 3335);
+      };
+      return {
+        homeLoad,
+        loginLoad,
+        gameOpening,
+        tie,
+        champion
       }
-      nextScreen(win, 3335);
-    };
+    })();
 
     return home(), {
       container,
@@ -379,27 +485,22 @@ const virtualBoard = (() => {
       nav,
       draw,
       win,
-      animateBlackout,
-      animateDraw,
-      animateChampion
+      animate
     };
   })();
 
-  return { matrix, players, display }
+  return { matrix, ai, players, display }
 })();
 
 
 
 const Player = (playerName, xOrO) => {
-  const name = playerName;
+  const _name = playerName;
+  const name = () => _name;
   const whichMark = () => xOrO;
-  const mark = (row, column) => {
-    return game.playerInput(row, column, whichMark());
-  };
   return {
     name,
-    whichMark,
-    mark
+    whichMark
   }
 };
 
@@ -427,11 +528,10 @@ const game = (() => {
   };
   const _secureInput = (mark) => (mark === 'X' || mark === 'O');
   const _emptyCell = (row, column) => (_board[row][column] === null);
-  const playerInput = (row, column, mark) => {
+  const _mark = (row, column, mark) => {
     if (_secureInput(mark)) {
       virtualBoard.display.cell.renderMark(row, column, mark);
       _clickCount++;
-      // _changePlayer();
       return _board[row][column] = mark;
     }
   };
@@ -462,11 +562,6 @@ const game = (() => {
     }
     // console.log(symbol);
   };
-  const _sendOutcome = (player) => {
-    let _result = _logic(player);
-    _result.pop();
-    return _result;
-  };
   const clickHandler = (event) => {
                                   // array of split string: 'cell-[num]x[num]'
     let _id = virtualBoard.display.cell.grab(event.target.id).id.split(''),
@@ -475,19 +570,19 @@ const game = (() => {
         _player = _currentPlayer();
 
     if (_emptyCell(_row, _column)) {
-      _player.mark(_row, _column);
+      _mark(_row, _column, _player.whichMark());
 
-      let _query = _logic(_player);
+      let _matrix = virtualBoard.matrix;
+      let _coords = _logic(_player);
       
-      if (_clickCount > 4 && _query[3] === 'coords') {
-        let _coords = _sendOutcome(_player);
+      if (_clickCount > 4 && _coords[3] === 'coords') {
         virtualBoard.players.winner.save(_turn);
-        virtualBoard.matrix.command(['champ', _coords]);
+        return _matrix.command(['champ', _coords]);
       }
       _changePlayer();
 
-      if (_clickCount > 7 && _query[3] !== 'coords') {
-        virtualBoard.matrix.command(['tie', _currentPlayer().whichMark()]);
+      if (_clickCount > 7) {
+        virtualBoard.ai.tieOrAutoWin(_currentPlayer().whichMark());
       }
     }
   };
@@ -496,81 +591,14 @@ const game = (() => {
     _board = _initMatrix();
     return 0;
   };
-  const reset = () => {
+  const reset = (command) => {
+    _command = command || null;
     virtualBoard.matrix.clear();
     _clickCount = 0;
     _turn = 0;
-    return start();
+    if (!_command) start();
   };
-  return { _players, playerInput, clickHandler, start, reset }
+  return { clickHandler, start, reset }
 })();
 
-console.log( { virtualBoard, game } ); // delete
 
-
-
-const viewportHandler = () => {
-  let width = window.innerWidth ||
-              document.documentElement.clientWidth ||
-              document.body.clientWidth;
-  let height = window.innerHeight ||
-               document.documentElement.clientHeight ||
-               document.body.clientHeight;
-
-  const _logo = document.getElementById('logo');
-  const _author = document.getElementById('author');
-  const _onePlayer = document.getElementById('one-player');
-  const _twoPlayer = document.getElementById('two-player');
-  const _login = document.getElementById('login');
-  const _reset = document.getElementById('reset');
-  const _logout = document.getElementById('logout');
-
-  if (width > height) {    
-    return virtualBoard.display.container.style.height = '95vh',
-           virtualBoard.display.container.style.width = '100vh',
-           virtualBoard.display.container.style.margin = '2vh auto 0 auto',
-           _logo.style.margin = '20vh auto 0 auto';
-  }
-
-  if (width < height) {
-    return () => {
-      virtualBoard.display.container.style.height = '100vw',
-      virtualBoard.display.container.style.width = '95vw',
-      virtualBoard.display.container.style.margin = '2vw auto 0 auto',
-
-      _logo.style.margin = '20vw auto 0 auto',
-      _logo.style.fontSize = '14vw',
-      
-      _author.style.margin = '55vw auto 0 auto',
-      _author.style.fontSize = '4vw',
-      
-      _onePlayer.style.margin = '35vw auto 0 auto',
-      _onePlayer.style.height = '18vw',
-      _onePlayer.style.borderRadius = '5vw 5vw 10vw 10vw',
-      _onePlayer.style.fontSize = '8vw',
-      
-      _twoPlayer.style.margin = '51vw auto 0 auto',
-      _twoPlayer.style.height = '18vw',
-      _twoPlayer.style.borderRadius = '5vw 5vw 10vw 10vw',
-      _twoPlayer.style.fontSize = '8vw',
-      
-      _login.style.margin = '70vw auto 0 auto',
-      _login.style.height = '18vw',
-      _login.style.borderRadius = '5vw 5vw 10vw 10vw',
-      _login.style.fontSize = '8vw',
-      
-      _reset.style.margin = '35vw auto 0 auto',
-      _reset.style.height = '18vw',
-      _reset.style.borderRadius = '5vw 5vw 10vw 10vw',
-      _reset.style.fontSize = '8vw',
-      
-      _logout.style.margin = '51vw auto 0 auto',
-      _logout.style.height = '18vw',
-      _logout.style.borderRadius = '5vw 5vw 10vw 10vw',
-      _logout.style.fontSize = '8vw';
-      
-    }
-  }
-};
-
-window.addEventListener('orientationchange', viewportHandler)
