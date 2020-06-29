@@ -229,6 +229,17 @@ const virtualBoard = (() => {
         let _player = (_which) ? _playerOne : _playerTwo;
         _player.id = (_which) ? 'login-one' : 'login-two';
         _player.placeholder = `Player ${mark}`;
+        _player.oninput = () => {
+          let _input = () => document.getElementById(_player.id);
+          if (_input().value.length > 12) {
+            let _text = _input().value;
+            _text = _text.substring(0, _text.length - 1);
+            _input().value = _text;
+          }
+          else {
+            return true;
+          } 
+        }
         _player.style.visibility = 'hidden';
 
       };
@@ -579,11 +590,10 @@ const game = (() => {
         virtualBoard.players.winner.save(_turn);
         return _matrix.command(['champ', _coords]);
       }
-      _changePlayer();
-
       if (_clickCount > 7) {
         virtualBoard.ai.tieOrAutoWin(_currentPlayer().whichMark());
       }
+      _changePlayer();
     }
   };
   const start = () => {
