@@ -1,4 +1,4 @@
-const virtualBoard = (() => {
+const game = (() => {
 
   const matrix = (() => {
     let _matrix = [];
@@ -16,7 +16,7 @@ const virtualBoard = (() => {
         _cell.classList.remove('hover');
       });
       _cell.addEventListener('click', (event) => {
-        game.clickHandler(event);
+        gameplay.clickHandler(event);
       });
     };
     const _prompt = (elem) => {
@@ -26,6 +26,7 @@ const virtualBoard = (() => {
       const _checkForWin = () => (elem === 'XXX' || elem === 'OOO');
       const _findNulls = () => (elem === 'nulls');
       const _stopClick = () => (elem === 'disable-click');
+      const _startClick = () => (elem === 'enable-click');
       const _showChamp = () => (elem[0] === 'champ');
       const _showDraw = () => (elem === 'draw');
 
@@ -43,7 +44,7 @@ const virtualBoard = (() => {
         if (_buildMatrix()) _createRow();
 
         if (_checkForWin() && elem === _matrix[_row].join('')) {
-          _prompt('disable-click');
+          // _prompt('disable-click');
           return [[_row, 0], [_row, 1], [_row, 2], 'coords'];
         }
 
@@ -59,11 +60,12 @@ const virtualBoard = (() => {
             _nulls.push([_row, _column]);
           }
           if (_stopClick()) display.cell.grab(_row, _column).disabled = true;
+          if (_startClick()) display.cell.grab(_row, _column).disabled = false;
           if (_showChamp()) display.animate.champion(_row, _column, _coords);
           if (_showDraw()) display.animate.tie(_row, _column);
         }
         if (_checkForWin() && elem === _pillar) {
-          _prompt('disable-click');
+          // _prompt('disable-click');
           return [[0, _row], [1, _row], [2, _row], 'coords'];
         }
       }
@@ -79,41 +81,6 @@ const virtualBoard = (() => {
     const command = (elem) => _prompt(elem); 
 
   return { getMatrix, clear, command };
-  })();
-
-  const ai = (() => {
-    const _nulls = () => matrix.command('nulls');
-
-    const tieOrAutoWin = (currentMark) => {
-      let _matrix = matrix.getMatrix();
-      let _which = (currentMark === 'X');
-      let _mark = (_which) ? currentMark : 'O';
-      let _otherMark = (_which) ? 'O' : 'X';
-      let _spaces = _nulls();
-      let _coord = (_spaces !== []) ? _spaces.pop() : false;
-
-      if (_coord) {
-        _matrix[ _coord[0] ][ _coord[1] ] = _mark;
-
-        if (matrix.command(_mark.repeat(3))[3] !== 'coords') {
-          return tieOrAutoWin(_otherMark);
-        }
-        else {
-          let _turn = (_which) ? 0 : 1;
-          players.winner.save(_turn);
-          display.cell.renderMark(_coord[0], _coord[1], _mark);
-          return matrix.command(['champ', matrix.command(_mark.repeat(3))]);
-        }
-      }
-      else {
-        matrix.command('disable-click');
-        return matrix.command('draw');
-      }
-    };
-
-    return {
-      tieOrAutoWin,
-    }
   })();
 
   const players = (() => {
@@ -146,14 +113,6 @@ const virtualBoard = (() => {
   })();
 
   const display = (() => {
-
-    const _toggle = (currentButton, otherButton) => {
-      currentButton.classList.remove('btn-group-inactive');
-      currentButton.classList.add('btn-group-active');
-      otherButton.classList.remove('btn-group-active');
-      otherButton.classList.add('btn-group-inactive');
-    };
-
     const container = document.getElementById('container');
     const initBoard = () => matrix.command('init-board');
     const cell = (() => {
@@ -175,14 +134,22 @@ const virtualBoard = (() => {
         if (mark === 'blackout') mark = ' ';
         return grab(row, column).innerText = mark;
       };
-
-      return { grab, getId, render, renderMark }
+      return { grab,
+        getId,
+        render,
+        renderMark }
     })();
     const nextScreen = (screen, milliseconds) => {
       setTimeout(() => {
         container.innerHTML = '';
         screen();
       }, milliseconds);
+    };
+    const _toggle = (currentButton, otherButton) => {
+      currentButton.classList.remove('btn-group-inactive');
+      currentButton.classList.add('btn-group-active');
+      otherButton.classList.remove('btn-group-active');
+      otherButton.classList.add('btn-group-inactive');
     };
     const home = () => {
       const _homescreen = document.createElement('p');
@@ -208,10 +175,10 @@ const virtualBoard = (() => {
         _player.classList.add(btnStatus);
         _player.onmouseenter = () => _toggle(_player, _other);
         if (_which) {
-          _player.disabled = true;
+          _player.onclick = () => nextScreen(single, 0);
         }
         else {
-          _player.onclick = () => nextScreen(login, 0);
+          _player.onclick = () => nextScreen(vs, 0);
         }
       };
       _stylePlayerSelect('one');
@@ -221,7 +188,53 @@ const virtualBoard = (() => {
       });
       return container.appendChild(_homescreen), animate.homeLoad();
     };
-    const login = () => {
+    const single = () => {
+      const _you = document.createElement('input');
+      _you.id = 'you';
+      _you.placeholder = `you`;
+      _you.oninput = () => {
+        let _input = () => document.getElementById(_you.id);
+        if (_input().value.length > 12) {
+          let _text = _input().value;
+          _text = _text.substring(0, _text.length - 1);
+          _input().value = _text;
+        }
+        else {
+          return true;
+        } 
+      }
+      _you.style.visibility = 'hidden';
+
+      const _ex = document.createElement('button');
+      _ex.id = 'ex';
+      _ex.innerText = 'X';
+
+
+      const _login = document.createElement('button');
+      const _name = (user, createPlayer) => {
+        if (user.value === '') {
+          return createPlayer(user.placeholder);
+        }
+        else {
+          return createPlayer(user.value);
+        }
+      };
+      _login.id = 'login';
+      _login.innerText = 'l o g i n';
+      _login.style.opacity = '0';
+      _login.onclick = () => {
+        _name(_you, players.playerOne);
+        players.playerTwo('me');
+        return animate.gameOpening.start();
+      };
+
+      [_you, _login].forEach(elem => {
+        container.appendChild(elem);
+      });
+
+      animate.loginLoad();
+    };
+    const vs = () => {
       const _playerOne = document.createElement('input');
       const _playerTwo = document.createElement('input');
       const _stylePrompt = (mark) => {
@@ -275,10 +288,10 @@ const virtualBoard = (() => {
       const _logout = document.createElement('button');
 
       _reset.id = 'reset';
-      _reset.innerText = 'r e s e t';
+      _reset.innerText = 'r e m a t c h';
       _reset.classList.add('btn-group-active');
       _reset.onmouseenter = () => _toggle(_reset, _logout);
-      _reset.onclick = () => game.reset();
+      _reset.onclick = () => gameplay.reset();
 
       _logout.id = 'logout';
       _logout.innerText = 'l o g o u t';
@@ -286,7 +299,7 @@ const virtualBoard = (() => {
       _logout.onmouseenter = () => _toggle(_logout, _reset);
       _logout.onclick = () => {
         container.innerHTML = '';
-        game.reset(false);
+        gameplay.reset(false);
         players.clear();
         return nextScreen(home, 0);
       };
@@ -346,12 +359,15 @@ const virtualBoard = (() => {
       const loginLoad = () => {
         const p1 = document.getElementById('login-one');
         const p2 = document.getElementById('login-two');
+        const u = document.getElementById('you');
         const log = document.getElementById('login');
   
-        return [p1, p2].forEach(elem => {
-          setTimeout(() => {
-              elem.style.visibility = 'visible';
-          }, 250);
+        return [p1, p2, u].forEach(elem => {
+          if (elem !== null) {
+            setTimeout(() => {
+                elem.style.visibility = 'visible';
+            }, 250);
+          }
         }),
           setTimeout(() => {
             log.style.transition = '2s';
@@ -372,7 +388,7 @@ const virtualBoard = (() => {
           return matrix.command(['champ', [[1, 0], [1, 1], [1, 2]]]);
         };
         const tac =  () => {
-          game.reset();
+          gameplay.reset();
           _board[0][1] = cell.renderMark(0,1,'T');
           _board[1][1] = cell.renderMark(1,1,'A');
           _board[2][1] = cell.renderMark(2,1,'C');
@@ -380,7 +396,7 @@ const virtualBoard = (() => {
           return matrix.command(['champ', [[0, 1], [1, 1], [2, 1]]]);
         };
         const toe = () => {
-          game.reset();
+          gameplay.reset();
           _board[0][0] = cell.renderMark(0,0,'T');
           _board[1][1] = cell.renderMark(1,1,'O');
           _board[2][2] = cell.renderMark(2,2,'E');
@@ -389,7 +405,7 @@ const virtualBoard = (() => {
         };
         const start = (funk) => {
           _funk = funk || tic;
-          game.start();
+          gameplay.start();
           return _funk();
         };
   
@@ -420,7 +436,7 @@ const virtualBoard = (() => {
           return setTimeout(() => {
             container.style.opacity = '0';
             setTimeout(() => {
-              game.reset();
+              gameplay.reset();
               container.style.opacity = '1';
             }, 1000);
           }, 1500);
@@ -492,7 +508,7 @@ const virtualBoard = (() => {
       cell,
       nextScreen,
       home,
-      login,
+      vs,
       nav,
       draw,
       win,
@@ -500,7 +516,7 @@ const virtualBoard = (() => {
     };
   })();
 
-  return { matrix, ai, players, display }
+  return { matrix, players, display }
 })();
 
 
@@ -517,98 +533,264 @@ const Player = (playerName, xOrO) => {
 
 
 
-const game = (() => {
-  let _board = virtualBoard.matrix.getMatrix();
-  let _clickCount = 0;
-  let _turn = 0;
+const gameplay = (() => {
 
   const _players = () => {
     return [ 
-      virtualBoard.players.grab(0),
-      virtualBoard.players.grab(1)
+      game.players.grab(0),
+      game.players.grab(1)
     ];
   };
-  const _currentPlayer = () => _players()[_turn];
-  const _changePlayer = () => {
-    _turn = (_turn === 0) ? _turn + 1 : _turn - 1;
-    return _currentPlayer();
-  };
-  const _initMatrix = () => {
-    virtualBoard.display.initBoard();
-    return virtualBoard.matrix.command('init-matrix');
-  };
+
+  const _round = (() => {
+    let _board = game.matrix.getMatrix();
+    let _clickCount = 0;
+    let _turn = 0;
+
+    const click = () => {
+      return _clickCount++;
+    }
+    const board = () => _board;
+    const clicks = () => _clickCount;
+    const turn = () => _turn;
+    const currentPlayer = () => {
+      return _players()[turn()];
+    };
+    const changePlayer = () => {
+        return _turn = (_turn === 0) ? _turn + 1 : _turn - 1;
+    };
+    const reset = () => {
+      return _turn = 0, _clickCount = 0;
+    };
+    const init = () => {
+      game.display.initBoard();
+      _board = game.matrix.command('init-matrix');
+    };
+    return {
+      click,
+      board,
+      clicks,
+      turn,
+      currentPlayer,
+      changePlayer,
+      reset,
+      init
+    }
+  })();
+  
   const _secureInput = (mark) => (mark === 'X' || mark === 'O');
-  const _emptyCell = (row, column) => (_board[row][column] === null);
+  const _emptyCell = (row, column) => (_round.board()[row][column] === null);
   const _mark = (row, column, mark) => {
     if (_secureInput(mark)) {
-      virtualBoard.display.cell.renderMark(row, column, mark);
-      _clickCount++;
-      return _board[row][column] = mark;
+      game.display.cell.renderMark(row, column, mark);
+      let _cell = game.display.cell.grab(row, column);
+      _cell.style.borderColor = 'burlywood';
+      _round.click();
+      return _round.board()[row][column] = mark;
     }
-  };
-  const _logic = (player) => {
-    let _symbol = player.whichMark().repeat(3);
-
-    const _checkRowsAndColumns = (symbol) => {
-      return virtualBoard.matrix.command(symbol);
-    };
-    const _checkDiags = (symbol) => {
-      const _backslash = _board[0][0] + _board[1][1] + _board[2][2];
-      const _forwardslash = _board[0][2] + _board[1][1] + _board[2][0];
-      if (symbol === _backslash) {
-        virtualBoard.matrix.command('disable-click');
-        return [[0, 0], [1, 1], [2, 2], 'coords'];
-      }
-      if (symbol === _forwardslash) {
-        virtualBoard.matrix.command('disable-click');
-        return [[0, 2], [1, 1], [2, 0], 'coords'];
-      }
-    };
-
-    if (_checkDiags(_symbol)) {
-      return _checkDiags(_symbol);
-    }
-    if (_checkRowsAndColumns(_symbol)) {
-      return _checkRowsAndColumns(_symbol);
-    }
-    // console.log(symbol);
   };
   const clickHandler = (event) => {
+    game.matrix.command('disable-click');
                                   // array of split string: 'cell-[num]x[num]'
-    let _id = virtualBoard.display.cell.grab(event.target.id).id.split(''),
+    let _id = game.display.cell.grab(event.target.id).id.split(''),
         _row = _id[5],
-        _column = _id[7],
-        _player = _currentPlayer();
+        _column = _id[7];
 
     if (_emptyCell(_row, _column)) {
-      _mark(_row, _column, _player.whichMark());
+      _mark(_row, _column, _round.currentPlayer().whichMark());
 
-      let _matrix = virtualBoard.matrix;
-      let _coords = _logic(_player);
+      let _coords = ai.logic(_round.currentPlayer());
+      let _clicks = _round.clicks();
       
-      if (_clickCount > 4 && _coords[3] === 'coords') {
-        virtualBoard.players.winner.save(_turn);
-        return _matrix.command(['champ', _coords]);
+      if (_clicks > 4 && _coords[3] === 'coords') {
+        game.matrix.command('disable-click');
+        game.players.winner.save(_round.turn());
+        return game.matrix.command(['champ', _coords]);
       }
-      if (_clickCount > 7) {
-        virtualBoard.ai.tieOrAutoWin(_currentPlayer().whichMark());
+      if (_clicks > 7) {
+        return ai.tieOrAutoWin(_round.currentPlayer().whichMark());
       }
-      _changePlayer();
+      _round.changePlayer();
+      if (_round.currentPlayer().name() === 'me') {
+        setTimeout(() => {
+          ai.mark();
+        _round.click();
+        _coords = ai.logic(_round.currentPlayer());
+        _clicks = _round.clicks();
+
+        if (_clicks > 4 && _coords[3] === 'coords') {
+          game.matrix.command('disable-click');
+          game.players.winner.save(_round.turn());
+          return game.matrix.command(['champ', _coords]);
+        }
+        if (_clicks > 7) {
+          return ai.tieOrAutoWin(_round.currentPlayer().whichMark());
+        }
+        _round.changePlayer();
+        }, 125);
+      }
     }
+    game.matrix.command('enable-click');
   };
   const start = () => {
-    virtualBoard.display.container.innerHTML = '';
-    _board = _initMatrix();
-    return 0;
+    game.display.container.innerHTML = '';
+    _round.init();
   };
   const reset = (command) => {
-    _command = command || null;
-    virtualBoard.matrix.clear();
-    _clickCount = 0;
-    _turn = 0;
-    if (!_command) start();
+    _command = (command === undefined) ? true : command;
+    game.matrix.clear();
+    if (_command) {
+      _round.reset();
+      return start();
+    }
   };
+
+  const ai = (() => {
+
+    const bestMove = (() => {
+      let _move = [];
+      const save = (coords) => _move.push(coords);
+      const clear = () => _move.pop();
+      const is = () => _move;
+      return {
+        save,
+        clear,
+        is
+      }
+    })();
+    const logic = (player) => {
+      let _symbol = player.whichMark().repeat(3);
+  
+      const _checkRowsAndColumns = (symbol) => {
+        return game.matrix.command(symbol);
+      };
+      const _checkDiags = (symbol) => {
+        const _board = _round.board();
+        const _backslash = _board[0][0] + _board[1][1] + _board[2][2];
+        const _forwardslash = _board[0][2] + _board[1][1] + _board[2][0];
+        if (symbol === _backslash) {
+          // game.matrix.command('disable-click');
+          return [[0, 0], [1, 1], [2, 2], 'coords'];
+        }
+        if (symbol === _forwardslash) {
+          // game.matrix.command('disable-click');
+          return [[0, 2], [1, 1], [2, 0], 'coords'];
+        }
+      };
+  
+      if (_checkDiags(_symbol)) {
+        return _checkDiags(_symbol);
+      }
+      if (_checkRowsAndColumns(_symbol)) {
+        return _checkRowsAndColumns(_symbol);
+      }
+    };
+    const tieOrAutoWin = (currentMark) => {
+      let _matrix = game.matrix.getMatrix();
+      let _which = (currentMark === 'X');
+      let _mark = (_which) ? currentMark : 'O';
+      let _otherMark = (_which) ? 'O' : 'X';
+      let _spaces = game.matrix.command('nulls');   
+      let _coord = (_spaces !== []) ? _spaces.pop() : false;
+
+      if (_coord) {
+        _matrix[ _coord[0] ][ _coord[1] ] = _otherMark;
+
+        if (game.matrix.command(_otherMark.repeat(3))[3] !== 'coords') {
+          return tieOrAutoWin(_otherMark);
+        }
+        else {
+          let _turn = (_which) ? 1 : 0;
+          game.players.winner.save(_turn);
+          game.display.cell.renderMark(_coord[0], _coord[1], _otherMark);
+          return game.matrix.command(['champ', game.matrix.command(_otherMark.repeat(3))]);
+        }
+      }
+      else {
+        // game.matrix.command('disable-click');
+        return game.matrix.command('draw');
+      }
+    };
+    const _evaluate = () => {
+      let _computer = game.players.grab(1);
+      let _user = game.players.grab(0);
+
+      if (logic(_computer)[3] === 'coords') {
+        return +10;
+      }
+      else if (logic(_user)[3] === 'coords') {
+        return -10;
+      }
+      else {
+        return 0;
+      }
+    };
+    const _minimax = (board, maximizing) => {
+      let _value = _evaluate(board);
+      let _computer = game.players.grab(1).whichMark();
+      let _user = game.players.grab(0).whichMark();
+
+      if (_value > 0 || _value < 0) {
+        return _value;
+      }
+      if (game.matrix.command('nulls').length === 0) {
+        return 0;
+      }
+
+      if (maximizing) {
+        let _best = -Infinity;
+        game.matrix.command('nulls').forEach(coord => {
+          board[coord[0]][coord[1]] = _computer;
+
+          _best = Math.max(_best, _minimax(board, false));
+
+          board[coord[0]][coord[1]] = null;
+        });
+        return _best;
+      }
+      else {
+        let _best = Infinity;
+        game.matrix.command('nulls').forEach(coord => {
+          board[coord[0]][coord[1]] = _user;
+
+          _best = Math.min(_best, _minimax(board, true));
+
+          board[coord[0]][coord[1]] = null;
+        });
+        return _best;
+      }
+    };
+    const mark = () => {
+      let _best = -Infinity;
+      let _board = _round.board();
+      let _computer = game.players.grab(1).whichMark();
+
+      game.matrix.command('nulls').forEach(coord => {
+        _board[coord[0]][coord[1]] = _computer;
+
+        let _value = _minimax(_board, false);
+
+        _board[coord[0]][coord[1]] = null;
+
+        if (_value > _best) {
+          if (bestMove.is().length > 0) bestMove.clear();
+          bestMove.save([coord[0], coord[1]]);
+          _best = _value;
+        }
+      });
+      let _move = bestMove.is();
+      let _cell = game.display.cell.grab(_move[0][0], _move[0][1]);
+      _cell.style.borderColor = 'burlywood';
+
+      game.display.cell.renderMark(_move[0][0], _move[0][1], _computer);
+      _board[_move[0][0]][_move[0][1]] = _computer;
+      return bestMove.clear();
+    };
+    return {
+      logic,
+      tieOrAutoWin,
+      mark
+    }
+  })();
   return { clickHandler, start, reset }
 })();
-
-

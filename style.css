@@ -96,7 +96,8 @@ body {
 }
 
 #login-one,
-#login-two {
+#login-two,
+#you {
   position: fixed;
   height: 24vh;
   width: 90vh;
@@ -113,7 +114,8 @@ body {
 }
 
 #login-one:focus,
-#login-two:focus {
+#login-two:focus,
+#you:focus {
   padding: 0;
   padding-left: 10vh;
   border-bottom: 4px dotted #111111;
@@ -126,6 +128,8 @@ body {
 #login-one { margin: 5vh auto 0 auto; }
 
 #login-two { margin: 35vh auto 0 auto; }
+
+#you { margin: 18vh auto 0 auto }
 
  #message {
   position: fixed;
