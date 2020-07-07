@@ -5,59 +5,59 @@ const game = (() => {
     const _createRow = () => _matrix.push([]);
     const _createCell = (row, column) => {
       _matrix[row][column] = null;
-      display.cell.renderMark(row, column, ' ');
-  
-      let _cell = display.cell.grab(row, column);
-
-      _cell.addEventListener('mouseenter', () => {
-        _cell.classList.add('hover');
-      });
-      _cell.addEventListener('mouseleave', () => {
-        _cell.classList.remove('hover');
-      });
-      _cell.addEventListener('click', (event) => {
-        gameplay.clickHandler(event);
-      });
     };
     const _prompt = (elem) => {
       // handle incoming arguments
-      const _buildBoard = () => (elem === 'init-board');
-      const _buildMatrix = () => (elem === 'init-matrix');
-      const _checkForWin = () => (elem === 'XXX' || elem === 'OOO');
-      const _findNulls = () => (elem === 'nulls');
-      const _stopClick = () => (elem === 'disable-click');
-      const _startClick = () => (elem === 'enable-click');
-      const _showChamp = () => (elem[0] === 'champ');
-      const _showDraw = () => (elem === 'draw');
+      const _buildBoard   = () => (elem === 'init-board');
+      const _buildMatrix  = () => (elem === 'init-matrix');
+      const _checkForWin  = () => (elem === 'XXX' || elem === 'OOO');
+      const _findNulls    = () => (elem === 'nulls');
+
+      
+      const _minimizing   = () => (elem.cmd === 'min');
+      const _stopClick    = () => (elem === 'disable-click');
+      const _startClick   = () => (elem === 'enable-click');
+      const _showChamp    = () => (elem[0] === 'champ');
+      const _showDraw     = () => (elem === 'draw');
 
       const _matrix = (
         _buildMatrix() ||
         _checkForWin() ||
         _showDraw()    ||
         _findNulls()  ) ? getMatrix() : null;
-
-      const _coords = (_showChamp()) ? elem[1] : null;
-      const _nulls = (_findNulls()) ? [] : null;
+      const _coords = (
+        _showChamp()  ) ? elem[1] : null;
+      const _nulls = (
+        _findNulls()  ) ? [] : null;
+      
 
       for (let _row = 0; _row < 3; _row++) {
 
         if (_buildMatrix()) _createRow();
-
         if (_checkForWin() && elem === _matrix[_row].join('')) {
-          // _prompt('disable-click');
           return [[_row, 0], [_row, 1], [_row, 2], 'coords'];
         }
-
         let _pillar = (_checkForWin) ? '' : null;
 
         for (let _column = 0; _column < 3; _column++) {
+          const _isNull = () => (_matrix[_row][_column] === null);
           if (_buildMatrix()) _createCell(_row, _column);
           if (_buildBoard()) display.cell.render(_row, _column);
           if (_checkForWin()) {
             _pillar += _matrix[_column][_row];
           }
-          if (_findNulls() && _matrix[_row][_column] === null) {
+          if (_findNulls() && _isNull()) {
             _nulls.push([_row, _column]);
+          }
+          if (_minimizing() && _isNull()) {
+            _matrix[_row][_column] = _human;
+            let _value = _ai.minimax(_matrix, elem.alpha, elem.beta, true);
+            _best = Math.min(_best, _value);
+            _matrix[_row][_column] = null;
+            elem.beta = Math.min(elem.beta, _best);
+            if (elem.beta <= elem.alpha) {
+              break;
+            }
           }
           if (_stopClick()) display.cell.grab(_row, _column).disabled = true;
           if (_startClick()) display.cell.grab(_row, _column).disabled = false;
@@ -65,7 +65,6 @@ const game = (() => {
           if (_showDraw()) display.animate.tie(_row, _column);
         }
         if (_checkForWin() && elem === _pillar) {
-          // _prompt('disable-click');
           return [[0, _row], [1, _row], [2, _row], 'coords'];
         }
       }
@@ -127,17 +126,32 @@ const game = (() => {
       };
       const render = (row, column) => {
         let _cell = document.createElement('button');
-        _cell.id = display.cell.getId(row, column);
-        display.container.appendChild(_cell);
+        _cell.id = getId(row, column);
+        container.appendChild(_cell);
+        renderMark(row, column, ' ');
+  
+        _cell = grab(row, column);
+
+        _cell.addEventListener('mouseenter', () => {
+          _cell.classList.add('hover');
+        });
+        _cell.addEventListener('mouseleave', () => {
+          _cell.classList.remove('hover');
+        });
+        _cell.addEventListener('click', (event) => {
+          gameplay.clickHandler(event);
+        });
       };
       const renderMark = (row, column, mark) => {
         if (mark === 'blackout') mark = ' ';
         return grab(row, column).innerText = mark;
       };
-      return { grab,
+      return {
+        grab,
         getId,
         render,
-        renderMark }
+        renderMark
+      }
     })();
     const nextScreen = (screen, milliseconds) => {
       setTimeout(() => {
@@ -191,24 +205,24 @@ const game = (() => {
     const single = () => {
       const _you = document.createElement('input');
       _you.id = 'you';
-      _you.placeholder = `you`;
+      _you.placeholder = 'You';
       _you.oninput = () => {
+
         let _input = () => document.getElementById(_you.id);
-        if (_input().value.length > 12) {
-          let _text = _input().value;
+        const _nonAlpha = /[^a-z]/gi;
+        let _value = _input().value;
+
+        if (_nonAlpha.test(_value)) {
+          _input().value = _value.replace(_nonAlpha, '');
+        }
+        
+        if (_value.length > 12) {
+          let _text = _value;
           _text = _text.substring(0, _text.length - 1);
           _input().value = _text;
         }
-        else {
-          return true;
-        } 
       }
       _you.style.visibility = 'hidden';
-
-      const _ex = document.createElement('button');
-      _ex.id = 'ex';
-      _ex.innerText = 'X';
-
 
       const _login = document.createElement('button');
       const _name = (user, createPlayer) => {
@@ -243,15 +257,20 @@ const game = (() => {
         _player.id = (_which) ? 'login-one' : 'login-two';
         _player.placeholder = `Player ${mark}`;
         _player.oninput = () => {
+          
           let _input = () => document.getElementById(_player.id);
-          if (_input().value.length > 12) {
-            let _text = _input().value;
+          const _nonAlpha = /[^a-z]/gi;
+          let _value = _input().value;
+
+          if (_nonAlpha.test(_value)) {
+            _input().value = _value.replace(_nonAlpha, '');
+          }
+          
+          if (_value.length > 12) {
+            let _text = _value;
             _text = _text.substring(0, _text.length - 1);
             _input().value = _text;
           }
-          else {
-            return true;
-          } 
         }
         _player.style.visibility = 'hidden';
 
@@ -599,34 +618,14 @@ const gameplay = (() => {
     if (_emptyCell(_row, _column)) {
       _mark(_row, _column, _round.currentPlayer().whichMark());
 
-      let _coords = ai.logic(_round.currentPlayer());
-      let _clicks = _round.clicks();
-      
-      if (_clicks > 4 && _coords[3] === 'coords') {
-        game.matrix.command('disable-click');
-        game.players.winner.save(_round.turn());
-        return game.matrix.command(['champ', _coords]);
-      }
-      if (_clicks > 7) {
-        return ai.tieOrAutoWin(_round.currentPlayer().whichMark());
-      }
-      _round.changePlayer();
+      ai.think();
+
       if (_round.currentPlayer().name() === 'me') {
+        if (_round.clicks() === 1) ai.move.save(_row, _column);
         setTimeout(() => {
           ai.mark();
-        _round.click();
-        _coords = ai.logic(_round.currentPlayer());
-        _clicks = _round.clicks();
-
-        if (_clicks > 4 && _coords[3] === 'coords') {
-          game.matrix.command('disable-click');
-          game.players.winner.save(_round.turn());
-          return game.matrix.command(['champ', _coords]);
-        }
-        if (_clicks > 7) {
-          return ai.tieOrAutoWin(_round.currentPlayer().whichMark());
-        }
-        _round.changePlayer();
+          _round.click();
+          ai.think();
         }, 125);
       }
     }
@@ -646,16 +645,18 @@ const gameplay = (() => {
   };
 
   const ai = (() => {
-
-    const bestMove = (() => {
-      let _move = [];
-      const save = (coords) => _move.push(coords);
-      const clear = () => _move.pop();
-      const is = () => _move;
+    const move = (() => {
+      let _move = {};
+      const save = (_row, _column) => {
+        _move.row = _row;
+        _move.column = _column;
+      };
+      const row = () => _move.row;
+      const column = () => _move.column;
       return {
         save,
-        clear,
-        is
+        row,
+        column
       }
     })();
     const logic = (player) => {
@@ -711,6 +712,20 @@ const gameplay = (() => {
         return game.matrix.command('draw');
       }
     };
+    const think = () => {
+      let _coords = logic(_round.currentPlayer());
+      let _clicks = _round.clicks();
+      
+      if (_clicks > 4 && _coords[3] === 'coords') {
+        game.matrix.command('disable-click');
+        game.players.winner.save(_round.turn());
+        return game.matrix.command(['champ', _coords]);
+      }
+      if (_clicks > 7) {
+        return ai.tieOrAutoWin(_round.currentPlayer().whichMark());
+      }
+      return _round.changePlayer();
+    };
     const _evaluate = () => {
       let _computer = game.players.grab(1);
       let _user = game.players.grab(0);
@@ -725,12 +740,10 @@ const gameplay = (() => {
         return 0;
       }
     };
-    const _minimax = (board, maximizing) => {
+    const _minimax = (board, alpha, beta, maximizing) => {
       let _value = _evaluate(board);
-      let _computer = game.players.grab(1).whichMark();
-      let _user = game.players.grab(0).whichMark();
 
-      if (_value > 0 || _value < 0) {
+      if (_value !== 0) {
         return _value;
       }
       if (game.matrix.command('nulls').length === 0) {
@@ -738,59 +751,87 @@ const gameplay = (() => {
       }
 
       if (maximizing) {
-        let _best = -Infinity;
-        game.matrix.command('nulls').forEach(coord => {
-          board[coord[0]][coord[1]] = _computer;
-
-          _best = Math.max(_best, _minimax(board, false));
-
-          board[coord[0]][coord[1]] = null;
-        });
-        return _best;
+        return _prompt({ is: 'maximize', alpha, beta, maximizing });
       }
       else {
-        let _best = Infinity;
-        game.matrix.command('nulls').forEach(coord => {
-          board[coord[0]][coord[1]] = _user;
-
-          _best = Math.min(_best, _minimax(board, true));
-
-          board[coord[0]][coord[1]] = null;
-        });
-        return _best;
+        return _prompt({ is: 'minimize', alpha, beta, maximizing });
+      }
+    };
+    const _optimizeFirstMove = (board) => {
+      if (board[1][1] === null) {
+        return move.save(1,1);
+      }
+      else {
+        return move.save(0,0);
       }
     };
     const mark = () => {
-      let _best = -Infinity;
-      let _board = _round.board();
+      _prompt({ is: 'mark' });
+
       let _computer = game.players.grab(1).whichMark();
-
-      game.matrix.command('nulls').forEach(coord => {
-        _board[coord[0]][coord[1]] = _computer;
-
-        let _value = _minimax(_board, false);
-
-        _board[coord[0]][coord[1]] = null;
-
-        if (_value > _best) {
-          if (bestMove.is().length > 0) bestMove.clear();
-          bestMove.save([coord[0], coord[1]]);
-          _best = _value;
-        }
-      });
-      let _move = bestMove.is();
-      let _cell = game.display.cell.grab(_move[0][0], _move[0][1]);
+      let _cell = game.display.cell.grab(move.row(), move.column());
       _cell.style.borderColor = 'burlywood';
+      game.display.cell.renderMark(move.row(), move.column(), _computer);
+      return _round.board()[move.row()][move.column()] = _computer;
+    };
+    const _prompt = (command) => {
+      const _decideMark = () => (command.is === 'mark');
+      const _maximizing = () => (command.is === 'maximize');
+      const _minimizing = () => (command.is === 'minimize');
 
-      game.display.cell.renderMark(_move[0][0], _move[0][1], _computer);
-      _board[_move[0][0]][_move[0][1]] = _computer;
-      return bestMove.clear();
+      const _matrix = game.matrix.getMatrix();
+      const _computer = (
+        _decideMark() ||
+        _maximizing()) ? game.players.grab(1).whichMark() : null;
+      const _user = (
+        _minimizing() ) ? game.players.grab(0).whichMark() : null;
+      let _best = (
+        _decideMark() ||
+        _maximizing()) ? -Infinity : Infinity;
+
+      if (_round.clicks() === 1) {
+        return _optimizeFirstMove(_matrix);
+      }
+
+      for (let row = 0; row < 3; row++) {
+        for (let column = 0; column < 3; column++) {
+          const _isNull = () => (_matrix[row][column] === null);
+          if (_decideMark() && _isNull()) {
+            _matrix[row][column] = _computer;
+            let _value = _minimax(_matrix, -Infinity, Infinity, false);
+            _matrix[row][column] = null;
+            if (_value > _best) {
+              move.save(row, column);
+              _best = _value;
+            }
+          }
+          if (_maximizing() && _isNull()) {
+            _matrix[row][column] = _computer;
+            let _value = _minimax(_matrix, command.alpha, command.beta, !command.maximizing);
+            _best = Math.max(_best, _value);
+            _matrix[row][column] = null;
+            command.alpha = Math.max(command.alpha, _best);
+            if (command.alpha >= command.beta) break;
+          }
+          if (_minimizing() && _isNull()) {
+            _matrix[row][column] = _user;
+            let _value = _minimax(_matrix, command.alpha, command.beta, !command.maximizing);
+            _best = Math.min(_best, _value);
+            _matrix[row][column] = null;
+            command.beta = Math.min(command.beta, _best);
+            if (command.beta <= command.alpha) break;
+          }
+        }
+      }
+      return _best;
     };
     return {
+      move,
       logic,
       tieOrAutoWin,
+      think,
       mark
     }
   })();
-  return { clickHandler, start, reset }
+  return { clickHandler, start, reset, ai }
 })();
