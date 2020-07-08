@@ -192,7 +192,7 @@ const game = (() => {
     const single = () => {
       const _you = document.createElement('input');
       _you.id = 'you';
-      _you.placeholder = 'You';
+      _you.placeholder = 'User';
       _you.oninput = () => {
 
         let _input = () => document.getElementById(_you.id);
