@@ -333,10 +333,11 @@ const game = (() => {
       const _win = document.createElement('div');
       const _message = document.createElement('p');
       let _winner = players.winner.grab().name();
+      let _loser = players.grab(0).name();
       _win.id = 'end';
       _message.id = 'message';
       if (_winner === 'c0mput3r') {
-        _message.innerText = 'I beat you.';
+        _message.innerText = `I beat you, ${_loser}`;
       }
       else {
         _message.innerText = `Well done, ${_winner}`;
