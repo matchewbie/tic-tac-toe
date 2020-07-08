@@ -6,32 +6,51 @@ const game = (() => {
     const _createCell = (row, column) => {
       _matrix[row][column] = null;
     };
-    const _prompt = (elem) => {
+    const _prompt = (cmd) => {
       // handle incoming arguments
-      const _buildBoard   = () => (elem === 'init-board');
-      const _buildMatrix  = () => (elem === 'init-matrix');
-      const _checkForWin  = () => (elem === 'XXX' || elem === 'OOO');
-      const _findNulls    = () => (elem === 'nulls');
-      const _stopClick    = () => (elem === 'disable-click');
-      const _startClick   = () => (elem === 'enable-click');
-      const _showChamp    = () => (elem[0] === 'champ');
-      const _showDraw     = () => (elem === 'draw');
+      const _buildBoard  = () => (cmd.is === 'init-board');
+      const _buildMatrix = () => (cmd.is === 'init-matrix');
+      const _checkForWin = () => (cmd.is === 'XXX' || cmd.is === 'OOO');
+      const _findNulls   = () => (cmd.is === 'nulls');
+      const _decideMark  = () => (cmd.is === 'mark');
+      const _maximizing  = () => (cmd.is === 'maximize');
+      const _minimizing  = () => (cmd.is === 'minimize');
+      const _stopClick   = () => (cmd.is === 'disable-click');
+      const _startClick  = () => (cmd.is === 'enable-click');
+      const _showChamp   = () => (cmd.is === 'champ');
+      const _showDraw    = () => (cmd.is === 'draw');
 
       const _matrix = (
         _buildMatrix() ||
         _checkForWin() ||
         _showDraw()    ||
-        _findNulls()  ) ? getMatrix() : null;
-      const _coords = (
-        _showChamp()  ) ? elem[1] : null;
+        _findNulls()   ||
+        _decideMark()  ||
+        _maximizing()  ||
+        _minimizing() ) ? getMatrix() : null;
       const _nulls = (
         _findNulls()  ) ? [] : null;
-      
+      const _ai = (
+        _decideMark() ||
+        _maximizing() ||
+        _minimizing()) ? gameplay.ai : null;
+      const _computer = (
+        _decideMark() ||
+        _maximizing()) ? players.grab(1).whichMark() : null;
+      const _user = (
+        _minimizing() ) ? players.grab(0).whichMark() : null;
+      let _best = (
+        _decideMark() ||
+        _maximizing()) ? -Infinity : Infinity;
+
+      if (_decideMark() && gameplay.round.clicks() === 1) {
+        return _ai.optimizeFirstMove(_matrix);
+      }
 
       for (let _row = 0; _row < 3; _row++) {
 
         if (_buildMatrix()) _createRow();
-        if (_checkForWin() && elem === _matrix[_row].join('')) {
+        if (_checkForWin() && cmd.is === _matrix[_row].join('')) {
           return [[_row, 0], [_row, 1], [_row, 2], 'coords'];
         }
         let _pillar = (_checkForWin) ? '' : null;
@@ -46,25 +65,59 @@ const game = (() => {
           if (_findNulls() && _isNull()) {
             _nulls.push([_row, _column]);
           }
+          if (_decideMark() && _isNull()) {
+            _matrix[_row][_column] = _computer;
+            let _value = _ai.minimax(_matrix, -Infinity, Infinity, false);
+            _matrix[_row][_column] = null;
+            if (_value > _best) {
+              _ai.move.save(_row, _column);
+              _best = _value;
+            }
+          }
+          if (_maximizing() && _isNull()) {
+            _matrix[_row][_column] = _computer;
+            let _value =
+              _ai.minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
+            _best = Math.max(_best, _value);
+            _matrix[_row][_column] = null;
+            cmd.alpha = Math.max(cmd.alpha, _best);
+            if (cmd.alpha >= cmd.beta){
+              return _best;
+            }
+          }
+          if (_minimizing() && _isNull()) {
+            _matrix[_row][_column] = _user;
+            let _value =
+              _ai.minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
+            _best = Math.min(_best, _value);
+            _matrix[_row][_column] = null;
+            cmd.beta = Math.min(cmd.beta, _best);
+            if (cmd.beta <= cmd.alpha) {
+              return _best;
+            }
+          }
           if (_stopClick()) display.cell.grab(_row, _column).disabled = true;
           if (_startClick()) display.cell.grab(_row, _column).disabled = false;
-          if (_showChamp()) display.animate.champion(_row, _column, _coords);
+          if (_showChamp()) display.animate.champion(_row, _column, cmd.coords);
           if (_showDraw()) display.animate.tie(_row, _column);
         }
-        if (_checkForWin() && elem === _pillar) {
+        if (_checkForWin() && cmd.is === _pillar) {
           return [[0, _row], [1, _row], [2, _row], 'coords'];
         }
       }
-      if (_buildMatrix()) elem = _matrix;
-      if (_findNulls()) elem = _nulls;
+      if (_buildMatrix()) cmd = _matrix;
+      if (_findNulls()) cmd = _nulls;
+      if (_decideMark() ||
+          _maximizing() ||
+          _minimizing()) cmd = _best;
 
-      return elem;
+      return cmd;
     };
     const getMatrix = () => _matrix;
     const clear = () => {
       return _matrix = [];
     };
-    const command = (elem) => _prompt(elem); 
+    const command = (cmd) => _prompt(cmd); 
 
   return { getMatrix, clear, command };
   })();
@@ -100,7 +153,7 @@ const game = (() => {
 
   const display = (() => {
     const container = document.getElementById('container');
-    const initBoard = () => matrix.command('init-board');
+    const initBoard = () => matrix.command({is: 'init-board'});
     const cell = (() => {
       const getId = (row, column) => 'cell-' + row + 'x' + column;
       const grab = (row, column) => {
@@ -396,24 +449,27 @@ const game = (() => {
           _board[1][0] = cell.renderMark(1,0,'T');
           _board[1][1] = cell.renderMark(1,1,'I');
           _board[1][2] = cell.renderMark(1,2,'C');
-          matrix.command('disable-click');
-          return matrix.command(['champ', [[1, 0], [1, 1], [1, 2]]]);
+          matrix.command({is: 'disable-click'});
+          let coords = [[1, 0], [1, 1], [1, 2]];
+          return matrix.command({is: 'champ', coords});
         };
         const tac =  () => {
           gameplay.reset();
           _board[0][1] = cell.renderMark(0,1,'T');
           _board[1][1] = cell.renderMark(1,1,'A');
           _board[2][1] = cell.renderMark(2,1,'C');
-          matrix.command('disable-click');
-          return matrix.command(['champ', [[0, 1], [1, 1], [2, 1]]]);
+          matrix.command({is: 'disable-click'});
+          let coords = [[0, 1], [1, 1], [2, 1]];
+          return matrix.command({is: 'champ', coords});
         };
         const toe = () => {
           gameplay.reset();
           _board[0][0] = cell.renderMark(0,0,'T');
           _board[1][1] = cell.renderMark(1,1,'O');
           _board[2][2] = cell.renderMark(2,2,'E');
-          matrix.command('disable-click');
-          return matrix.command(['champ', [[0, 0], [1, 1], [2, 2]]]);
+          matrix.command({is: 'disable-click'});
+          let coords = [[0, 0], [1, 1], [2, 2]];
+          return matrix.command({is: 'champ', coords});
         };
         const start = (funk) => {
           _funk = funk || tic;
@@ -554,7 +610,7 @@ const gameplay = (() => {
     ];
   };
 
-  const _round = (() => {
+  const round = (() => {
     let _board = game.matrix.getMatrix();
     let _clickCount = 0;
     let _turn = 0;
@@ -576,7 +632,7 @@ const gameplay = (() => {
     };
     const init = () => {
       game.display.initBoard();
-      _board = game.matrix.command('init-matrix');
+      _board = game.matrix.command({is: 'init-matrix'});
     };
     return {
       click,
@@ -589,50 +645,42 @@ const gameplay = (() => {
       init
     }
   })();
-  
-  const _secureInput = (mark) => (mark === 'X' || mark === 'O');
-  const _emptyCell = (row, column) => (_round.board()[row][column] === null);
+
+  const _emptyCell = (row, column) => (round.board()[row][column] === null);
   const _mark = (row, column, mark) => {
-    if (_secureInput(mark)) {
-      game.display.cell.renderMark(row, column, mark);
-      let _cell = game.display.cell.grab(row, column);
-      _cell.style.borderColor = 'burlywood';
-      _round.click();
-      return _round.board()[row][column] = mark;
-    }
+    game.display.cell.renderMark(row, column, mark);
+    game.display.cell.grab(row, column).style.borderColor = 'burlywood';
+    round.click();
+    return round.board()[row][column] = mark;
   };
   const clickHandler = (event) => {
-    game.matrix.command('disable-click');
-                                  // array of split string: 'cell-[num]x[num]'
+    game.matrix.command({is: 'disable-click'});
     let _id = game.display.cell.grab(event.target.id).id.split(''),
         _row = _id[5],
         _column = _id[7];
-
     if (_emptyCell(_row, _column)) {
-      _mark(_row, _column, _round.currentPlayer().whichMark());
-
+      _mark(_row, _column, round.currentPlayer().whichMark());
       ai.think();
-
-      if (_round.currentPlayer().name() === 'c0mput3r') {
-        if (_round.clicks() === 1) ai.move.save(_row, _column);
+      if (round.currentPlayer().name() === 'c0mput3r') {
+        if (round.clicks() === 1) ai.move.save(_row, _column);
         setTimeout(() => {
           ai.mark();
-          _round.click();
+          round.click();
           ai.think();
         }, 125);
       }
     }
-    game.matrix.command('enable-click');
+    game.matrix.command({is: 'enable-click'});
   };
   const start = () => {
     game.display.container.innerHTML = '';
-    _round.init();
+    round.init();
   };
   const reset = (command) => {
     _command = (command === undefined) ? true : command;
     game.matrix.clear();
     if (_command) {
-      _round.reset();
+      round.reset();
       return start();
     }
   };
@@ -656,10 +704,10 @@ const gameplay = (() => {
       let _symbol = player.whichMark().repeat(3);
   
       const _checkRowsAndColumns = (symbol) => {
-        return game.matrix.command(symbol);
+        return game.matrix.command({is: symbol});
       };
       const _checkDiags = (symbol) => {
-        const _board = _round.board();
+        const _board = round.board();
         const _backslash = _board[0][0] + _board[1][1] + _board[2][2];
         const _forwardslash = _board[0][2] + _board[1][1] + _board[2][0];
         if (symbol === _backslash) {
@@ -681,7 +729,7 @@ const gameplay = (() => {
       let _matrix = game.matrix.getMatrix();
       let _which = (currentMark === 'X');
       let _otherMark = (_which) ? 'O' : 'X';
-      let _spaces = game.matrix.command('nulls');   
+      let _spaces = game.matrix.command({is: 'nulls'});   
       let _coord = (_spaces !== []) ? _spaces.pop() : false;
 
       if (_coord) {
@@ -694,26 +742,27 @@ const gameplay = (() => {
           let _turn = (_which) ? 1 : 0;
           game.players.winner.save(_turn);
           game.display.cell.renderMark(_coord[0], _coord[1], _otherMark);
-          return game.matrix.command(['champ', game.matrix.command(_otherMark.repeat(3))]);
+          let coords = game.matrix.command(_otherMark.repeat(3));
+          return game.matrix.command({is: 'champ', coords});
         }
       }
       else {
-        return game.matrix.command('draw');
+        return game.matrix.command({is: 'draw'});
       }
     };
     const think = () => {
-      let _coords = logic(_round.currentPlayer());
-      let _clicks = _round.clicks();
+      let coords = logic(round.currentPlayer());
+      let _clicks = round.clicks();
       
-      if (_clicks > 4 && _coords[3] === 'coords') {
-        game.matrix.command('disable-click');
-        game.players.winner.save(_round.turn());
-        return game.matrix.command(['champ', _coords]);
+      if (_clicks > 4 && coords[3] === 'coords') {
+        game.matrix.command({is: 'disable-click'});
+        game.players.winner.save(round.turn());
+        return game.matrix.command({is: 'champ', coords});
       }
       if (_clicks > 7) {
-        return ai.tieOrAutoWin(_round.currentPlayer().whichMark());
+        return ai.tieOrAutoWin(round.currentPlayer().whichMark());
       }
-      return _round.changePlayer();
+      return round.changePlayer();
     };
     const _evaluate = () => {
       let _computer = game.players.grab(1);
@@ -729,24 +778,24 @@ const gameplay = (() => {
         return 0;
       }
     };
-    const _minimax = (board, alpha, beta, maximizing) => {
+    const minimax = (board, alpha, beta, maximizing) => {
       let _value = _evaluate(board);
 
       if (_value !== 0) {
         return _value;
       }
-      if (game.matrix.command('nulls').length === 0) {
+      if (game.matrix.command({is: 'nulls'}).length === 0) {
         return 0;
       }
 
       if (maximizing) {
-        return _prompt({ is: 'maximize', alpha, beta, maximizing });
+        return game.matrix.command({ is: 'maximize', alpha, beta, maximizing });
       }
       else {
-        return _prompt({ is: 'minimize', alpha, beta, maximizing });
+        return game.matrix.command({ is: 'minimize', alpha, beta, maximizing });
       }
     };
-    const _optimizeFirstMove = (board) => {
+    const optimizeFirstMove = (board) => {
       if (board[1][1] === null) {
         return move.save(1,1);
       }
@@ -755,75 +804,30 @@ const gameplay = (() => {
       }
     };
     const mark = () => {
-      _prompt({ is: 'mark' });
+      game.matrix.command({ is: 'mark' });
 
       let _computer = game.players.grab(1).whichMark();
       game.display.cell.grab(
         move.row(), move.column()
       ).style.borderColor = 'burlywood';
       game.display.cell.renderMark(move.row(), move.column(), _computer);
-      return _round.board()[move.row()][move.column()] = _computer;
-    };
-    const _prompt = (cmd) => {
-      const _decideMark = () => (cmd.is === 'mark');
-      const _maximizing = () => (cmd.is === 'maximize');
-      const _minimizing = () => (cmd.is === 'minimize');
-
-      const _matrix = game.matrix.getMatrix();
-      const _computer = (
-        _decideMark() ||
-        _maximizing()) ? game.players.grab(1).whichMark() : null;
-      const _user = (
-        _minimizing() ) ? game.players.grab(0).whichMark() : null;
-      let _best = (
-        _decideMark() ||
-        _maximizing()) ? -Infinity : Infinity;
-
-      if (_round.clicks() === 1) {
-        return _optimizeFirstMove(_matrix);
-      }
-
-      for (let row = 0; row < 3; row++) {
-        for (let column = 0; column < 3; column++) {
-          const _isNull = () => (_matrix[row][column] === null);
-          if (_decideMark() && _isNull()) {
-            _matrix[row][column] = _computer;
-            let _value = _minimax(_matrix, -Infinity, Infinity, false);
-            _matrix[row][column] = null;
-            if (_value > _best) {
-              move.save(row, column);
-              _best = _value;
-            }
-          }
-          if (_maximizing() && _isNull()) {
-            _matrix[row][column] = _computer;
-            let _value =
-              _minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
-            _best = Math.max(_best, _value);
-            _matrix[row][column] = null;
-            cmd.alpha = Math.max(cmd.alpha, _best);
-            if (cmd.alpha >= cmd.beta) break;
-          }
-          if (_minimizing() && _isNull()) {
-            _matrix[row][column] = _user;
-            let _value =
-              _minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
-            _best = Math.min(_best, _value);
-            _matrix[row][column] = null;
-            cmd.beta = Math.min(cmd.beta, _best);
-            if (cmd.beta <= cmd.alpha) break;
-          }
-        }
-      }
-      return _best;
+      return round.board()[move.row()][move.column()] = _computer;
     };
     return {
       move,
       logic,
       tieOrAutoWin,
       think,
+      minimax,
+      optimizeFirstMove,
       mark
     }
   })();
-  return { clickHandler, start, reset, ai }
+  return {
+    round,
+    clickHandler,
+    start,
+    reset,
+    ai
+  }
 })();
