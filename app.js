@@ -12,9 +12,6 @@ const game = (() => {
       const _buildMatrix  = () => (elem === 'init-matrix');
       const _checkForWin  = () => (elem === 'XXX' || elem === 'OOO');
       const _findNulls    = () => (elem === 'nulls');
-
-      
-      const _minimizing   = () => (elem.cmd === 'min');
       const _stopClick    = () => (elem === 'disable-click');
       const _startClick   = () => (elem === 'enable-click');
       const _showChamp    = () => (elem[0] === 'champ');
@@ -48,16 +45,6 @@ const game = (() => {
           }
           if (_findNulls() && _isNull()) {
             _nulls.push([_row, _column]);
-          }
-          if (_minimizing() && _isNull()) {
-            _matrix[_row][_column] = _human;
-            let _value = _ai.minimax(_matrix, elem.alpha, elem.beta, true);
-            _best = Math.min(_best, _value);
-            _matrix[_row][_column] = null;
-            elem.beta = Math.min(elem.beta, _best);
-            if (elem.beta <= elem.alpha) {
-              break;
-            }
           }
           if (_stopClick()) display.cell.grab(_row, _column).disabled = true;
           if (_startClick()) display.cell.grab(_row, _column).disabled = false;
@@ -238,7 +225,7 @@ const game = (() => {
       _login.style.opacity = '0';
       _login.onclick = () => {
         _name(_you, players.playerOne);
-        players.playerTwo('me');
+        players.playerTwo('c0mput3r');
         return animate.gameOpening.start();
       };
 
@@ -348,7 +335,12 @@ const game = (() => {
       let _winner = players.winner.grab().name();
       _win.id = 'end';
       _message.id = 'message';
-      _message.innerText = `Well done, ${_winner}`;
+      if (_winner === 'c0mput3r') {
+        _message.innerText = 'I beat you.';
+      }
+      else {
+        _message.innerText = `Well done, ${_winner}`;
+      }
       _win.appendChild(_message);
       nav(_win);
       return container.appendChild(_win),
@@ -620,7 +612,7 @@ const gameplay = (() => {
 
       ai.think();
 
-      if (_round.currentPlayer().name() === 'me') {
+      if (_round.currentPlayer().name() === 'c0mput3r') {
         if (_round.clicks() === 1) ai.move.save(_row, _column);
         setTimeout(() => {
           ai.mark();
@@ -670,11 +662,9 @@ const gameplay = (() => {
         const _backslash = _board[0][0] + _board[1][1] + _board[2][2];
         const _forwardslash = _board[0][2] + _board[1][1] + _board[2][0];
         if (symbol === _backslash) {
-          // game.matrix.command('disable-click');
           return [[0, 0], [1, 1], [2, 2], 'coords'];
         }
         if (symbol === _forwardslash) {
-          // game.matrix.command('disable-click');
           return [[0, 2], [1, 1], [2, 0], 'coords'];
         }
       };
@@ -689,7 +679,6 @@ const gameplay = (() => {
     const tieOrAutoWin = (currentMark) => {
       let _matrix = game.matrix.getMatrix();
       let _which = (currentMark === 'X');
-      let _mark = (_which) ? currentMark : 'O';
       let _otherMark = (_which) ? 'O' : 'X';
       let _spaces = game.matrix.command('nulls');   
       let _coord = (_spaces !== []) ? _spaces.pop() : false;
@@ -708,7 +697,6 @@ const gameplay = (() => {
         }
       }
       else {
-        // game.matrix.command('disable-click');
         return game.matrix.command('draw');
       }
     };
@@ -769,15 +757,16 @@ const gameplay = (() => {
       _prompt({ is: 'mark' });
 
       let _computer = game.players.grab(1).whichMark();
-      let _cell = game.display.cell.grab(move.row(), move.column());
-      _cell.style.borderColor = 'burlywood';
+      game.display.cell.grab(
+        move.row(), move.column()
+      ).style.borderColor = 'burlywood';
       game.display.cell.renderMark(move.row(), move.column(), _computer);
       return _round.board()[move.row()][move.column()] = _computer;
     };
-    const _prompt = (command) => {
-      const _decideMark = () => (command.is === 'mark');
-      const _maximizing = () => (command.is === 'maximize');
-      const _minimizing = () => (command.is === 'minimize');
+    const _prompt = (cmd) => {
+      const _decideMark = () => (cmd.is === 'mark');
+      const _maximizing = () => (cmd.is === 'maximize');
+      const _minimizing = () => (cmd.is === 'minimize');
 
       const _matrix = game.matrix.getMatrix();
       const _computer = (
@@ -807,19 +796,21 @@ const gameplay = (() => {
           }
           if (_maximizing() && _isNull()) {
             _matrix[row][column] = _computer;
-            let _value = _minimax(_matrix, command.alpha, command.beta, !command.maximizing);
+            let _value =
+              _minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
             _best = Math.max(_best, _value);
             _matrix[row][column] = null;
-            command.alpha = Math.max(command.alpha, _best);
-            if (command.alpha >= command.beta) break;
+            cmd.alpha = Math.max(cmd.alpha, _best);
+            if (cmd.alpha >= cmd.beta) break;
           }
           if (_minimizing() && _isNull()) {
             _matrix[row][column] = _user;
-            let _value = _minimax(_matrix, command.alpha, command.beta, !command.maximizing);
+            let _value =
+              _minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
             _best = Math.min(_best, _value);
             _matrix[row][column] = null;
-            command.beta = Math.min(command.beta, _best);
-            if (command.beta <= command.alpha) break;
+            cmd.beta = Math.min(cmd.beta, _best);
+            if (cmd.beta <= cmd.alpha) break;
           }
         }
       }

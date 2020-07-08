@@ -3,6 +3,10 @@ body {
   line-height: 1.5em;
 }
 
+*:focus {
+  outline: none;
+}
+
 #container {
   display: grid; 
   margin: 2vh auto 0 auto;
