@@ -370,16 +370,27 @@ const game = (() => {
     const draw = () => {
       const _draw = document.createElement('div');
       const _message = document.createElement('pre');
+      const _thaddeus = () => {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = () => {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('message').innerHTML = this.responseText;
+          }
+        };
+        xhttp.open('GET', 'meow.txt', true);
+        xhttp.send();
+      };
 
       _draw.id = 'end';
       _message.id = 'message';
-      _message.innerText = 'a w  ,  D R A W';
+      // _message.innerText = 'a w  ,  D R A W';
       _draw.appendChild(_message);
       nav(_draw);
       return container.appendChild(_draw),
              setTimeout(() => {
                let _message = document.getElementById('message');
                _message.style.color = 'blanchedalmond';
+               _thaddeus();
              }, 250);
 
     };
