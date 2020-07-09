@@ -373,7 +373,7 @@ const game = (() => {
 
       _draw.id = 'end';
       _message.id = 'message';
-      // _message.innerText = 'a w  ,  D R A W';
+      _message.innerText = 'a w  ,  D R A W';
       _draw.appendChild(_message);
       nav(_draw);
       return container.appendChild(_draw),
@@ -381,12 +381,6 @@ const game = (() => {
                let _message = document.getElementById('message');
                _message.style.color = 'blanchedalmond';
                _message.style.fontSize = '0.5rem';
-               let xhr = new XMLHttpRequest();
-               xhr.onload = () => {
-                 _message.innerText = this.responseText;
-               };
-               xhr.open('GET', './meow.txt');
-               xhr.send();
              }, 250);
 
     };
