@@ -380,7 +380,6 @@ const game = (() => {
              setTimeout(() => {
                let _message = document.getElementById('message');
                _message.style.color = 'blanchedalmond';
-               _message.style.fontSize = '0.5rem';
              }, 250);
 
     };
