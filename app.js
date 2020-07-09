@@ -47,62 +47,62 @@ const game = (() => {
         return _ai.optimizeFirstMove(_matrix);
       }
 
-      for (let _row = 0; _row < 3; _row++) {
+      for (let row = 0; row < 3; row++) {
 
         if (buildMatrix()) _createRow();
-        if (checkForWin() && cmd.is === _matrix[_row].join('')) {
-          return [[_row, 0], [_row, 1], [_row, 2], 'coords'];
+        if (checkForWin() && cmd.is === _matrix[row].join('')) {
+          return [[row, 0], [row, 1], [row, 2], 'coords'];
         }
         let _pillar = (checkForWin) ? '' : null;
 
-        for (let _column = 0; _column < 3; _column++) {
-          const _isNull = () => (_matrix[_row][_column] === null);
-          if (buildMatrix()) _createCell(_row, _column);
-          if (buildBoard()) display.cell.render(_row, _column);
+        for (let column = 0; column < 3; column++) {
+          const _isNull = () => (_matrix[row][column] === null);
+          if (buildMatrix()) _createCell(row, column);
+          if (buildBoard()) display.cell.render(row, column);
           if (checkForWin()) {
-            _pillar += _matrix[_column][_row];
+            _pillar += _matrix[column][row];
           }
           if (findNulls() && _isNull()) {
-            _nulls.push([_row, _column]);
+            _nulls.push([row, column]);
           }
           if (decideMark() && _isNull()) {
-            _matrix[_row][_column] = _computer;
+            _matrix[row][column] = _computer;
             let _value = _ai.minimax(_matrix, -Infinity, Infinity, false);
-            _matrix[_row][_column] = null;
+            _matrix[row][column] = null;
             if (_value > _best) {
-              _ai.move.save(_row, _column);
+              _ai.move.save(row, column);
               _best = _value;
             }
           }
           if (maximizing() && _isNull()) {
-            _matrix[_row][_column] = _computer;
+            _matrix[row][column] = _computer;
             let _value =
               _ai.minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
             _best = Math.max(_best, _value);
-            _matrix[_row][_column] = null;
+            _matrix[row][column] = null;
             cmd.alpha = Math.max(cmd.alpha, _best);
             if (cmd.alpha >= cmd.beta){
               return _best;
             }
           }
           if (minimizing() && _isNull()) {
-            _matrix[_row][_column] = _user;
+            _matrix[row][column] = _user;
             let _value =
               _ai.minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
             _best = Math.min(_best, _value);
-            _matrix[_row][_column] = null;
+            _matrix[row][column] = null;
             cmd.beta = Math.min(cmd.beta, _best);
             if (cmd.beta <= cmd.alpha) {
               return _best;
             }
           }
-          if (stopClick()) display.cell.grab(_row, _column).disabled = true;
-          if (startClick()) display.cell.grab(_row, _column).disabled = false;
-          if (showChamp()) display.animate.champion(_row, _column, cmd.coords);
-          if (showDraw()) display.animate.tie(_row, _column);
+          if (stopClick()) display.cell.grab(row, column).disabled = true;
+          if (startClick()) display.cell.grab(row, column).disabled = false;
+          if (showChamp()) display.animate.champion(row, column, cmd.coords);
+          if (showDraw()) display.animate.tie(row, column);
         }
         if (checkForWin() && cmd.is === _pillar) {
-          return [[0, _row], [1, _row], [2, _row], 'coords'];
+          return [[0, row], [1, row], [2, row], 'coords'];
         }
       }
       if (buildMatrix()) cmd = _matrix;
