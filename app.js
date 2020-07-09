@@ -373,17 +373,7 @@ const game = (() => {
 
       _draw.id = 'end';
       _message.id = 'message';
-      _message.onload = () => {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = () => {
-          if (this.readyState == 4 && this.status == 200) {
-            _message.innerHTML = this.responseText;
-          }
-        };
-        xhttp.open('GET', './meow.txt', true);
-        xhttp.send();
-      };
-      // _message.innerText = 'a w  ,  D R A W';
+      _message.innerText = 'a w  ,  D R A W';
       _draw.appendChild(_message);
       nav(_draw);
       return container.appendChild(_draw),
