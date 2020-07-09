@@ -413,8 +413,8 @@ body {
   }
   
   [id^='cell-'] {
-    width: 31.5vw;
-    height: 33vw;
+    width: 25.5vw;
+    height:27vw;
     margin: 0 auto;
     font-size: 24.25vw;
   }
