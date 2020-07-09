@@ -1,6 +1,7 @@
 # Tic Tac Toe
 live: https://matchewbie.github.io/tic-tac-toe
 ## highlights
+- mobile-friendly
 - two game modes (single & vs)
 - single player vs unbeatable ai
 - sticky hover-toggle on button groups
