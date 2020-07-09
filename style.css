@@ -374,7 +374,6 @@ body {
   
   #login {
     margin: 70vw auto 0 auto;
-    border-color: blanchedalmond;
   }
   
   #reset {
@@ -390,7 +389,6 @@ body {
   #you {
     height: 24vw;
     width: 95vw;
-    /* padding: 0 5vw; */
     border-radius: 8.5vw 8.5vw 15vw 15vw;
     font-size: 10vw;
   }
