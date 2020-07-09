@@ -8,64 +8,64 @@ const game = (() => {
     };
     const _prompt = (cmd) => {
       // handle incoming arguments
-      const _buildBoard  = () => (cmd.is === 'init-board');
-      const _buildMatrix = () => (cmd.is === 'init-matrix');
-      const _checkForWin = () => (cmd.is === 'XXX' || cmd.is === 'OOO');
-      const _findNulls   = () => (cmd.is === 'nulls');
-      const _decideMark  = () => (cmd.is === 'mark');
-      const _maximizing  = () => (cmd.is === 'maximize');
-      const _minimizing  = () => (cmd.is === 'minimize');
-      const _stopClick   = () => (cmd.is === 'disable-click');
-      const _startClick  = () => (cmd.is === 'enable-click');
-      const _showChamp   = () => (cmd.is === 'champ');
-      const _showDraw    = () => (cmd.is === 'draw');
+      const buildBoard  = () => (cmd.is === 'init-board');
+      const buildMatrix = () => (cmd.is === 'init-matrix');
+      const checkForWin = () => (cmd.is === 'XXX' || cmd.is === 'OOO');
+      const findNulls   = () => (cmd.is === 'nulls');
+      const decideMark  = () => (cmd.is === 'mark');
+      const maximizing  = () => (cmd.is === 'maximize');
+      const minimizing  = () => (cmd.is === 'minimize');
+      const stopClick   = () => (cmd.is === 'disable-click');
+      const startClick  = () => (cmd.is === 'enable-click');
+      const showChamp   = () => (cmd.is === 'champ');
+      const showDraw    = () => (cmd.is === 'draw');
 
       const _matrix = (
-        _buildMatrix() ||
-        _checkForWin() ||
-        _showDraw()    ||
-        _findNulls()   ||
-        _decideMark()  ||
-        _maximizing()  ||
-        _minimizing() ) ? getMatrix() : null;
+        buildMatrix() ||
+        checkForWin() ||
+        showDraw()    ||
+        findNulls()   ||
+        decideMark()  ||
+        maximizing()  ||
+        minimizing() ) ? getMatrix() : null;
       const _nulls = (
-        _findNulls()  ) ? [] : null;
+        findNulls()  ) ? [] : null;
       const _ai = (
-        _decideMark() ||
-        _maximizing() ||
-        _minimizing()) ? gameplay.ai : null;
+        decideMark() ||
+        maximizing() ||
+        minimizing()) ? gameplay.ai : null;
       const _computer = (
-        _decideMark() ||
-        _maximizing()) ? players.grab(1).whichMark() : null;
+        decideMark() ||
+        maximizing()) ? players.grab(1).whichMark() : null;
       const _user = (
-        _minimizing() ) ? players.grab(0).whichMark() : null;
+        minimizing() ) ? players.grab(0).whichMark() : null;
       let _best = (
-        _decideMark() ||
-        _maximizing()) ? -Infinity : Infinity;
+        decideMark() ||
+        maximizing()) ? -Infinity : Infinity;
 
-      if (_decideMark() && gameplay.round.clicks() === 1) {
+      if (decideMark() && gameplay.round.clicks() === 1) {
         return _ai.optimizeFirstMove(_matrix);
       }
 
       for (let _row = 0; _row < 3; _row++) {
 
-        if (_buildMatrix()) _createRow();
-        if (_checkForWin() && cmd.is === _matrix[_row].join('')) {
+        if (buildMatrix()) _createRow();
+        if (checkForWin() && cmd.is === _matrix[_row].join('')) {
           return [[_row, 0], [_row, 1], [_row, 2], 'coords'];
         }
-        let _pillar = (_checkForWin) ? '' : null;
+        let _pillar = (checkForWin) ? '' : null;
 
         for (let _column = 0; _column < 3; _column++) {
           const _isNull = () => (_matrix[_row][_column] === null);
-          if (_buildMatrix()) _createCell(_row, _column);
-          if (_buildBoard()) display.cell.render(_row, _column);
-          if (_checkForWin()) {
+          if (buildMatrix()) _createCell(_row, _column);
+          if (buildBoard()) display.cell.render(_row, _column);
+          if (checkForWin()) {
             _pillar += _matrix[_column][_row];
           }
-          if (_findNulls() && _isNull()) {
+          if (findNulls() && _isNull()) {
             _nulls.push([_row, _column]);
           }
-          if (_decideMark() && _isNull()) {
+          if (decideMark() && _isNull()) {
             _matrix[_row][_column] = _computer;
             let _value = _ai.minimax(_matrix, -Infinity, Infinity, false);
             _matrix[_row][_column] = null;
@@ -74,7 +74,7 @@ const game = (() => {
               _best = _value;
             }
           }
-          if (_maximizing() && _isNull()) {
+          if (maximizing() && _isNull()) {
             _matrix[_row][_column] = _computer;
             let _value =
               _ai.minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
@@ -85,7 +85,7 @@ const game = (() => {
               return _best;
             }
           }
-          if (_minimizing() && _isNull()) {
+          if (minimizing() && _isNull()) {
             _matrix[_row][_column] = _user;
             let _value =
               _ai.minimax(_matrix, cmd.alpha, cmd.beta, !cmd.maximizing);
@@ -96,20 +96,20 @@ const game = (() => {
               return _best;
             }
           }
-          if (_stopClick()) display.cell.grab(_row, _column).disabled = true;
-          if (_startClick()) display.cell.grab(_row, _column).disabled = false;
-          if (_showChamp()) display.animate.champion(_row, _column, cmd.coords);
-          if (_showDraw()) display.animate.tie(_row, _column);
+          if (stopClick()) display.cell.grab(_row, _column).disabled = true;
+          if (startClick()) display.cell.grab(_row, _column).disabled = false;
+          if (showChamp()) display.animate.champion(_row, _column, cmd.coords);
+          if (showDraw()) display.animate.tie(_row, _column);
         }
-        if (_checkForWin() && cmd.is === _pillar) {
+        if (checkForWin() && cmd.is === _pillar) {
           return [[0, _row], [1, _row], [2, _row], 'coords'];
         }
       }
-      if (_buildMatrix()) cmd = _matrix;
-      if (_findNulls()) cmd = _nulls;
-      if (_decideMark() ||
-          _maximizing() ||
-          _minimizing()) cmd = _best;
+      if (buildMatrix()) cmd = _matrix;
+      if (findNulls()) cmd = _nulls;
+      if (decideMark() ||
+          maximizing() ||
+          minimizing()) cmd = _best;
 
       return cmd;
     };

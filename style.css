@@ -1,3 +1,9 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
   background-color: #222222;
   line-height: 1.5em;
@@ -9,7 +15,10 @@ body {
 
 #container {
   display: grid; 
-  margin: 2vh auto 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -47.5vh 0 0 -50vh;
   width: 100vh;
   height: 95vh;
   text-align: center;
@@ -60,7 +69,6 @@ body {
   font-size: 8vh;
   opacity: 0.7;
   cursor: pointer;
-  /* transition: 250ms; */
 }
 
 #one-player,
@@ -104,7 +112,7 @@ body {
 #you {
   position: fixed;
   height: 24vh;
-  width: 90vh;
+  width: 100vh;
   padding: 0 5vh;
   background: none;
   border: none;
@@ -133,7 +141,7 @@ body {
 
 #login-two { margin: 35vh auto 0 auto; }
 
-#you { margin: 18vh auto 0 auto }
+#you { margin: 22vh auto 0 auto }
 
  #message {
   position: fixed;
@@ -313,5 +321,101 @@ body {
   #one-player {
     background-color: burlywood;
     color: #222222;
+  }
+  #two-player {
+    background: none;
+    color: burlywood;
+  }
+  #reset {
+    background-color: burlywood;
+    color: #222222;
+  }
+  #logout {
+    background: none;
+    color: burlywood;
+  }
+}
+
+@media screen and (orientation: portrait) {
+
+  #container {
+    margin: -50vw 0 0 -47.5vw;
+    width: 95vw;
+    height: 100vw;
+  }
+
+  #logo {
+    margin: 20vw auto 0 auto;
+    font-size: 14vw;
+  }
+
+  #author {
+    margin: 55vw auto 0 auto;
+    font-size: 4vw;
+  }
+
+  #one-player,
+  #two-player,
+  #login,
+  #reset,
+  #logout {
+    height: 18vw;
+    border-radius: 5vw 5vw 10vw 10vw;
+    font-size: 8vw;
+  }
+
+  #one-player {
+    margin: 35vw auto 0 auto;
+  }
+  
+  #two-player {
+    margin: 51vw auto 0 auto;
+  }
+  
+  #login {
+    margin: 70vw auto 0 auto;
+  }
+  
+  #reset {
+    margin: 35vw auto 0 auto;
+  }
+  
+  #logout {
+    margin: 51vw auto 0 auto;
+  }
+  
+  #login-one,
+  #login-two,
+  #you {
+    height: 24vw;
+    width: 90vw;
+    padding: 0 5vw;
+    border-radius: 8.5vw 8.5vw 15vw 15vw;
+    font-size: 10vw;
+  }
+  
+  #login-one:focus,
+  #login-two:focus,
+  #you:focus {
+    padding-left: 10vw;
+    border-radius: 15vw 8vw;
+  }
+  
+  #login-one { margin: 5vw auto 0 auto; }
+  
+  #login-two { margin: 35vw auto 0 auto; }
+  
+  #you { margin: 18vw auto 0 auto }
+  
+   #message {
+    margin: 20vw auto 0 auto;
+    font-size: 7vw;
+  }
+  
+  [id^='cell-'] {
+    width: 31.5vw;
+    height: 33vw;
+    margin: 0 auto;
+    font-size: 24.25vw;
   }
 }
