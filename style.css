@@ -442,8 +442,16 @@ iframe {
     font-size: 24.25vw;
   }
 
+  #meow-wrap {
+    position: fixed;
+    width: 95vw;
+    height: 34vw;
+    margin: -17vw 0 0 -47.5vw;
+  }
+
   #meow {
-    zoom: 20%;
+    width: 100%;
+    height: 100%;
   }
 
   #meow pre {

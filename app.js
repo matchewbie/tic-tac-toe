@@ -369,16 +369,20 @@ const game = (() => {
     };
     const draw = () => {
       const _draw = document.createElement('div');
+      const _wrapper = document.createElement('div');
       const _thaddeus = document.createElement('iframe');
       const _message = document.createElement('p');
 
       _draw.id = 'end';
-      _message.id = 'message';
-      _message.innerHTML = 'D R A W';
+      _wrapper.id = 'meow-wrap';
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
-      _draw.appendChild(_thaddeus);
-      _draw.appendChild(_message);
+      _message.id = 'message';
+      _message.innerHTML = 'D R A W';
+
+      [_wrapper, _thaddeus, _message].forEach(elem => {
+        _draw.appendChild(elem);
+      });
 
       nav(_draw);
       return container.appendChild(_draw),
