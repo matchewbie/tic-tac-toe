@@ -442,7 +442,7 @@ iframe {
     font-size: 24.25vw;
   }
 
-  #meow pre {
+  /* #meow pre {
     position: fixed;
     top: 18.5%;
     left: 50%;
@@ -452,5 +452,5 @@ iframe {
     font-family: 'Courier New', Courier, monospace;
     font-size: 4.5px;
     line-height: 5.5px;
-  }
+  } */
 }
