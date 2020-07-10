@@ -369,17 +369,26 @@ const game = (() => {
     };
     const draw = () => {
       const _draw = document.createElement('div');
-      const _message = document.createElement('pre');
+      const _thaddeus = document.createElement('iframe');
+      const _message = document.createElement('p');
 
       _draw.id = 'end';
       _message.id = 'message';
-      _message.innerText = 'a w  ,  D R A W';
+      _message.innerHTML = 'D R A W';
+      _message.style.fontSize = 
+      _thaddeus.id = 'thaddeus';
+      _thaddeus.src = './meow.html';
+      _draw.appendChild(_thaddeus);
       _draw.appendChild(_message);
+
       nav(_draw);
       return container.appendChild(_draw),
              setTimeout(() => {
                let _message = document.getElementById('message');
                _message.style.color = 'blanchedalmond';
+               setTimeout(() => {
+                _message.style.visibility = 'hidden';
+              }, 1250);
              }, 250);
 
     };
