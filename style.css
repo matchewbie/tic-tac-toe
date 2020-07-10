@@ -226,9 +226,9 @@ iframe {
   position: fixed;
   top: 20.5%;
   left: 50%;
-  width: 54vh;
-  height: 45vh;
-  margin: -17vh 0 0 -17vh;
+  width: 36vh;
+  height: 34vh;
+  margin: -17vh 0 0 -18vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 1.2vh;
   line-height: 1.7vh;
@@ -446,11 +446,11 @@ iframe {
     position: fixed;
     top: 10.5%;
     left: 50%;
-    width: 80vw;
-    height: 45vw;
-    margin: -17.5vw 0 0 -30vw;
+    width: 36vw;
+    height: 34vw;
+    margin: -17vw 0 0 -18vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2vh;
-    line-height: 1.7vh;
+    font-size: 1.2vw;
+    line-height: 1.7vw;
   }
 }
