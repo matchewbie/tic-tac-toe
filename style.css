@@ -222,6 +222,19 @@ iframe {
   border-right: none;
 }
 
+#iframe-wrap {
+  position: fixed;
+  width: 95vh;
+  height: 34vh;
+  margin: -17vw 0 0 -47.5vw;
+}
+
+#thaddeus {
+  width: 100%;
+  height: 100%;
+  /* zoom: 20%; */
+}
+
 #meow pre {
   position: fixed;
   top: 20.5%;
@@ -452,7 +465,7 @@ iframe {
   #thaddeus {
     width: 100%;
     height: 100%;
-    zoom: 20%;
+    /* zoom: 20%; */
   }
 
   #meow pre {
