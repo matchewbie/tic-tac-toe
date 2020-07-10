@@ -230,8 +230,8 @@ iframe {
   height: 45vh;
   margin: -17vh 0 0 -17vh;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1.2vh;
-  line-height: 1.7vh;
+  font-size: .5rem;
+  line-height: .75rem;
 }
 
 #meow pre:not(.meow) {
@@ -450,7 +450,7 @@ iframe {
     height: 45vw;
     margin: -17vw 0 0 -17vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2vw;
-    line-height: 1.7vw;
+    font-size: .5rem;
+    line-height: .75rem;
   }
 }
