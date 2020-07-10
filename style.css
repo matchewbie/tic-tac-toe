@@ -443,6 +443,14 @@ iframe {
   }
 
   #meow pre {
-    display: none;
+    position: fixed;
+    top: 15.5%;
+    left: 50%;
+    width: 36vw;
+    height: 34vw;
+    margin: -17vw 0 0 -18vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2vw;
+    line-height: 1.7vw;
   }
 }
