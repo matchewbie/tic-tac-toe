@@ -450,7 +450,7 @@ iframe {
     height: 34vw;
     margin: -17vw 0 0 -18vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 5px;
-    line-height: 7px;
+    font-size: 1.2vw;
+    line-height: 1.7vw;
   }
 }

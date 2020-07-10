@@ -375,7 +375,6 @@ const game = (() => {
       _draw.id = 'end';
       _message.id = 'message';
       _message.innerHTML = 'D R A W';
-      _message.style.fontSize = 
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _draw.appendChild(_thaddeus);
@@ -387,7 +386,7 @@ const game = (() => {
                let _message = document.getElementById('message');
                _message.style.color = 'blanchedalmond';
                setTimeout(() => {
-                _message.style.visibility = 'hidden';
+                _message.style.opacity = '0';
               }, 1250);
              }, 250);
 
