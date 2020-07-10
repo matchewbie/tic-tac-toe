@@ -374,7 +374,7 @@ const game = (() => {
       const _message = document.createElement('p');
 
       _draw.id = 'end';
-      _wrapper.id = 'meow-wrap';
+      _wrapper.id = 'iframe-wrap';
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
