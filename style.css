@@ -147,7 +147,7 @@ iframe {
 
 #you { margin: 22vh auto 0 auto }
 
- #message {
+#message {
   position: fixed;
   margin: 20vh auto 0 auto;
   width: inherit;
@@ -444,13 +444,13 @@ iframe {
 
   #meow pre {
     position: fixed;
-    top: 15.5%;
+    top: 18.5%;
     left: 50%;
     width: 36vw;
     height: 34vw;
     margin: -17vw 0 0 -18vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2vw;
-    line-height: 1.7vw;
+    font-size: 4.5px;
+    line-height: 5.5px;
   }
 }
