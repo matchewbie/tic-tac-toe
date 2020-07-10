@@ -224,15 +224,14 @@ iframe {
 
 #meow pre {
   position: fixed;
-  top: 18%;
+  top: 20.5%;
   left: 50%;
-  width: 34vh;
-  height: 34vh;
+  width: 100vh;
+  height: 45vh;
   margin: -17vh 0 0 -17vh;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1.3vh;
-  font-weight: bolder;
-  line-height: 2vh;
+  font-size: 1.2vh;
+  line-height: 1.7vh;
 }
 
 #meow pre:not(.meow) {
@@ -441,5 +440,17 @@ iframe {
     height: 33vw;
     margin: 0 auto;
     font-size: 24.25vw;
+  }
+
+  #meow pre {
+    position: fixed;
+    top: 20.5%;
+    left: 50%;
+    width: 100vw;
+    height: 45vw;
+    margin: -17vw 0 0 -17vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2vw;
+    line-height: 1.7vw;
   }
 }

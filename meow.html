@@ -162,14 +162,14 @@
                       }
                       if (_regex.test(letter) || _amp.test(letter) || letter === 'T') {
                           _style.style.color = 'burlywood';
-                          _style.style.opacity = '0.6';
+                          // _style.style.opacity = '0.6';
                           _style.innerText = letter;
                           frame.appendChild(_style);
                       }
                       else {
                           if (!_amp.test(letter) && !_ltgt.test(letter)) {
                               _style.style.color = 'blanchedalmond';
-                              _style.style.opacity = '0.7';
+                              // _style.style.opacity = '0.7';
                               _style.innerText = letter;
                               frame.appendChild(_style);
                           }
