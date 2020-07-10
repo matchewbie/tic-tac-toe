@@ -232,7 +232,8 @@ iframe {
 #thaddeus {
   width: 100%;
   height: 100%;
-  /* zoom: 20%; */
+  opacity: 0;
+  transition: 10s;
 }
 
 #meow pre {
@@ -243,8 +244,8 @@ iframe {
   height: 34vh;
   margin: -17vh 0 0 -18vh;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1.2vh;
-  line-height: 1.7vh;
+  font-size: 1.5vh;
+  line-height: 1.9vh;
 }
 
 #meow pre:not(.meow) {
@@ -465,18 +466,19 @@ iframe {
   #thaddeus {
     width: 100%;
     height: 100%;
-    /* zoom: 20%; */
+    opacity: 0;
+    transition: 500ms;
   }
 
   #meow pre {
     position: fixed;
-    top: 15.5%;
+    top: 18.5%;
     left: 50%;
     width: 36vw;
     height: 34vw;
     margin: -17vw 0 0 -18vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2vw;
-    line-height: 1.7vw;
+    font-size: 1.5vw;
+    line-height: 1.9vw;
   }
 }

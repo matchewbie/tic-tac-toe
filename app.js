@@ -388,10 +388,12 @@ const game = (() => {
       return container.appendChild(_draw),
              setTimeout(() => {
                let _message = document.getElementById('message');
+               let _thaddeus = document.getElementById('thaddeus');
                _message.style.color = 'blanchedalmond';
+               _thaddeus.style.opacity = '1';
                setTimeout(() => {
                 _message.style.opacity = '0';
-              }, 1250);
+              }, 2250);
              }, 250);
 
     };
