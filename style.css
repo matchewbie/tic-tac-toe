@@ -444,13 +444,13 @@ iframe {
 
   #meow pre {
     position: fixed;
-    top: 10.5%;
+    top: 15.5%;
     left: 50%;
     width: 36vw;
     height: 34vw;
     margin: -17vw 0 0 -18vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 15.2vw;
-    line-height: 15.7vw;
+    font-size: 5px;
+    line-height: 7px;
   }
 }
