@@ -446,11 +446,11 @@ iframe {
     position: fixed;
     top: 10.5%;
     left: 50%;
-    width: 50vw;
+    width: 80vw;
     height: 45vw;
-    margin: -17vw 0 0 -17vw;
+    margin: -17.5vw 0 0 -30vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: .5rem;
-    line-height: .75rem;
+    font-size: 1.2vh;
+    line-height: 1.7vh;
   }
 }
