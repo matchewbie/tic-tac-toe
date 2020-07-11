@@ -222,18 +222,21 @@ iframe {
   border-right: none;
 }
 
-#iframe-wrap {
-  position: fixed;
-  width: 95vh;
-  height: 72vh;
-  margin: -17vh 0 0 -47.5vh;
-}
-
 #thaddeus {
   width: 100%;
   height: 100%;
   opacity: 0;
   transition: 10s;
+}
+
+#meow-body {
+  background: radial-gradient(#111111,
+                              #111111,
+                              #222222,
+                              #222222)
+                              no-repeat
+                              fixed
+                              center;
 }
 
 #meow pre {
@@ -364,6 +367,9 @@ iframe {
     background: none;
     color: burlywood;
   }
+  #login {
+    
+  }
   #reset {
     background-color: burlywood;
     color: #222222;
@@ -456,16 +462,9 @@ iframe {
     font-size: 24.25vw;
   }
 
-  #iframe-wrap {
-    position: fixed;
-    width: 95vw;
-    height: 34vw;
-    margin: -17vw 0 0 -47.5vw;
-  }
-
   #thaddeus {
     width: 100%;
-    height: 100%;
+    height: 54vw;
     opacity: 0;
     transition: 10s;
   }
