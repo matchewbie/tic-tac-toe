@@ -147,6 +147,7 @@
             const _amp = /[\&]/;
             const _ltgt = /[ltg;]/;
             const _lt = /[l]/;
+            // let _which = Math.floor(Math.random() * 2);  // invert colorization
             let group = document.querySelectorAll('pre');
             group.forEach(frame => {
                 let thaddeus = frame.innerHTML;
@@ -159,6 +160,7 @@
                             colorize[index+2] + colorize[index+3];
                         letter = (_lt.test(temp)) ? '<' : '>';
                     }
+
                     if (_regex.test(letter) || _amp.test(letter) || letter === 'T') {
                         _style.style.color = 'burlywood';
                         _style.innerText = letter;
