@@ -484,6 +484,11 @@ iframe {
     transition: 10s;
   }
 
+  #horizon {
+    position: fixed;
+    top: 55.5vw;
+  }
+
   #meow pre {
     position: fixed;
     top: 40%;
