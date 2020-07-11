@@ -100,13 +100,13 @@ iframe {
 }
 
 #reset {
-  margin: 35vh auto 0 auto;
+  margin: 54vh auto 0 auto;
   border-bottom: none;
   z-index: 3;
 }
 
 #logout {
-  margin: 51vh auto 0 auto;
+  margin: 70vh auto 0 auto;
   border-top: none;
   z-index: 2;
 }
@@ -225,8 +225,8 @@ iframe {
 #iframe-wrap {
   position: fixed;
   width: 95vh;
-  height: 34vh;
-  margin: -17vw 0 0 -47.5vw;
+  height: 72vh;
+  margin: -17vh 0 0 -47.5vh;
 }
 
 #thaddeus {
@@ -238,14 +238,14 @@ iframe {
 
 #meow pre {
   position: fixed;
-  top: 20.5%;
+  top: 40%;
   left: 50%;
-  width: 36vh;
-  height: 34vh;
-  margin: -17vh 0 0 -18vh;
+  width: 74vh;
+  height: 72vh;
+  margin: -36vh 0 0 -32vh;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1.5vh;
-  line-height: 1.9vh;
+  font-size: 2.5vh;
+  line-height: 2.9vh;
 }
 
 #meow pre:not(.meow) {
@@ -415,11 +415,11 @@ iframe {
   }
   
   #reset {
-    margin: 35vw auto 0 auto;
+    margin: 54vw auto 0 auto;
   }
   
   #logout {
-    margin: 51vw auto 0 auto;
+    margin: 70vw auto 0 auto;
   }
   
   #login-one,
@@ -474,11 +474,11 @@ iframe {
     position: fixed;
     top: 18.5%;
     left: 50%;
-    width: 36vw;
-    height: 34vw;
-    margin: -17vw 0 0 -18vw;
+    width: 74vw;
+    height: 72vw;
+    margin: -36vw 0 0 -32vw;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.5vw;
-    line-height: 1.9vw;
+    font-size: 2.5vw;
+    line-height: 2.9vw;
   }
 }
