@@ -222,6 +222,13 @@ iframe {
   border-right: none;
 }
 
+/* #iframe-fix {
+  position: fixed;
+  width: 95vh;
+  height: 72vh;
+  margin: -17vh 0 0 -47.5vh;
+} */
+
 #thaddeus {
   width: 100%;
   height: 100%;
@@ -464,7 +471,7 @@ iframe {
 
   #thaddeus {
     width: 100%;
-    height: 54vw;
+    height: 100%;
     opacity: 0;
     transition: 10s;
   }

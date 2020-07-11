@@ -369,18 +369,17 @@ const game = (() => {
     };
     const draw = () => {
       const _draw = document.createElement('div');
-      // const _wrapper = document.createElement('div');
+      // const _fixer = document.createElement('div');
       const _thaddeus = document.createElement('iframe');
       const _message = document.createElement('p');
 
       _draw.id = 'end';
-      // _wrapper.id = 'iframe-wrap';
+      // _fixer.id = 'iframe-fix';
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
       _message.innerHTML = 'D R A W';
 
-      // _wrapper.appendChild(_thaddeus);
       [_thaddeus, _message].forEach(elem => {
         _draw.appendChild(elem);
       });
