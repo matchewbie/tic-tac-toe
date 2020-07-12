@@ -13,7 +13,7 @@
     <!-- <link rel="icon" href="favicon.png" /> -->
   </head>
 
-  <body id="meow-body">
+  <body id="anim-body">
         <div id="meow">
             <pre>
          ,         ,,
@@ -179,14 +179,14 @@
                 });
             });
             setInterval(() => {
-                let frame = document.querySelector('#meow .meow');
-                let next = document.querySelector('#meow .meow + pre');
+                let frame = document.querySelector('#meow .active');
+                let next = document.querySelector('#meow .active + pre');
 
                 if (!next) {
                     next = document.querySelector('#meow pre');
                 }
-                next.classList.add('meow');
-                frame.classList.remove('meow');
+                next.classList.add('active');
+                frame.classList.remove('active');
             }, 1000);
         </script>
   </body>

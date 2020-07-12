@@ -369,12 +369,10 @@ const game = (() => {
     };
     const draw = () => {
       const _draw = document.createElement('div');
-      // const _fixer = document.createElement('div');
       const _thaddeus = document.createElement('iframe');
       const _message = document.createElement('p');
 
       _draw.id = 'end';
-      // _fixer.id = 'iframe-fix';
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
@@ -387,11 +385,11 @@ const game = (() => {
       nav(_draw);
       return container.appendChild(_draw),
              setTimeout(() => {
-               let _message = document.getElementById('message');
-               let _thaddeus = document.getElementById('thaddeus');
-               _message.style.color = 'blanchedalmond';
-               _thaddeus.style.opacity = '1';
-               setTimeout(() => {
+              let _message = document.getElementById('message');
+              let _thaddeus = document.getElementById('thaddeus');
+              _message.style.color = 'blanchedalmond';
+              _thaddeus.style.opacity = '1';
+              setTimeout(() => {
                 _message.style.opacity = '0';
               }, 2250);
              }, 250);
@@ -399,13 +397,19 @@ const game = (() => {
     };
     const win = () => {
       const _win = document.createElement('div');
+      const _robot = document.createElement('iframe');
       const _message = document.createElement('p');
       let _winner = players.winner.grab().name();
       let _loser = players.grab(0).name();
+
       _win.id = 'end';
+      _robot.id = 'robot';
+      _robot.src = './computer.html';
       _message.id = 'message';
+
       if (_winner === 'c0mput3r') {
         _message.innerText = `I beat you, ${_loser}`;
+        _win.appendChild(_robot);
       }
       else {
         _message.innerText = `Well done, ${_winner}`;
@@ -415,7 +419,12 @@ const game = (() => {
       return container.appendChild(_win),
              setTimeout(() => {
               let _message = document.getElementById('message');
-               _message.style.color = 'blanchedalmond';
+              let _robot = document.getElementById('robot');
+              _message.style.color = 'blanchedalmond';
+              _robot.style.opacity = '1';
+              setTimeout(() => {
+                _message.style.opacity = '0';
+              }, 2250);
              }, 250);
     };
     const animate = (() => {
