@@ -264,11 +264,11 @@ iframe {
 }
 
 #computer pre {
-  top: 41%;
-  width: 79vh;
-  margin: -36vh 0 0 -39.5vh;
-  font-size: 2vh;
-  line-height: 3vh;
+  top: 40%;
+  width: 86vh;
+  margin: -36vh 0 0 -43vh;
+  font-size: 2.2vh;
+  line-height: 3.2vh;
 }
 
 #meow pre:not(.active),
@@ -498,9 +498,9 @@ iframe {
   }
 
   #computer pre {
-    width: 79vw;
-    margin: -36vw 0 0 -39.5vw;
-    font-size: 2vw;
-    line-height: 3vw;
+    width: 86vw;
+    margin: -36vw 0 0 -43vw;
+    font-size: 2.2vw;
+    line-height: 3.2vw;
   }
 }
