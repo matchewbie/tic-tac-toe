@@ -486,10 +486,10 @@ iframe {
     width: 95vw;
   }
 
-  #meow pre,
+  /* #meow pre,
   #computer pre {
     height: 72vw;
-  }
+  } */
 
   #meow pre {
     width: 74vw;
