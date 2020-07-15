@@ -383,11 +383,11 @@ const game = (() => {
       _reset.classList.add('btn-group-active');
       _reset.onmouseenter = () => _toggle(_reset, _logout);
       _reset.ontouchstart = () => {
-        _player.style.backgroundColor = 'burlywood';
-        _player.style.color = '#222222';
-        _player.style.zIndex = '50';
-        _other.style.backgroundColor = '#222222';
-        _other.style.color = 'burlywood';
+        _reset.style.backgroundColor = 'burlywood';
+        _reset.style.color = '#222222';
+        _reset.style.zIndex = '50';
+        _logout.style.backgroundColor = '#222222';
+        _logout.style.color = 'burlywood';
       };
       _reset.onmouseup = () => {
         animate.navClick(_reset);
@@ -407,11 +407,11 @@ const game = (() => {
       _logout.classList.add('btn-group-inactive');
       _logout.onmouseenter = () => _toggle(_logout, _reset);
       _logout.ontouchstart = () => {
-        _player.style.backgroundColor = 'burlywood';
-        _player.style.color = '#222222';
-        _player.style.zIndex = '50';
-        _other.style.backgroundColor = '#222222';
-        _other.style.color = 'burlywood';
+        _logout.style.backgroundColor = 'burlywood';
+        _logout.style.color = '#222222';
+        _logout.style.zIndex = '50';
+        _reset.style.backgroundColor = '#222222';
+        _reset.style.color = 'burlywood';
       };
       _logout.onmouseup = () => {
         animate.navClick(_logout);
