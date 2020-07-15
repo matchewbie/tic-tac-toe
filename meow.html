@@ -178,6 +178,13 @@
                     }
                 });
             });
+            setTimeout(() => {
+              let _meow = document.getElementById('meow');
+              _meow.style.opacity = '0';
+              setTimeout(() => {
+                _meow.innerHTML = '';
+              }, 15000);
+            }, 30000);
             setInterval(() => {
                 let frame = document.querySelector('#meow .active');
                 let next = document.querySelector('#meow .active + pre');

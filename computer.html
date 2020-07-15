@@ -173,6 +173,13 @@
                     }
                 });
             });
+            setTimeout(() => {
+              let _computer = document.getElementById('computer');
+              _computer.style.opacity = 0;
+              setTimeout(() => {
+                _computer.innerHTML = '';
+              }, 15000);
+            }, 30000);
             setInterval(() => {
                 let frame = document.querySelector('#computer .active');
                 let next = document.querySelector('#computer .active + pre');

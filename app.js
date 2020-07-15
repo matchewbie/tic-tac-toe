@@ -392,6 +392,9 @@ const game = (() => {
               setTimeout(() => {
                 _message.style.opacity = '0';
               }, 2250);
+              setTimeout(() => {
+                _message.style.opacity = '1';
+              }, 35000);
              }, 250);
 
     };
@@ -425,6 +428,9 @@ const game = (() => {
               setTimeout(() => {
                 _message.style.opacity = '0';
               }, 2250);
+              setTimeout(() => {
+                _message.style.opacity = '1';
+              }, 35000);
              }, 250);
     };
     const animate = (() => {

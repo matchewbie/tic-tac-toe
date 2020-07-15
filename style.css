@@ -158,7 +158,7 @@ iframe {
   font-weight: bolder;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   cursor: default;
-  transition: 500ms;
+  transition: 5s;
 }
 
 #end {
@@ -227,6 +227,11 @@ iframe {
   height: 100%;
   opacity: 0;
   transition: 10s;
+}
+
+#meow,
+#computer {
+  transition: 15s;
 }
 
 #anim-body {
