@@ -481,13 +481,14 @@ iframe {
   }
 
   #horizon {
+    top: 50vh;
     width: 95vw;
   }
 
-  /* #meow pre,
-  #computer pre {
+  #anim-body {
+    top: 10%;
     height: 72vw;
-  } */
+  }
 
   #meow pre {
     width: 74vw;
