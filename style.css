@@ -95,7 +95,6 @@ iframe {
 #login {
   margin: 70vh auto 0 auto;
   background: none;
-  border-color: #111111;
   color: burlywood;
 }
 
@@ -120,7 +119,7 @@ iframe {
   padding: 0 5vh;
   background: none;
   border: none;
-  border-bottom: 4px dotted burlywood;
+  border-bottom: 3px dotted burlywood;
   border-radius: 8.5vh 8.5vh 15vh 15vh;
   font-size: 10vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -158,7 +157,7 @@ iframe {
   font-weight: bolder;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   cursor: default;
-  transition: 5s;
+  transition: 3.5s;
 }
 
 #end {

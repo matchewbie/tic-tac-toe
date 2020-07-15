@@ -229,10 +229,20 @@ const game = (() => {
         _player.classList.add(btnStatus);
         _player.onmouseenter = () => _toggle(_player, _other);
         if (_which) {
-          _player.onclick = () => nextScreen(single, 0);
+          _player.onclick = () => {
+            animate.navClick(_player);
+            setTimeout(() => {
+              nextScreen(single, 0);
+            }, 275);
+          };
         }
         else {
-          _player.onclick = () => nextScreen(vs, 0);
+          _player.onclick = () => {
+            animate.navClick(_player);
+            setTimeout(() => {
+              nextScreen(vs, 0);
+            }, 275);
+          };
         }
       };
       _stylePlayerSelect('one');
@@ -275,11 +285,15 @@ const game = (() => {
       };
       _login.id = 'login';
       _login.innerText = 'l o g i n';
+      _login.style.borderColor = 'blanchedalmond';
       _login.style.opacity = '0';
       _login.onclick = () => {
-        _name(_you, players.playerOne);
-        players.playerTwo('c0mput3r');
-        return animate.gameOpening.start();
+        animate.navClick(_login);
+        setTimeout(() => {
+          _name(_you, players.playerOne);
+          players.playerTwo('c0mput3r');
+          return animate.gameOpening.start();
+        }, 275);
       };
 
       [_you, _login].forEach(elem => {
@@ -331,9 +345,12 @@ const game = (() => {
       _login.innerText = 'l o g i n';
       _login.style.opacity = '0';
       _login.onclick = () => {
-        _name(_playerOne, players.playerOne);
-        _name(_playerTwo, players.playerTwo);
-        return animate.gameOpening.start();
+        animate.navClick(_login);
+        setTimeout(() => {
+          _name(_playerOne, players.playerOne);
+          _name(_playerTwo, players.playerTwo);
+          return animate.gameOpening.start();
+        }, 275);
       };
 
       [_playerOne, _playerTwo, _login].forEach(elem => {
@@ -350,17 +367,25 @@ const game = (() => {
       _reset.innerText = 'r e m a t c h';
       _reset.classList.add('btn-group-active');
       _reset.onmouseenter = () => _toggle(_reset, _logout);
-      _reset.onclick = () => gameplay.reset();
+      _reset.onclick = () => {
+        animate.navClick(_reset);
+        setTimeout(() => {
+          gameplay.reset();
+        }, 275);
+      };
 
       _logout.id = 'logout';
       _logout.innerText = 'l o g o u t';
       _logout.classList.add('btn-group-inactive');
       _logout.onmouseenter = () => _toggle(_logout, _reset);
       _logout.onclick = () => {
-        container.innerHTML = '';
-        gameplay.reset(false);
-        players.clear();
-        return nextScreen(home, 0);
+        animate.navClick(_logout);
+        setTimeout(() => {
+          container.innerHTML = '';
+          gameplay.reset(false);
+          players.clear();
+          return nextScreen(home, 0);
+        }, 275);
       };
 
       [_reset, _logout].forEach(elem => {
@@ -434,6 +459,14 @@ const game = (() => {
              }, 250);
     };
     const animate = (() => {
+      const navClick = (button) => {
+        button.style.border = 'none';
+        button.style.transition = '125ms';
+        button.style.backgroundColor = 'blanchedalmond';
+        setTimeout(() => {
+          button.style.backgroundColor = '#222222';
+        }, 125);
+      };
       const homeLoad = () => {
         const _message = document.getElementById('logo');
         const _author = document.getElementById('author');
@@ -464,14 +497,18 @@ const game = (() => {
             }, 250);
           }
         }),
-          setTimeout(() => {
-            log.style.transition = '2s';
-            log.style.opacity = '1';
-          }, 250),
-          setTimeout(() => {
-            log.style.transition = 'none';
-          }, 1000);
-      }
+        setTimeout(() => {
+          log.style.transition = '1s';
+          log.style.opacity = '1';
+          log.style.transition = '2475ms';
+          setInterval(() => {
+            let _color = (
+              log.style.borderColor === 'rgb(17, 17, 17)'
+            ) ? 'rgb(255, 235, 205)' : 'rgb(17, 17, 17)';
+            log.style.borderColor = _color; 
+          }, 2500);
+        }, 275);
+      };
       const gameOpening = (() => {
         let _board = matrix.getMatrix();
   
@@ -592,6 +629,7 @@ const game = (() => {
         if (_command === 'coords') nextScreen(win, 3335);
       };
       return {
+        navClick,
         homeLoad,
         loginLoad,
         gameOpening,
