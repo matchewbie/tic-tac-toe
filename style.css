@@ -481,8 +481,6 @@ iframe {
   }
 
   #horizon {
-    position: fixed;
-    top: 55.5vw;
     width: 95vw;
   }
 
@@ -492,7 +490,6 @@ iframe {
   } */
 
   #meow pre {
-    top: 27%;
     width: 74vw;
     margin: -36vw 0 0 -32vw;
     font-size: 2.5vw;
