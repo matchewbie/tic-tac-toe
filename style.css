@@ -481,12 +481,10 @@ iframe {
   }
 
   #horizon {
-    top: 50vh;
     width: 95vw;
   }
 
   #anim-body {
-    top: 25%;
     height: 72vw;
   }
 
