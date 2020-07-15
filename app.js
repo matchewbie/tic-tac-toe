@@ -219,7 +219,17 @@ const game = (() => {
 
       const onePlayer = document.createElement('button');
       const twoPlayer = document.createElement('button');
-      const _stylePlayerSelect = (howMany) => {
+      const _playerSelect = (howMany) => {
+        const _select = (screen) => {
+          const _selection = () => {
+            animate.navClick(_player);
+            setTimeout(() => {
+              nextScreen(screen, 0);
+            }, 250);
+          };
+          _player.onclick = () => _selection();
+          _player.ontouchend = () => _selection();
+        };
         let _which = (howMany === 'one');
         let _player = (_which) ? onePlayer : twoPlayer;
         let _other = (_which) ? twoPlayer : onePlayer;
@@ -228,29 +238,21 @@ const game = (() => {
         _player.innerText = (_which) ? 's i n g l e' : 'v s';
         _player.classList.add(btnStatus);
         _player.onmouseenter = () => _toggle(_player, _other);
+        _player.ontouchmove = () => _toggle(_player, _other);   
         if (_which) {
-          _player.onclick = () => {
-            animate.navClick(_player);
-            setTimeout(() => {
-              nextScreen(single, 0);
-            }, 250);
-          };
+          _select(single);
         }
         else {
-          _player.onclick = () => {
-            animate.navClick(_player);
-            setTimeout(() => {
-              nextScreen(vs, 0);
-            }, 250);
-          };
+          _select(vs);
         }
       };
-      _stylePlayerSelect('one');
-      _stylePlayerSelect('two');
+      _playerSelect('one');
+      _playerSelect('two');
       [logo, onePlayer, twoPlayer, author].forEach(elem => {
         _homescreen.appendChild(elem);
       });
-      return container.appendChild(_homescreen), animate.homeLoad();
+      container.appendChild(_homescreen);
+      animate.homeLoad();
     };
     const single = () => {
       const _you = document.createElement('input');
