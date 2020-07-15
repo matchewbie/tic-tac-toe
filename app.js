@@ -227,7 +227,10 @@ const game = (() => {
               nextScreen(screen, 0);
             }, 250);
           };
-          _player.onclick = () => _selection();
+          _player.onclick = (event) => {
+            event.preventDefault();
+            _selection();
+          };
           _player.ontouchend = () => _selection();
         };
         let _which = (howMany === 'one');
