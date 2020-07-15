@@ -227,11 +227,14 @@ const game = (() => {
               nextScreen(screen, 0);
             }, 250);
           };
-          _player.onclick = (event) => {
+          _player.onmouseup = (event) => {
             event.preventDefault();
             _selection();
           };
-          _player.ontouchend = () => _selection();
+          _player.ontouchend = (event) => {
+            event.preventDefault();
+            _selection();
+          };
         };
         let _which = (howMany === 'one');
         let _player = (_which) ? onePlayer : twoPlayer;
@@ -240,11 +243,14 @@ const game = (() => {
         _player.id = `${howMany}-player`;
         _player.innerText = (_which) ? 's i n g l e' : 'v s';
         _player.classList.add(btnStatus);
-        _player.ontouchstart = (event) => {
-          event.preventDefault();
-          _toggle(_player, _other);
-        };
         _player.onmouseenter = () => _toggle(_player, _other);
+        _player.ontouchstart = () => {
+          _player.style.backgroundColor = 'burlywood';
+          _player.style.color = '#222222';
+          _player.style.zIndex = '50';
+          _other.style.backgroundColor = '#222222';
+          _other.style.color = 'burlywood';
+        };
         if (_which) {
           _select(single);
         }
@@ -376,7 +382,20 @@ const game = (() => {
       _reset.innerText = 'r e m a t c h';
       _reset.classList.add('btn-group-active');
       _reset.onmouseenter = () => _toggle(_reset, _logout);
-      _reset.onclick = () => {
+      _reset.ontouchstart = () => {
+        _player.style.backgroundColor = 'burlywood';
+        _player.style.color = '#222222';
+        _player.style.zIndex = '50';
+        _other.style.backgroundColor = '#222222';
+        _other.style.color = 'burlywood';
+      };
+      _reset.onmouseup = () => {
+        animate.navClick(_reset);
+        setTimeout(() => {
+          gameplay.reset();
+        }, 250);
+      }
+      _reset.ontouchend = () => {
         animate.navClick(_reset);
         setTimeout(() => {
           gameplay.reset();
@@ -387,7 +406,14 @@ const game = (() => {
       _logout.innerText = 'l o g o u t';
       _logout.classList.add('btn-group-inactive');
       _logout.onmouseenter = () => _toggle(_logout, _reset);
-      _logout.onclick = () => {
+      _logout.ontouchstart = () => {
+        _player.style.backgroundColor = 'burlywood';
+        _player.style.color = '#222222';
+        _player.style.zIndex = '50';
+        _other.style.backgroundColor = '#222222';
+        _other.style.color = 'burlywood';
+      };
+      _logout.onmouseup = () => {
         animate.navClick(_logout);
         setTimeout(() => {
           container.innerHTML = '';
@@ -396,6 +422,16 @@ const game = (() => {
           return nextScreen(home, 0);
         }, 250);
       };
+      _logout.ontouchend = () => {
+        animate.navClick(_logout);
+        setTimeout(() => {
+          container.innerHTML = '';
+          gameplay.reset(false);
+          players.clear();
+          return nextScreen(home, 0);
+        }, 250);
+      };
+     
 
       [_reset, _logout].forEach(elem => {
         drawOrWin.appendChild(elem);
