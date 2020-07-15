@@ -237,9 +237,15 @@ const game = (() => {
         _player.id = `${howMany}-player`;
         _player.innerText = (_which) ? 's i n g l e' : 'v s';
         _player.classList.add(btnStatus);
-        _player.ontouchstart = (event) => event.preventDefault();
+        _player.ontouchstart = (event) => {
+          event.preventDefault();
+          _toggle(_player, _other);
+        };
+        _player.ontouchmove = (event) => {
+          event.preventDefault();
+          _toggle(_player, _other);
+        }
         _player.onmouseenter = () => _toggle(_player, _other);
-        _player.ontouchmove = () => _toggle(_player, _other);   
         if (_which) {
           _select(single);
         }
