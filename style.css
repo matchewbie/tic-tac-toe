@@ -481,6 +481,7 @@ iframe {
   }
 
   #horizon {
+    top: 54.5vh;
     width: 100%;
   }
 
