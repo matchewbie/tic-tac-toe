@@ -173,14 +173,8 @@
                     }
                 });
             });
-            setTimeout(() => {
-              let _computer = document.getElementById('computer');
-              _computer.style.opacity = 0;
-              setTimeout(() => {
-                _computer.innerHTML = '';
-              }, 15000);
-            }, 30000);
-            setInterval(() => {
+          
+            let animateAscii = setInterval(() => {
                 let frame = document.querySelector('#computer .active');
                 let next = document.querySelector('#computer .active + pre');
 
@@ -190,6 +184,15 @@
                 next.classList.add('active');
                 frame.classList.remove('active');
             }, 250);
+
+            setTimeout(() => {
+              let _computer = document.getElementById('computer');
+              _computer.style.opacity = 0;
+              setTimeout(() => {
+                _computer.innerHTML = '';
+                clearInterval(animateAscii);
+              }, 15000);
+            }, 30000);
         </script>
   </body>
 </html>

@@ -233,7 +233,7 @@ const game = (() => {
             animate.navClick(_player);
             setTimeout(() => {
               nextScreen(single, 0);
-            }, 275);
+            }, 250);
           };
         }
         else {
@@ -241,7 +241,7 @@ const game = (() => {
             animate.navClick(_player);
             setTimeout(() => {
               nextScreen(vs, 0);
-            }, 275);
+            }, 250);
           };
         }
       };
@@ -293,7 +293,7 @@ const game = (() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
           return animate.gameOpening.start();
-        }, 275);
+        }, 250);
       };
 
       [_you, _login].forEach(elem => {
@@ -350,7 +350,7 @@ const game = (() => {
           _name(_playerOne, players.playerOne);
           _name(_playerTwo, players.playerTwo);
           return animate.gameOpening.start();
-        }, 275);
+        }, 250);
       };
 
       [_playerOne, _playerTwo, _login].forEach(elem => {
@@ -371,7 +371,7 @@ const game = (() => {
         animate.navClick(_reset);
         setTimeout(() => {
           gameplay.reset();
-        }, 275);
+        }, 250);
       };
 
       _logout.id = 'logout';
@@ -385,7 +385,7 @@ const game = (() => {
           gameplay.reset(false);
           players.clear();
           return nextScreen(home, 0);
-        }, 275);
+        }, 250);
       };
 
       [_reset, _logout].forEach(elem => {
@@ -459,12 +459,20 @@ const game = (() => {
              }, 250);
     };
     const animate = (() => {
+      const mark = (button) => {
+        button.classList.add('mark');
+        setTimeout(() => {
+          button.classList.remove('mark');
+        }, 75);
+      };
       const navClick = (button) => {
+        button.style.zIndex = '99';
         button.style.border = 'none';
         button.style.transition = '125ms';
         button.style.backgroundColor = 'blanchedalmond';
         setTimeout(() => {
           button.style.backgroundColor = '#222222';
+          button.style.color = 'blanchedalmond';
         }, 125);
       };
       const homeLoad = () => {
@@ -629,6 +637,7 @@ const game = (() => {
         if (_command === 'coords') nextScreen(win, 3335);
       };
       return {
+        mark,
         navClick,
         homeLoad,
         loginLoad,
@@ -727,6 +736,7 @@ const gameplay = (() => {
         _row = _id[5],
         _column = _id[7];
     if (_emptyCell(_row, _column)) {
+      game.display.animate.mark(game.display.cell.grab(_row, _column));
       _mark(_row, _column, round.currentPlayer().whichMark());
       ai.think();
       if (round.currentPlayer().name() === 'c0mput3r') {
@@ -823,6 +833,11 @@ const gameplay = (() => {
       let _clicks = round.clicks();
       
       if (_clicks > 4 && coords[3] === 'coords') {
+        coords.forEach(coord => {
+          if (coord !== 'coords') {
+            game.display.cell.grab(coord[0], coord[1]).classList.remove('glow');
+          }
+        });
         game.matrix.command({is: 'disable-click'});
         game.players.winner.save(round.turn());
         return game.matrix.command({is: 'champ', coords});
@@ -875,9 +890,9 @@ const gameplay = (() => {
       game.matrix.command({ is: 'mark' });
 
       let _computer = game.players.grab(1).whichMark();
-      game.display.cell.grab(
-        move.row(), move.column()
-      ).style.borderColor = 'burlywood';
+      let _cell = game.display.cell.grab(move.row(), move.column());
+      _cell.style.borderColor = 'burlywood';
+      game.display.animate.mark(_cell);
       game.display.cell.renderMark(move.row(), move.column(), _computer);
       return round.board()[move.row()][move.column()] = _computer;
     };

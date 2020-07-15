@@ -288,12 +288,20 @@ iframe {
   transition: 0.5s;
 }
 
-.glow {
+.glow,
+.mark {
   background-color: blanchedalmond;
   color: burlywood;
+}
+
+.glow {
   text-shadow: 1px 1px 1px #222222;
   opacity: 0.7;
   transition: 1s;
+}
+
+.mark {
+  transition: 250ms;
 }
 
 .dim {
