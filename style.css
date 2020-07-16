@@ -166,12 +166,10 @@ iframe {
 
 #greeting {
   position: fixed;
-  top: 25vh;
-  left: 50%;
   width: 100vh;
-  height: 25vh;
-  margin: -12.5vh 0 0 -50vh;
-  padding: 9.5vh 4vh 9.5vh 4vh;
+  height: 24vh;
+  margin: 5vh auto 0 auto;
+  padding: 9vh 4vh 9vh 4vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 6vh;
   font-weight: bolder;
@@ -186,7 +184,7 @@ iframe {
   transition: 2s;
 }
 
-#you { margin: 40vh auto 0 auto }
+#you { margin: 35vh auto 0 auto }
 
 #message {
   position: fixed;
@@ -520,14 +518,13 @@ iframe {
   
   #login-two { margin: 35vw auto 0 auto; }
   
-  #you { margin: 40vw auto 0 auto }
+  #you { margin: 35vw auto 0 auto }
   
   #greeting {
-    top: 37.5vh;
     width: 100vw;
-    height: 25vw;
-    margin: -12.5vw 0 0 -50vw;
-    padding: 9.5vw 4vw 9.5vw 4vw;
+    height: 24vw;
+    margin: 5vw auto 0 auto;
+    padding: 9vw 4vw 9vw 4vw;
     font-size: 6vw;
     line-height: 6vw;
     border-radius: 15vw;
