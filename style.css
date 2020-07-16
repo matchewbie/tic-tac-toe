@@ -168,7 +168,9 @@ iframe {
   position: fixed;
   width: 100vh;
   height: 24vh;
-  margin: 5vh auto 0 auto;
+  top: 20%;
+  left: 50%;
+  margin: -12vh 0 0 -50vh;
   padding: 8.5vh 4vh 8.5vh 4vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 5.5vh;
@@ -522,7 +524,7 @@ iframe {
   #greeting {
     width: 100vw;
     height: 24vw;
-    margin: 5vw auto 0 auto;
+    margin: -12vw 0 0 -50vw;
     padding: 8.5vw 4vw 8.5vw 4vw;
     font-size: 5.5vw;
     line-height: 5.5vw;
