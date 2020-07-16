@@ -166,7 +166,7 @@ iframe {
 
 #greeting {
   position: fixed;
-  width: 98vh;
+  width: 95vh;
   height: 24vh;
   margin: 5vh auto 0 auto;
   padding: 8vh 4vh 8vh 4vh;
@@ -520,7 +520,7 @@ iframe {
   #you { margin: 35vw auto 0 auto }
   
   #greeting {
-    width: 98vw;
+    width: 95vw;
     height: 24vw;
     margin: 5vw auto 0 auto;
     padding: 8vw 4vw 8vw 4vw;
