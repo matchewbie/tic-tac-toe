@@ -169,11 +169,11 @@ iframe {
   width: 95vh;
   height: 24vh;
   margin: 5vh auto 0 auto;
-  padding: 8vh 4vh 8vh 4vh;
+  padding: 8.5vh 4vh 8.5vh 4vh;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 6vh;
+  font-size: 5.5vh;
   font-weight: bolder;
-  line-height: 6vh;
+  line-height: 5.5vh;
   border-radius: 15vh;
   background-color: #111111;
   border: 8px dashed #222222;
@@ -523,9 +523,9 @@ iframe {
     width: 95vw;
     height: 24vw;
     margin: 5vw auto 0 auto;
-    padding: 8vw 4vw 8vw 4vw;
-    font-size: 6vw;
-    line-height: 6vw;
+    padding: 8.5vw 4vw 8.5vw 4vw;
+    font-size: 5.5vw;
+    line-height: 5.5vw;
     border-radius: 15vw;
     box-shadow: 0.5vw 1vw 5vw burlywood inset;
   }
