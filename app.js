@@ -277,7 +277,11 @@ const game = (() => {
       animate.homeLoad();
     };
     const single = () => {
+      const _helloUser = document.createElement('span');
       const _you = document.createElement('input');
+
+      _helloUser.id = 'greeting';
+      _helloUser.style.opacity = '0';
       _you.id = 'you';
       _you.placeholder = 'User';
       _you.oninput = () => {
@@ -324,11 +328,12 @@ const game = (() => {
         }, 250);
       };
 
-      [_you, _login].forEach(elem => {
+      [_helloUser, _you, _login].forEach(elem => {
         container.appendChild(elem);
       });
 
       animate.loginLoad();
+      animate.greeting();
     };
     const vs = () => {
       const _playerOne = document.createElement('input');
@@ -592,10 +597,58 @@ const game = (() => {
           device.style.transition = '250ms';
         }, 750);
       };
+      const greeting = () => {
+        const _aiScreen = document.getElementById('greeting');
+        let _greeting = [
+          'hello, User',
+          'my name is O',
+          'enter an alias below',
+          'or do not, User',
+          'you shall not defeat O'
+        ];
+        _greeting.forEach((frame, index) => {
+          let _add = (index === 0) ? 1000 : 3500 * (index + 1);
+          let _remove = (index === 0) ? 7000 : 3500 + _add;
+          let _scene = document.createElement('span');
+          let _line = frame.split('');
+
+          setTimeout(() => {
+            _aiScreen.appendChild(_scene);
+          }, _add);
+          if (index !== _greeting.length - 1) {
+            setTimeout(() => {
+              _aiScreen.removeChild(_scene);
+            }, _remove);
+          }
+
+          let _lastMils = 0;
+
+          _line.forEach((character, id) => {
+            let _milliseconds = Math.floor(Math.random() * 250);
+            let _letter = document.createElement('span');    
+
+            _letter.id = `letter-${id}`;
+            _letter.innerText = character;
+            _letter.style.backgroundColor = 'burlywood';
+            _letter.style.color = '#111111';
+
+            setTimeout(() => {
+              setTimeout(() => {
+                _letter.style.background = 'none';
+                _letter.style.color = 'burlywood';
+              }, 75);
+              _scene.appendChild(_letter);
+            }, _milliseconds + _lastMils + _add);
+
+            _lastMils += _milliseconds;       
+          });
+        });
+      };
       const loginLoad = () => {
         const p1 = document.getElementById('login-one');
         const p2 = document.getElementById('login-two');
         const u = document.getElementById('you');
+        const o = document.getElementById('greeting');
         const log = document.getElementById('login');
   
         device.style.opacity = '1';
@@ -604,6 +657,9 @@ const game = (() => {
         return setTimeout(() => {
           device.style.opacity = '0';
           device.style.zIndex = '-1';
+        }, 250),
+        setTimeout(() => {
+          o.style.opacity = '0.7';
         }, 250),
         [p1, p2, u].forEach(elem => {
           if (elem !== null) {
@@ -773,6 +829,7 @@ const game = (() => {
         navClick,
         homeLoad,
         loginLoad,
+        greeting,
         gameOpening,
         tie,
         champion
