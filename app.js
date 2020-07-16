@@ -634,13 +634,13 @@ const game = (() => {
 
             _letter.id = `letter-${id}`;
             _letter.innerText = character;
-            _letter.style.backgroundColor = 'burlywood';
-            _letter.style.color = '#111111';
+            _letter.style.backgroundColor = 'blanchedalmond';
+            _letter.style.color = 'burlywood';
 
             setTimeout(() => {
               setTimeout(() => {
                 _letter.style.background = 'none';
-                _letter.style.color = 'burlywood';
+                // _letter.style.color = 'burlywood';
               }, 75);
               _scene.appendChild(_letter);
             }, _milliseconds + _lastMils + _add);
