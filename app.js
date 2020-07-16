@@ -254,7 +254,8 @@ const game = (() => {
         _player.innerText = (_which) ? 's i n g l e' : 'v s';
         _player.classList.add(btnStatus);
         _player.onmouseenter = () => _toggle(_player, _other);
-        _player.ontouchstart = () => {
+        _player.ontouchstart = (event) => {
+          event.preventDefault();
           _player.style.backgroundColor = 'burlywood';
           _player.style.color = '#222222';
           _player.style.zIndex = '50';
@@ -408,7 +409,8 @@ const game = (() => {
         _logout.style.backgroundColor = '#222222';
         _logout.style.color = 'burlywood';
       };
-      _reset.onmouseup = () => {
+      _reset.onmouseup = (event) => {
+        event.preventDefault();
         animate.navClick(_reset);
         device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
@@ -421,7 +423,8 @@ const game = (() => {
           device.style.transition = '250ms';
         }, 125);
       }
-      _reset.ontouchend = () => {
+      _reset.ontouchend = (event) => {
+        event.preventDefault();
         animate.navClick(_reset);
         device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
@@ -446,7 +449,8 @@ const game = (() => {
         _reset.style.backgroundColor = '#222222';
         _reset.style.color = 'burlywood';
       };
-      _logout.onmouseup = () => {
+      _logout.onmouseup = (event) => {
+        event.preventDefault();
         animate.navClick(_logout);
         setTimeout(() => {
           container.innerHTML = '';
@@ -455,7 +459,8 @@ const game = (() => {
           return nextScreen(home, 0);
         }, 250);
       };
-      _logout.ontouchend = () => {
+      _logout.ontouchend = (event) => {
+        event.preventDefault();
         animate.navClick(_logout);
         setTimeout(() => {
           container.innerHTML = '';
