@@ -278,7 +278,7 @@ const game = (() => {
       animate.homeLoad();
     };
     const single = () => {
-      const _helloUser = document.createElement('span');
+      const _helloUser = document.createElement('div');
       const _you = document.createElement('input');
 
       _helloUser.id = 'greeting';
