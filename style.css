@@ -30,8 +30,8 @@ iframe {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: blanchedalmond;
-  transition: 250ms;
+  background-color: #111111;
+  transition: 2s;
 }
 
 #container {
@@ -63,6 +63,7 @@ iframe {
   color: blanchedalmond;
   opacity: 0;
   cursor: default;
+  z-index: 666;
   transition: 3.5s;
 }
 
@@ -74,6 +75,7 @@ iframe {
   color: burlywood;
   opacity: 0;
   cursor: default;
+  z-index: 420;
   transition: 5.5s;
 }
 
@@ -175,7 +177,7 @@ iframe {
   font-weight: bolder;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   cursor: default;
-  transition: 3.5s;
+  transition: 1.5s;
 }
 
 #end {

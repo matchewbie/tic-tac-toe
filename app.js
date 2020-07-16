@@ -198,6 +198,15 @@ const game = (() => {
       setTimeout(() => {
         container.innerHTML = '';
         screen();
+        device.style.backgroundColor = '#111111';
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
+        device.style.transition = '250ms';
+        
+        setTimeout(() => {
+          device.style.opacity = '0';
+          device.style.zIndex = '-1';
+        }, 250);
       }, milliseconds);
     };
     const _toggle = (currentButton, otherButton) => {
@@ -396,23 +405,29 @@ const game = (() => {
       };
       _reset.onmouseup = () => {
         animate.navClick(_reset);
+        device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
         device.style.zIndex = '100';
+        device.style.transition = '125ms';
         setTimeout(() => {
           gameplay.reset();
           device.style.opacity = '0';
           device.style.zIndex = '-1';
-        }, 250);
+          device.style.transition = '250ms';
+        }, 125);
       }
       _reset.ontouchend = () => {
         animate.navClick(_reset);
+        device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
         device.style.zIndex = '100';
+        device.style.transition = '125ms';
         setTimeout(() => {
           gameplay.reset();
           device.style.opacity = '0';
           device.style.zIndex = '-1';
-        }, 250);
+          device.style.transition = '250ms';
+        }, 125);
       };
 
       _logout.id = 'logout';
@@ -470,13 +485,16 @@ const game = (() => {
 
       device.style.opacity = '1';
       device.style.zIndex = '100';
+      device.style.transition = '250ms';
 
       return setTimeout(() => {
+        device.style.opacity = '0';
+        device.style.zIndex = '-1';
+      }, 250),
+      setTimeout(() => {
         let _message = document.getElementById('message');
         let _thaddeus = document.getElementById('thaddeus');
 
-        device.style.opacity = '0';
-        device.style.zIndex = '-1';
         _message.style.color = 'blanchedalmond';
         _thaddeus.style.opacity = '1';
         setTimeout(() => {
@@ -505,7 +523,7 @@ const game = (() => {
         _win.appendChild(_robot);
       }
       else {
-        _message.innerText = `Well done, ${_winner}`;
+        _message.innerText = `${_winner}, the champion.`;
       }
       _win.appendChild(_message);
       nav(_win);
@@ -513,13 +531,17 @@ const game = (() => {
 
       device.style.opacity = '1';
       device.style.zIndex = '100';
+      device.style.transition = '250ms';      
 
       return setTimeout(() => {
+        device.style.opacity = '0';
+        device.style.zIndex = '-1';
+        }, 250),
+        setTimeout(() => {
         let _message = document.getElementById('message');
         let _robot = document.getElementById('robot');
 
-        device.style.opacity = '0';
-        device.style.zIndex = '-1';
+        
         _message.style.color = 'blanchedalmond';
         _robot.style.opacity = '1';
         
@@ -540,7 +562,6 @@ const game = (() => {
         }, 75);
       };
       const navClick = (button) => {
-        button.style.zIndex = '101';
         button.style.border = 'none';
         button.style.transition = '125ms';
         button.style.backgroundColor = 'blanchedalmond';
@@ -564,11 +585,12 @@ const game = (() => {
           device.style.zIndex = '-1';
           _logo.style.opacity = '1';
           _author.style.opacity = '0.2';
-        }, 250),
+        }, 325),
         setTimeout(() => {
           _single.style.visibility = 'visible';
           _vs.style.visibility = 'visible';
-        }, 1250);
+          device.style.transition = '250ms';
+        }, 750);
       };
       const loginLoad = () => {
         const p1 = document.getElementById('login-one');
@@ -663,15 +685,19 @@ const game = (() => {
         if (cell.innerText === 'E') {
           return setTimeout(() => {
             container.style.opacity = '0';
+            device.style.backgroundColor = 'blanchedalmond';
             device.style.opacity = '0';
+            device.style.transition = '125ms';
             setTimeout(() => {
               gameplay.reset();
               container.style.opacity = '1';
               device.style.opacity = '1';
               device.style.zIndex = '100';
               setTimeout(() => {
+                device.style.backgroundColor = '#111111';
                 device.style.opacity = '0';
                 device.style.zIndex = '-1';
+                device.style.transition = '250ms';
               }, 125);
             }, 1000);
           }, 1250);
@@ -689,6 +715,12 @@ const game = (() => {
         let _cell = cell.grab(row, column);
         _blackout(_cell, [row, column], 310);
         if (row + column === 4) {
+          device.style.backgroundColor = '#111111';
+          setTimeout(() => {
+            device.style.opacity = '1';
+            device.style.zIndex = '100';
+            device.style.transition = '250ms';
+          }, 780);
           return nextScreen(draw, 1030);
         }
       };
@@ -726,7 +758,15 @@ const game = (() => {
         }
   
         if (_command === 'opening') _ticTacToe(_cell, _champCell2());
-        if (_command === 'coords') nextScreen(win, 3335);
+        if (_command === 'coords') {
+          device.style.backgroundColor = '#111111';
+          setTimeout(() => {
+            device.style.opacity = '1';
+            device.style.zIndex = '100';
+            device.style.transition = '250ms';
+          }, 3085);
+          return nextScreen(win, 3335);
+        }
       };
       return {
         mark,
@@ -740,6 +780,7 @@ const game = (() => {
     })();
 
     return home(), {
+      device,
       container,
       initBoard,
       cell,
