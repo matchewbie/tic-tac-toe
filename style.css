@@ -166,7 +166,7 @@ iframe {
 
 #greeting {
   position: fixed;
-  width: 95vh;
+  width: 100vh;
   height: 24vh;
   margin: 5vh auto 0 auto;
   padding: 8.5vh 4vh 8.5vh 4vh;
@@ -176,7 +176,7 @@ iframe {
   line-height: 5.5vh;
   border-radius: 15vh;
   background-color: #111111;
-  border: 8px dashed #222222;
+  border: 1.5vh dashed #222222;
   box-shadow: 0.5vh 1vh 5vh burlywood inset;
   text-align: center;
   cursor: default;
@@ -520,12 +520,13 @@ iframe {
   #you { margin: 35vw auto 0 auto }
   
   #greeting {
-    width: 95vw;
+    width: 100vw;
     height: 24vw;
     margin: 5vw auto 0 auto;
     padding: 8.5vw 4vw 8.5vw 4vw;
     font-size: 5.5vw;
     line-height: 5.5vw;
+    border: 1.5vw dashed #222222;
     border-radius: 15vw;
     box-shadow: 0.5vw 1vw 5vw burlywood inset;
   }
