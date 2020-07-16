@@ -7,6 +7,13 @@
 *:focus {
   outline: none;
 }
+html,
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   background-color: #222222;
@@ -15,6 +22,16 @@ body {
 
 iframe {
   border: none;
+}
+
+#device {
+  position: fixed;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: blanchedalmond;
+  transition: 250ms;
 }
 
 #container {
@@ -43,7 +60,8 @@ iframe {
   font-size: 14vh;
   font-weight: bolder;
   text-align: center;
-  color: #222222;
+  color: blanchedalmond;
+  opacity: 0;
   cursor: default;
   transition: 3.5s;
 }
@@ -53,8 +71,8 @@ iframe {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 4vh;
   text-align: center;
-  color: #222222;
-  opacity: 0.2;
+  color: burlywood;
+  opacity: 0;
   cursor: default;
   transition: 5.5s;
 }

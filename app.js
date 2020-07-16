@@ -152,6 +152,7 @@ const game = (() => {
   })();
 
   const display = (() => {
+    const device = document.getElementById('device');
     const container = document.getElementById('container');
     const initBoard = () => matrix.command({is: 'init-board'});
     const cell = (() => {
@@ -303,9 +304,13 @@ const game = (() => {
       _login.style.opacity = '0';
       _login.onclick = () => {
         animate.navClick(_login);
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
         setTimeout(() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
+          device.style.opacity = '0';
+          device.style.zIndex = '-1';
           return animate.gameOpening.start();
         }, 250);
       };
@@ -391,14 +396,22 @@ const game = (() => {
       };
       _reset.onmouseup = () => {
         animate.navClick(_reset);
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
         setTimeout(() => {
           gameplay.reset();
+          device.style.opacity = '0';
+          device.style.zIndex = '-1';
         }, 250);
       }
       _reset.ontouchend = () => {
         animate.navClick(_reset);
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
         setTimeout(() => {
           gameplay.reset();
+          device.style.opacity = '0';
+          device.style.zIndex = '-1';
         }, 250);
       };
 
@@ -453,19 +466,26 @@ const game = (() => {
       });
 
       nav(_draw);
-      return container.appendChild(_draw),
-             setTimeout(() => {
-              let _message = document.getElementById('message');
-              let _thaddeus = document.getElementById('thaddeus');
-              _message.style.color = 'blanchedalmond';
-              _thaddeus.style.opacity = '1';
-              setTimeout(() => {
-                _message.style.opacity = '0';
-              }, 2250);
-              setTimeout(() => {
-                _message.style.opacity = '1';
-              }, 35000);
-             }, 250);
+      container.appendChild(_draw);
+
+      device.style.opacity = '1';
+      device.style.zIndex = '100';
+
+      return setTimeout(() => {
+        let _message = document.getElementById('message');
+        let _thaddeus = document.getElementById('thaddeus');
+
+        device.style.opacity = '0';
+        device.style.zIndex = '-1';
+        _message.style.color = 'blanchedalmond';
+        _thaddeus.style.opacity = '1';
+        setTimeout(() => {
+          _message.style.opacity = '0';
+        }, 2250);
+        setTimeout(() => {
+          _message.style.opacity = '1';
+        }, 35000);
+      }, 250);
 
     };
     const win = () => {
@@ -489,19 +509,28 @@ const game = (() => {
       }
       _win.appendChild(_message);
       nav(_win);
-      return container.appendChild(_win),
-             setTimeout(() => {
-              let _message = document.getElementById('message');
-              let _robot = document.getElementById('robot');
-              _message.style.color = 'blanchedalmond';
-              _robot.style.opacity = '1';
-              setTimeout(() => {
-                _message.style.opacity = '0';
-              }, 2250);
-              setTimeout(() => {
-                _message.style.opacity = '1';
-              }, 35000);
-             }, 250);
+      container.appendChild(_win);
+
+      device.style.opacity = '1';
+      device.style.zIndex = '100';
+
+      return setTimeout(() => {
+        let _message = document.getElementById('message');
+        let _robot = document.getElementById('robot');
+
+        device.style.opacity = '0';
+        device.style.zIndex = '-1';
+        _message.style.color = 'blanchedalmond';
+        _robot.style.opacity = '1';
+        
+        
+        setTimeout(() => {
+          _message.style.opacity = '0';
+        }, 2250);
+        setTimeout(() => {
+          _message.style.opacity = '1';
+        }, 35000);
+        }, 250);
     };
     const animate = (() => {
       const mark = (button) => {
@@ -511,26 +540,30 @@ const game = (() => {
         }, 75);
       };
       const navClick = (button) => {
-        button.style.zIndex = '99';
+        button.style.zIndex = '101';
         button.style.border = 'none';
         button.style.transition = '125ms';
         button.style.backgroundColor = 'blanchedalmond';
         setTimeout(() => {
           button.style.backgroundColor = '#222222';
-          button.style.color = 'blanchedalmond';
+          button.style.color = 'burlywood';
         }, 125);
+
       };
       const homeLoad = () => {
-        const _message = document.getElementById('logo');
+        const _logo = document.getElementById('logo');
         const _author = document.getElementById('author');
         const _single = document.getElementById('one-player');
         const _vs = document.getElementById('two-player');
 
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
+
         return setTimeout(() => {
-          _message.style.color = 'blanchedalmond';
-        }, 250),
-        setTimeout(() => {
-          _author.style.color = 'burlywood';
+          device.style.opacity = '0';
+          device.style.zIndex = '-1';
+          _logo.style.opacity = '1';
+          _author.style.opacity = '0.2';
         }, 250),
         setTimeout(() => {
           _single.style.visibility = 'visible';
@@ -543,7 +576,14 @@ const game = (() => {
         const u = document.getElementById('you');
         const log = document.getElementById('login');
   
-        return [p1, p2, u].forEach(elem => {
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
+
+        return setTimeout(() => {
+          device.style.opacity = '0';
+          device.style.zIndex = '-1';
+        }, 250),
+        [p1, p2, u].forEach(elem => {
           if (elem !== null) {
             setTimeout(() => {
                 elem.style.visibility = 'visible';
@@ -623,11 +663,18 @@ const game = (() => {
         if (cell.innerText === 'E') {
           return setTimeout(() => {
             container.style.opacity = '0';
+            device.style.opacity = '0';
             setTimeout(() => {
               gameplay.reset();
               container.style.opacity = '1';
+              device.style.opacity = '1';
+              device.style.zIndex = '100';
+              setTimeout(() => {
+                device.style.opacity = '0';
+                device.style.zIndex = '-1';
+              }, 125);
             }, 1000);
-          }, 1500);
+          }, 1250);
         }
       };
       const _blackout = (spot, coords, milliseconds) => {
