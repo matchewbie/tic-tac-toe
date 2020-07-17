@@ -147,6 +147,8 @@ iframe {
   text-align: center;
   color: burlywood;
   box-shadow: 0 0 10vh blanchedalmond inset;
+  -webkit-box-shadow: 0 0 10vh blanchedalmond inset;
+  -moz-box-shadow: 0 0 10vh blanchedalmond inset;
   opacity: 0.7;
   transition: 125ms;
 }
@@ -160,6 +162,8 @@ iframe {
   text-align: left;
   border-bottom: 0.5vh dashed blanchedalmond;
   box-shadow: 0 0 10vh #111111 inset;
+  -webkit-box-shadow: 0 0 10vh #111111 inset;
+  -moz-box-shadow: 0 0 10vh #111111 inset;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
@@ -183,6 +187,8 @@ iframe {
   border-radius: 15vh;
   background: none;
   box-shadow: 0.5vh 1vh 10.25vh blanchedalmond inset;
+  -webkit-box-shadow: 0.5vh 1vh 10.25vh blanchedalmond inset;
+  -moz-box-shadow: 0.5 1 10.25vh blanchedalmond inset;
   text-align: center;
   cursor: default;
   transition: 2s;
@@ -513,6 +519,8 @@ iframe {
     border-radius: 15vw;
     font-size: 10vw;
     box-shadow: 0 0 10vw blanchedalmond inset;
+    -webkit-box-shadow: 0 0 10vw blanchedalmond inset;
+    -moz-box-shadow: 0 0 10vw blanchedalmond inset;
   }
   
   #login-one:focus,
@@ -521,6 +529,8 @@ iframe {
     padding-left: 10vw;
     border-bottom: 0.5vw dashed blanchedalmond;
     box-shadow: 0 0 10vw #111111 inset;
+    -webkit-box-shadow: 0 0 10vw #111111 inset;
+    -moz-box-shadow: 0 0 10vw #111111 inset;
   }
   
   #login-one { margin: 9.5vw auto 0 auto; }
@@ -542,6 +552,8 @@ iframe {
     border-bottom: none;
     border-radius: 15vw;
     box-shadow: 0.5vw 1vw 10.25vw blanchedalmond inset;
+    -webkit-box-shadow: 0.5vw 1vw 10.25vw blanchedalmond inset;
+    -moz-box-shadow: 0.5vw 1vw 10.25vw blanchedalmond inset;
   }
 
   #message {
