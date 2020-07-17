@@ -290,6 +290,15 @@ const game = (() => {
 
       _helloUser.id = 'greeting';
       _helloUser.style.opacity = '0';
+
+      let _text = [
+        'hello, User',
+        'my name is O',
+        'enter an alias below',
+        'or do not, User',
+        'you shall not defeat O'
+      ];
+
       _you.id = 'you';
       _you.placeholder = 'User';
       _you.oninput = () => {
@@ -360,7 +369,7 @@ const game = (() => {
       });
 
       animate.loginLoad();
-      animate.greeting();
+      animate.aiSay(_text, 'greeting');
     };
     const vs = () => {
       const _playerOne = document.createElement('input');
@@ -547,7 +556,8 @@ const game = (() => {
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
-      _message.innerHTML = 'that\'s a scratch';
+
+      let _text = ['that\'s a scratch'];
 
       [_thaddeus, _message].forEach(elem => {
         _draw.appendChild(elem);
@@ -556,25 +566,29 @@ const game = (() => {
       nav(_draw);
       container.appendChild(_draw);
 
+      animate.aiSay(_text, 'message');
+
       device.style.opacity = '1';
       device.style.zIndex = '100';
       device.style.transition = '250ms';
 
-      return setTimeout(() => {
+      setTimeout(() => {
         device.style.opacity = '0';
         device.style.zIndex = '-1';
-      }, 250),
+      }, 250);
+
       setTimeout(() => {
         let _message = document.getElementById('message');
         let _thaddeus = document.getElementById('thaddeus');
 
-        _message.style.color = 'blanchedalmond';
         _thaddeus.style.opacity = '1';
         setTimeout(() => {
           _message.style.opacity = '0';
-        }, 2250);
+          _message.innerHTML = '';
+        }, 4000);
         setTimeout(() => {
           _message.style.opacity = '1';
+          animate.aiSay(['thanks for playing'], 'message');
         }, 35000);
       }, 250);
 
@@ -594,17 +608,21 @@ const game = (() => {
       _champ.src = './champ.html';
       _message.id = 'message';
 
+      let _text = null;
+
       if (_winner === 'c0mput3r') {
-        _message.innerText = `${_loser}, don't cry`;
+        _text = [`${_loser}, don't cry`];
         _win.appendChild(_robot);
       }
       else {
-        _message.innerText = `${_winner}, the champion.`;
+        _text = [`${_winner}, the champion.`];
         _win.appendChild(_champ);
       }
       _win.appendChild(_message);
       nav(_win);
       container.appendChild(_win);
+
+      animate.aiSay(_text, 'message');
 
       device.style.opacity = '1';
       device.style.zIndex = '100';
@@ -619,9 +637,6 @@ const game = (() => {
         let _message = document.getElementById('message');
         let _robot = document.getElementById('robot');
 
-        
-        _message.style.color = 'blanchedalmond';
-
         if (_robot !== null) {
           _robot.style.opacity = '1';
         }
@@ -632,9 +647,11 @@ const game = (() => {
         
         setTimeout(() => {
           _message.style.opacity = '0';
-        }, 2250);
+          _message.innerHTML = '';
+        }, 4000);
         setTimeout(() => {
           _message.style.opacity = '1';
+          animate.aiSay(['thanks for playing'], 'message');
         }, 35000);
       }, 250);
     };
@@ -676,27 +693,20 @@ const game = (() => {
           device.style.transition = '250ms';
         }, 750);
       };
-      const greeting = () => {
-        const _aiScreen = document.getElementById('greeting');
-        let _greeting = [
-          'hello, User',
-          'my name is O',
-          'enter an alias below',
-          'or do not, User',
-          'you shall not defeat O'
-        ];
-        _greeting.forEach((frame, index) => {
-          let _add = (index === 0) ? 1000 : 3500 * (index + 1);
+      const aiSay = (text, id) => {
+        let _screen = document.getElementById(id);
+        text.forEach((frame, index) => {
+          let _add = (index === 0) ? 1125 : 3500 * (index + 1);
           let _remove = (index === 0) ? 7000 : 3500 + _add;
           let _scene = document.createElement('span');
           let _line = frame.split('');
 
           setTimeout(() => {
-            _aiScreen.appendChild(_scene);
+            _screen.appendChild(_scene);
           }, _add);
-          if (index !== _greeting.length - 1) {
+          if (index !== text.length - 1) {
             setTimeout(() => {
-              _aiScreen.removeChild(_scene);
+              _screen.removeChild(_scene);
             }, _remove);
           }
 
@@ -713,7 +723,8 @@ const game = (() => {
 
             setTimeout(() => {
               setTimeout(() => {
-                _letter.style.background = 'none';
+                _letter.style.backgroundColor = '#222222';
+                _letter.style.borderRadius = '50%';
                 _letter.style.color = 'blanchedalmond';
               }, 75);
               _scene.appendChild(_letter);
@@ -913,7 +924,7 @@ const game = (() => {
         navClick,
         homeLoad,
         loginLoad,
-        greeting,
+        aiSay,
         gameOpening,
         tie,
         champion
