@@ -133,7 +133,6 @@ iframe {
 #login-one,
 #login-two,
 #you {
-  appearance: none;
   position: fixed;
   height: 24vh;
   width: 100vh;
@@ -507,6 +506,7 @@ iframe {
   #you {
     height: 24vw;
     width: 95vw;
+    padding: 0 5vw;
     border: 4vw double burlywood;
     border-top: none;
     border-bottom: none;
@@ -519,7 +519,7 @@ iframe {
   #login-two:focus,
   #you:focus {
     padding-left: 10vw;
-    border-bottom: 0.5vw dashed burlywood;
+    border-bottom: 0.5vw dashed blanchedalmond;
     box-shadow: 0 0 10vw #111111 inset;
   }
   
