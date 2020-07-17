@@ -134,6 +134,8 @@ iframe {
 #login-two,
 #you {
   appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   position: fixed;
   height: 24vh;
   width: 100vh;
