@@ -325,11 +325,11 @@ iframe {
 }
 
 #computer pre {
-  top: 40%;
+  top: 41%;
   width: 86vh;
   margin: -36vh 0 0 -43vh;
   font-size: 2.2vh;
-  line-height: 3.2vh;
+  line-height: 3vh;
 }
 
 #champion pre {
@@ -604,7 +604,7 @@ iframe {
     width: 86vw;
     margin: -36vw 0 0 -43vw;
     font-size: 2.2vw;
-    line-height: 3.2vw;
+    line-height: 3vw;
   }
 
   #champion pre {
