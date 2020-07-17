@@ -664,7 +664,7 @@ const game = (() => {
           device.style.zIndex = '-1';
         }, 250),
         setTimeout(() => {
-          o.style.opacity = '0.5';
+          o.style.opacity = '0.6';
         }, 250),
         [p1, p2, u].forEach(elem => {
           if (elem !== null) {
