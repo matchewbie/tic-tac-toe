@@ -634,13 +634,13 @@ const game = (() => {
 
             _letter.id = `letter-${id}`;
             _letter.innerText = character;
-            _letter.style.backgroundColor = 'blanchedalmond';
-            _letter.style.color = 'burlywood';
+            _letter.style.backgroundColor = 'burlywood';
+            _letter.style.color = '#111111';
 
             setTimeout(() => {
               setTimeout(() => {
                 _letter.style.background = 'none';
-                // _letter.style.color = 'burlywood';
+                _letter.style.color = 'blanchedalmond';
               }, 75);
               _scene.appendChild(_letter);
             }, _milliseconds + _lastMils + _add);
@@ -664,7 +664,7 @@ const game = (() => {
           device.style.zIndex = '-1';
         }, 250),
         setTimeout(() => {
-          o.style.opacity = '0.7';
+          o.style.opacity = '0.5';
         }, 250),
         [p1, p2, u].forEach(elem => {
           if (elem !== null) {
