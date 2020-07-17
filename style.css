@@ -163,7 +163,7 @@ iframe {
   padding-left: 10vh;
   color: blanchedalmond;
   text-align: left;
-  border-bottom: 0.5vh dashed blanchedalmond;
+  border-bottom: 0.75vh dashed blanchedalmond;
   box-shadow: 0 0 10vh #111111 inset;
   -webkit-box-shadow: 0 0 10vh #111111 inset;
   -moz-box-shadow: 0 0 10vh #111111 inset;
@@ -325,7 +325,7 @@ iframe {
 }
 
 #computer pre {
-  top: 41%;
+  top: 42.5%;
   width: 86vh;
   margin: -36vh 0 0 -43vh;
   font-size: 2.2vh;
@@ -543,7 +543,7 @@ iframe {
   #login-two:focus,
   #you:focus {
     padding-left: 10vw;
-    border-bottom: 0.5vw dashed blanchedalmond;
+    border-bottom: 0.75vw dashed blanchedalmond;
     box-shadow: 0 0 10vw #111111 inset;
     -webkit-box-shadow: 0 0 10vw #111111 inset;
     -moz-box-shadow: 0 0 10vw #111111 inset;
