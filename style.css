@@ -176,7 +176,6 @@ iframe {
   padding: 10vh 4vh 7vh 4vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 5.5vh;
-  /* font-weight: bold; */
   line-height: 5.5vh;
   border: 4vh double burlywood;
   border-top: none;
@@ -507,7 +506,7 @@ iframe {
   #you {
     height: 24vw;
     width: 95vw;
-    border: 2vw double burlywood;
+    border: 4vw double burlywood;
     border-top: none;
     border-bottom: none;
     border-radius: 15vw;
