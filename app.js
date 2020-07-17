@@ -664,13 +664,13 @@ const game = (() => {
           device.style.zIndex = '-1';
         }, 250),
         setTimeout(() => {
-          o.style.opacity = '1';
+          o.style.opacity = '0.7';
         }, 250),
         [p1, p2, u].forEach(elem => {
           if (elem !== null) {
             setTimeout(() => {
                 elem.style.visibility = 'visible';
-            }, 250);
+            }, 475);
           }
         }),
         setTimeout(() => {
