@@ -133,6 +133,7 @@ iframe {
 #login-one,
 #login-two,
 #you {
+  appearance: none;
   position: fixed;
   height: 24vh;
   width: 100vh;
