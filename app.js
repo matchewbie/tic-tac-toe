@@ -576,8 +576,8 @@ const game = (() => {
         button.style.transition = '125ms';
         button.style.backgroundColor = 'blanchedalmond';
         setTimeout(() => {
-          button.style.backgroundColor = '#222222';
-          button.style.color = 'burlywood';
+          button.style.backgroundColor = 'burlywood';
+          button.style.color = '#111111';
         }, 125);
 
       };
