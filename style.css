@@ -147,7 +147,7 @@ iframe {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
   color: burlywood;
-  box-shadow: 0 0 10vh #111111 inset;
+  box-shadow: 0 0 10vh burlywood inset;
   transition: 125ms;
 }
 
@@ -159,7 +159,7 @@ iframe {
   color: blanchedalmond;
   text-align: left;
   border-bottom: 0.5vh dashed burlywood;
-  box-shadow: 0 0 10vh #111111 outset;
+  box-shadow: 0 0 10vh #111111 inset;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
@@ -176,12 +176,12 @@ iframe {
   padding: 10vh 4vh 7vh 4vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 5.5vh;
-  font-weight: bold;
+  /* font-weight: bold; */
   line-height: 5.5vh;
   border: 4vh double burlywood;
   border-top: none;
   border-bottom: none;
-  border-radius: 7.75vh;
+  border-radius: 15vh;
   background: none;
   box-shadow: 0.5vh 1vh 10.25vh burlywood inset;
   text-align: center;
@@ -512,7 +512,7 @@ iframe {
     border-bottom: none;
     border-radius: 15vw;
     font-size: 10vw;
-    box-shadow: 0 0 10vw #111111 inset;
+    box-shadow: 0 0 10vw burlywood inset;
   }
   
   #login-one:focus,
@@ -520,7 +520,7 @@ iframe {
   #you:focus {
     padding-left: 10vw;
     border-bottom: 0.5vw dashed burlywood;
-    box-shadow: 0 0 10vw #111111 outset;
+    box-shadow: 0 0 10vw #111111 inset;
   }
   
   #login-one { margin: 9.5vw auto 0 auto; }
@@ -540,7 +540,7 @@ iframe {
     border: 4vw double burlywood;
     border-top: none;
     border-bottom: none;
-    border-radius: 7.75vw;
+    border-radius: 15vw;
     box-shadow: 0.5vw 1vw 10.25vw burlywood inset;
   }
 
