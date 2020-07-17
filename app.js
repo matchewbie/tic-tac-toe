@@ -519,6 +519,7 @@ const game = (() => {
     const win = () => {
       const _win = document.createElement('div');
       const _robot = document.createElement('iframe');
+      const _champ = document.createElement('iframe');
       const _message = document.createElement('p');
       let _winner = players.winner.grab().name();
       let _loser = players.grab(0).name();
@@ -526,6 +527,8 @@ const game = (() => {
       _win.id = 'end';
       _robot.id = 'robot';
       _robot.src = './computer.html';
+      _champ.id = 'champ';
+      _champ.src = './champ.html';
       _message.id = 'message';
 
       if (_winner === 'c0mput3r') {
@@ -534,6 +537,7 @@ const game = (() => {
       }
       else {
         _message.innerText = `${_winner}, the champion.`;
+        _win.appendChild(_champ);
       }
       _win.appendChild(_message);
       nav(_win);
@@ -543,18 +547,25 @@ const game = (() => {
       device.style.zIndex = '100';
       device.style.transition = '250ms';      
 
-      return setTimeout(() => {
+      setTimeout(() => {
         device.style.opacity = '0';
         device.style.zIndex = '-1';
-        }, 250),
-        setTimeout(() => {
+      }, 250);
+
+      setTimeout(() => {
         let _message = document.getElementById('message');
         let _robot = document.getElementById('robot');
 
         
         _message.style.color = 'blanchedalmond';
-        _robot.style.opacity = '1';
-        
+
+        if (_robot !== null) {
+          _robot.style.opacity = '1';
+        }
+
+        if (_champ !== null) {
+          _champ.style.opacity = '1';
+        }
         
         setTimeout(() => {
           _message.style.opacity = '0';
@@ -562,7 +573,7 @@ const game = (() => {
         setTimeout(() => {
           _message.style.opacity = '1';
         }, 35000);
-        }, 250);
+      }, 250);
     };
     const animate = (() => {
       const mark = (button) => {
@@ -659,20 +670,25 @@ const game = (() => {
         device.style.opacity = '1';
         device.style.zIndex = '100';
 
-        return setTimeout(() => {
+        setTimeout(() => {
           device.style.opacity = '0';
           device.style.zIndex = '-1';
-        }, 250),
-        setTimeout(() => {
-          o.style.opacity = '0.7';
-        }, 250),
+        }, 250);
+
+        if (o !== null) {
+          setTimeout(() => {
+            o.style.opacity = '0.7';
+          }, 250);
+        }
+
         [p1, p2, u].forEach(elem => {
           if (elem !== null) {
             setTimeout(() => {
                 elem.style.visibility = 'visible';
             }, 475);
           }
-        }),
+        });
+
         setTimeout(() => {
           log.style.transition = '1s';
           log.style.opacity = '1';

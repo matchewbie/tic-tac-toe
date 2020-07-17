@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+    <title>champion // matchewbie</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="icon" href="favicon.png" /> -->
+  </head>
+
+  <body id="anim-body">
+        <div id="champion">
+            <pre>
+                          
+       
+       
+       
+       
+       
+                         
+          .                     
+       .                                    .
+                 .              .       .
+  .     .    .                           .   .   
+           .    .            
+             .     .    .     
+    .   .      .         .     .      .
+           .    .   .   .     .    
+                    .       .      .
+      .   .                                    .
+                                .        .        </pre>
+            <pre>
+                  
+              
+           
+           
+       
+       
+    
+    
+    
+   
+   
+  
+  
+  
+ 
+                       .
+                       |                        </pre>
+            <pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                       .
+                       |
+                       |
+                       ,
+                                                </pre>
+            <pre class="active">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                       .
+                       |`
+                       
+ 
+ 
+ 
+ 
+      
+                                                </pre>
+            <pre>
+       
+       
+       
+       
+       
+                    ,\.|./,                
+                    -..*..-
+                    `/`,`\`  
+  
+  
+  
+  
+   
+   
+ 
+                        
+                                                </pre>
+            <pre>
+                  
+              
+           
+                     . , .    
+                  ' ~ . # ' ~ 
+                . # ,\.|./. # .
+                 ,  -.. ..-  , 
+                . # `/`|`\` ~ .
+                 # , ~ . # , ~ 
+                     ` . `     
+           
+ 
+ 
+ 
+ 
+                       
+                                                 </pre>
+            <pre>
+                  .  `    `
+              .  .    ,.,    .  .
+           .     . `~  |  #` .     .
+              ..  \         /  ..  .
+       .   . ..  #              ..  .  .
+          . . #                 ~ .  .    .
+    .    .  . -                 - . .
+     .   .  . ~                 # . .    .
+          .  ..                 ..  .     
+      .   .   ..  /         \  ..  .    . 
+           .    .` .~   , #. `.  .    .   
+        .   .  .   `/  .  \`  .     
+           .  .   .    ,  , .    .  
+           .    .   .   .    .    
+                    .       .      
+                       
+                                                 </pre>
+        </div>
+        <div id="horizon"></div>
+        <script>
+            const _regex = /[\/)({},wvc*~\\\|]/;
+            const _amp = /[\&]/;
+            const _ltgt = /[ltg;]/;
+            const _lt = /[l]/;
+            // let _which = Math.floor(Math.random() * 2);  // invert colorization
+            let group = document.querySelectorAll('pre');
+            group.forEach(frame => {
+                let thaddeus = frame.innerHTML;
+                frame.innerHTML = '';
+                let colorize = thaddeus.split('');
+                colorize.forEach((letter, index) => {
+                    let _style = document.createElement('span');
+                    if (_amp.test(letter)) {
+                        let temp = letter + colorize[index+1] + 
+                            colorize[index+2] + colorize[index+3];
+                        letter = (_lt.test(temp)) ? '<' : '>';
+                    }
+
+                    if (_regex.test(letter) || _amp.test(letter) || letter === 'T') {
+                        _style.style.color = 'blanchedalmond';
+                        _style.innerText = letter;
+                        frame.appendChild(_style);
+                    }
+                    else {
+                        if (!_amp.test(letter) && !_ltgt.test(letter)) {
+                          _style.style.color = 'burlywood';
+                            _style.innerText = letter;
+                            frame.appendChild(_style);
+                        }
+                    }
+                });
+            });
+          
+            let animateAscii = setInterval(() => {
+                let frame = document.querySelector('#champion .active');
+                let next = document.querySelector('#champion .active + pre');
+
+                if (!next) {
+                    next = document.querySelector('#champion pre');
+                }
+                next.classList.add('active');
+                frame.classList.remove('active');
+            }, 325);
+
+            setTimeout(() => {
+              let _computer = document.getElementById('champion');
+              _computer.style.opacity = 0;
+              setTimeout(() => {
+                _computer.innerHTML = '';
+                clearInterval(animateAscii);
+              }, 15000);
+            }, 30000);
+        </script>
+  </body>
+</html>

@@ -206,7 +206,7 @@ iframe {
   height: inherit;
   background: none;
   color: #222222;
-  font-size: 7vh;
+  font-size: 5.5vh;
   font-weight: bolder;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   cursor: default;
@@ -274,7 +274,9 @@ iframe {
   border-right: none;
 }
 
-#thaddeus, #robot {
+#thaddeus,
+#robot,
+#champ {
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -282,7 +284,8 @@ iframe {
 }
 
 #meow,
-#computer {
+#computer,
+#champion {
   transition: 15s;
 }
 
@@ -305,7 +308,8 @@ iframe {
 }
 
 #meow pre,
-#computer pre {
+#computer pre,
+#champion pre {
   position: fixed;
   left: 50%;
   height: 72vh;
@@ -328,8 +332,17 @@ iframe {
   line-height: 3.2vh;
 }
 
+#champion pre {
+  top: 38%;
+  width: 63vh;
+  margin: -36vh 0 0 -31.5vh;
+  font-size: 2.2vh;
+  line-height: 3.2vh;
+}
+
 #meow pre:not(.active),
-#computer pre:not(.active) {
+#computer pre:not(.active),
+#champion pre:not(.active) {
   visibility: hidden;
 }
 
@@ -561,7 +574,7 @@ iframe {
 
   #message {
     margin: 32.5vw auto 0 auto;
-    font-size: 7vw;
+    font-size: 5.5vw;
   }
   
   [id^='cell-'] {
@@ -590,6 +603,14 @@ iframe {
   #computer pre {
     width: 86vw;
     margin: -36vw 0 0 -43vw;
+    font-size: 2.2vw;
+    line-height: 3.2vw;
+  }
+
+  #champion pre {
+    top: 38%;
+    width: 63vw;
+    margin: -36vw 0 0 -31.5vw;
     font-size: 2.2vw;
     line-height: 3.2vw;
   }
