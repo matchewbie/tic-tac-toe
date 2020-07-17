@@ -233,8 +233,10 @@ const game = (() => {
         const _select = (screen) => {
           const _selection = () => {
             animate.navClick(_player);
-            device.style.opacity = '1';
-            device.style.zIndex = '420666';
+            setTimeout(() => {
+              device.style.opacity = '1';
+              device.style.zIndex = '420666';
+            }, 125);
             setTimeout(() => {
               device.style.opacity = '0';
               device.style.zIndex = '-1';
