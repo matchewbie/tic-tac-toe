@@ -459,7 +459,7 @@ const game = (() => {
       _reset.onmouseup = (event) => {
         event.preventDefault();
         animate.navClick(_reset);
-        device.style.backgroundColor = 'burlywood';
+        device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
         device.style.zIndex = '100';
         device.style.transition = '125ms';
@@ -473,7 +473,7 @@ const game = (() => {
       _reset.ontouchend = (event) => {
         event.preventDefault();
         animate.navClick(_reset);
-        device.style.backgroundColor = 'burlywood';
+        device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
         device.style.zIndex = '100';
         device.style.transition = '125ms';
@@ -823,7 +823,7 @@ const game = (() => {
         if (cell.innerText === 'E') {
           return setTimeout(() => {
             container.style.opacity = '0';
-            device.style.backgroundColor = 'burlywood';
+            device.style.backgroundColor = 'blanchedalmond';
             device.style.opacity = '0';
             device.style.transition = '125ms';
             setTimeout(() => {
