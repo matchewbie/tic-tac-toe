@@ -547,7 +547,7 @@ const game = (() => {
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
-      _message.innerHTML = 'D R A W';
+      _message.innerHTML = 'that\'s a scratch';
 
       [_thaddeus, _message].forEach(elem => {
         _draw.appendChild(elem);
@@ -595,7 +595,7 @@ const game = (() => {
       _message.id = 'message';
 
       if (_winner === 'c0mput3r') {
-        _message.innerText = `I beat you, ${_loser}`;
+        _message.innerText = `${_loser}, don't cry`;
         _win.appendChild(_robot);
       }
       else {
