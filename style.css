@@ -163,7 +163,7 @@ iframe {
 
 #login-one { margin: 9.5vh auto 0 auto; }
 
-#login-two { margin: 37.5vh auto 0 auto; }
+#login-two { margin: 39vh auto 0 auto; }
 
 #greeting {
   position: fixed;
@@ -188,7 +188,7 @@ iframe {
   transition: 2s;
 }
 
-#you { margin: 37.5vh auto 0 auto }
+#you { margin: 39vh auto 0 auto }
 
 #message {
   position: fixed;
@@ -523,9 +523,9 @@ iframe {
   
   #login-one { margin: 9.5vw auto 0 auto; }
   
-  #login-two { margin: 37.5vw auto 0 auto; }
+  #login-two { margin: 39vw auto 0 auto; }
   
-  #you { margin: 38.5vw auto 0 auto }
+  #you { margin: 39vw auto 0 auto }
   
   #greeting {
     width: 100vw;
