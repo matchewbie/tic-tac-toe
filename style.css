@@ -177,7 +177,7 @@ iframe {
   position: fixed;
   width: 100vh;
   height: 24vh;
-  top: 23.5%;
+  top: 24%;
   left: 50%;
   margin: -12vh 0 0 -50vh;
   padding: 10vh 4vh 7vh 4vh;
@@ -545,7 +545,7 @@ iframe {
   #greeting {
     width: 95vw;
     height: 24vw;
-    top: 32.5%;
+    top: 33%;
     margin: -12vw 0 0 -47.5vw;
     padding: 10vw 2vw 7vw 2vw;
     font-size: 5.5vw;
