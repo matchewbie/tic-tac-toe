@@ -199,15 +199,13 @@ iframe {
 
 #message {
   position: fixed;
-  margin: 32.5vh auto 0 auto;
   width: 100vh;
   height: 5.75vh;
+  margin: 49.25vh auto 0 auto;
   background: none;
   color: blanchedalmond;
-  font-size: 5.5vh;
-  /* font-weight: bolder; */
+  font-size: 4.5vh;
   font-family: 'Courier New', Courier, monospace;
-  /* opacity: 0.7; */
   cursor: default;
   transition: 1.5s;
 }
@@ -424,7 +422,6 @@ iframe {
   #login:active { 
     border-color: burlywood;
     color: blanchedalmond;
-    opacity: 0.7;
   }
 
   #login-one:hover,
@@ -457,7 +454,6 @@ iframe {
     background-color: blanchedalmond;
     color: burlywood;
     text-shadow: 1px 1px 1px #222222;
-    opacity: 0.7;
     transition: 1s;
   }
   
@@ -553,7 +549,7 @@ iframe {
     border-left: 4vw double blanchedalmond;
     border-right: 1vw solid blanchedalmond;
     border-top: 0.5vw dotted burlywood;
-    border-bottom: 0.6vh dashed burlywood;
+    border-bottom: 0.6vw dashed burlywood;
     border-radius: 15vw;
     font-size: 10vw;
     text-shadow: 0 0 0.75vw burlywood;
@@ -592,10 +588,10 @@ iframe {
   }
 
   #message {
-    margin: 32.5vw auto 0 auto;
+    margin: 49.5vw auto 0 auto;
     width: 95vw;
     height: 5.75vw;
-    font-size: 5.5vw;
+    font-size: 4.5vw;
   }
   
   [id^='cell-'] {
