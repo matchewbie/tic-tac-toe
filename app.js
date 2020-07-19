@@ -721,8 +721,8 @@ const game = (() => {
         setTimeout(() => {
           logo.style.transition = '725ms';
           let _which = (_logo.style.fontSize === '14vh') ? 'vh' : 'vw';
-          _logo.style.textShadow = `0 0 20${_which} blanchedalmond`;
-        }, 825);
+          _logo.style.textShadow = `0 0 0.75${_which} blanchedalmond`;
+        }, 1375);
       };
       const aiSay = (text, id) => {
         let _screen = document.getElementById(id);
