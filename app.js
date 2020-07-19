@@ -587,7 +587,6 @@ const game = (() => {
         _draw.appendChild(elem);
       });
 
-      nav(_draw);
       container.appendChild(_draw);
 
       animate.aiSay(_text, 'message');
@@ -606,6 +605,12 @@ const game = (() => {
         let _thaddeus = document.getElementById('thaddeus');
 
         _thaddeus.style.opacity = '1';
+
+        setTimeout(() => {
+          nav(document.getElementById('end'));  
+        }, 2750);
+        
+
         setTimeout(() => {
           _message.style.opacity = '0';
         }, 5000);
@@ -643,7 +648,7 @@ const game = (() => {
         _win.appendChild(_champ);
       }
       _win.appendChild(_message);
-      nav(_win);
+
       container.appendChild(_win);
 
       animate.aiSay(_text, 'message');
@@ -660,6 +665,7 @@ const game = (() => {
       setTimeout(() => {
         let _message = document.getElementById('message');
         let _robot = document.getElementById('robot');
+        let _champ = document.getElementById('champ');
 
         if (_robot !== null) {
           _robot.style.opacity = '1';
@@ -668,13 +674,17 @@ const game = (() => {
         if (_champ !== null) {
           _champ.style.opacity = '1';
         }
+
+        setTimeout(() => {
+          nav(document.getElementById('end'));
+        }, 2750);
         
         setTimeout(() => {
           _message.style.opacity = '0';
-          _message.innerHTML = '';
         }, 5000);
         setTimeout(() => {
           _message.style.opacity = '1';
+          _message.innerHTML = '';
           animate.aiSay(['thanks for playing'], 'message');
         }, 35000);
       }, 250);

@@ -146,26 +146,27 @@ iframe {
   width: 100vh;
   padding: 0 10vh;
   background: none;
-  border: 4vh double blanchedalmond;
-  border-top: 0.5vh dashed blanchedalmond;
-  border-bottom: 0.5vh dashed blanchedalmond;
+  border-left: 4vh double blanchedalmond;
+  border-right: 1vh solid blanchedalmond;
+  border-top: 0.5vh dotted burlywood;
+  border-bottom: 0.6vh dashed burlywood;
   border-radius: 15vh;
   font-size: 10vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: burlywood;
   text-shadow: 0 0 0.75vh burlywood;
-  box-shadow: 0 0 10vh #111111 inset;
-  -webkit-box-shadow: 0 0 10vh #111111 inset;
-  -moz-box-shadow: 0 0 10vh #111111 inset;
+  box-shadow: 0 0 10vh burlywood inset;
+  -webkit-box-shadow: 0 0 10vh burlywood inset;
+  -moz-box-shadow: 0 0 10vh burlywood inset;
   transition: 125ms;
 }
 
 #login-one:focus,
 #login-two:focus,
 #you:focus {
-  background: none;
   padding: 0;
   padding-left: 5vh;
+  border-bottom: 0.6vh dashed blanchedalmond;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
@@ -279,7 +280,7 @@ iframe {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: 20s;
+  transition: 13s;
 }
 
 #meow,
@@ -289,8 +290,14 @@ iframe {
 }
 
 #anim-body {
+  position: fixed;
   background: radial-gradient(#111111,
                               #111111,
+                              #111111,
+                              #111111,
+                              #111111,
+                              #111111,
+                              #222222,
                               #222222,
                               #222222)
                               no-repeat
@@ -305,10 +312,10 @@ iframe {
   top: 55.5vh;
   width: 100%;
   height: 700px;
-  background-color: #222222;
+  background: none;
   border-top: 0.5vh solid burlywood;
   border-radius: 5vh 5vh 0 0;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 #meow pre,
@@ -331,7 +338,7 @@ iframe {
 #computer pre {
   top: 42.5%;
   width: 86vh;
-  margin: -36vh 0 0 -43vh;
+  margin: -36vh 0 0 -41.5vh;
   font-size: 2.2vh;
   line-height: 3vh;
 }
@@ -430,7 +437,7 @@ iframe {
   #login-one:focus,
   #login-two:focus,
   #you:focus {
-    opacity: 0.7;
+    opacity: 1;
   }
 
   .hover {
@@ -543,21 +550,23 @@ iframe {
     height: 24vw;
     width: 95vw;
     padding: 0 10vw;
-    border: 4vw double blanchedalmond;
-    border-top: 0.5vw dashed blanchedalmond;
-    border-bottom: 0.5vw dashed blanchedalmond;
+    border-left: 4vw double blanchedalmond;
+    border-right: 1vw solid blanchedalmond;
+    border-top: 0.5vw dotted burlywood;
+    border-bottom: 0.6vh dashed burlywood;
     border-radius: 15vw;
     font-size: 10vw;
     text-shadow: 0 0 0.75vw burlywood;
-    box-shadow: 0 0 10vw #111111 inset;
-    -webkit-box-shadow: 0 0 10vw #111111 inset;
-    -moz-box-shadow: 0 0 10vw #111111 inset;
+    box-shadow: 0 0 10vw burlywood inset;
+    -webkit-box-shadow: 0 0 10vw burlywood inset;
+    -moz-box-shadow: 0 0 10vw burlywood inset;
   }
   
   #login-one:focus,
   #login-two:focus,
   #you:focus {
     padding-left: 5vw;
+    border-bottom: 0.6vw dashed blanchedalmond;
   }
   
   #login-one { margin: 9.5vw auto 0 auto; }
@@ -616,7 +625,7 @@ iframe {
 
   #computer pre {
     width: 86vw;
-    margin: -36vw 0 0 -43vw;
+    margin: -36vw 0 0 -41.5vw;
     font-size: 2.2vw;
     line-height: 3vw;
   }
