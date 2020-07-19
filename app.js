@@ -263,11 +263,19 @@ const game = (() => {
         _player.onmouseenter = () => _toggle(_player, _other);
         _player.ontouchstart = (event) => {
           event.preventDefault();
+          let _view = (_player.style.height === '18vh') ? 'vh' : 'vw';
           _player.style.backgroundColor = 'burlywood';
           _player.style.color = '#222222';
+          _player.style.boxShadow = `0 0 3.5${_view} burlywood`;
+          _player.style.webkitBoxShadow = `0 0 3.5${_view} burlywood`;
+          _player.style.mozBoxShadow = `0 0 3.5${_view} burlywood`;
           _player.style.zIndex = '50';
-          _other.style.backgroundColor = '#222222';
+          _other.style.background = 'none';
           _other.style.color = 'burlywood';
+          _other.style.textShadow = `0 0 0.75${_view} burlywood`;
+          _other.style.boxShadow = `0 0 4.75${_view} burlywood inset`;
+          _other.style.webkitBoxShadow = `0 0 4.75${_view} burlywood inset`;
+          _other.style.mozBoxShadow = `0 0 4.75${_view} burlywood inset`;
         };
         if (_which) {
           _select(single);
@@ -330,7 +338,7 @@ const game = (() => {
       };
       _login.id = 'login';
       _login.innerText = 'l o g i n';
-      _login.style.borderColor = 'blanchedalmond';
+      _login.style.borderColor = '#111111';
       _login.style.opacity = '0';
       _login.ontouchstart = (event) => {
         event.preventDefault();
@@ -412,7 +420,7 @@ const game = (() => {
       };
       _login.id = 'login';
       _login.innerText = 'l o g i n';
-      _login.style.borderColor = 'blanchedalmond';
+      _login.style.borderColor = '#111111';
       _login.style.opacity = '0';
       _login.ontouchstart = (event) => {
         event.preventDefault();
@@ -461,11 +469,19 @@ const game = (() => {
       _reset.classList.add('btn-group-active');
       _reset.onmouseenter = () => _toggle(_reset, _logout);
       _reset.ontouchstart = () => {
+        let _view = (_reset.style.height === '18vh') ? 'vh' : 'vw';
         _reset.style.backgroundColor = 'burlywood';
         _reset.style.color = '#222222';
+        _reset.style.boxShadow = `0 0 3.5${_view} burlywood`;
+        _reset.style.webkitBoxShadow = `0 0 3.5${_view} burlywood`;
+        _reset.style.mozBoxShadow = `0 0 3.5${_view} burlywood`;
         _reset.style.zIndex = '50';
-        _logout.style.backgroundColor = '#222222';
+        _logout.style.background = 'none';
         _logout.style.color = 'burlywood';
+        _logout.style.textShadow = `0 0 0.75${_view} burlywood`;
+        _logout.style.boxShadow = `0 0 4.75${_view} burlywood inset`;
+        _logout.style.webkitBoxShadow = `0 0 4.75${_view} burlywood inset`;
+        _logout.style.mozBoxShadow = `0 0 4.75${_view} burlywood inset`;
       };
       _reset.onmouseup = (event) => {
         event.preventDefault();
@@ -501,11 +517,19 @@ const game = (() => {
       _logout.classList.add('btn-group-inactive');
       _logout.onmouseenter = () => _toggle(_logout, _reset);
       _logout.ontouchstart = () => {
+        let _view = (_reset.style.height === '18vh') ? 'vh' : 'vw';
         _logout.style.backgroundColor = 'burlywood';
         _logout.style.color = '#222222';
+        _logout.style.boxShadow = `0 0 3.5${_view} burlywood`;
+        _logout.style.webkitBoxShadow = `0 0 3.5${_view} burlywood`;
+        _logout.style.mozBoxShadow = `0 0 3.5${_view} burlywood`;
         _logout.style.zIndex = '50';
-        _reset.style.backgroundColor = '#222222';
+        _reset.style.background = 'none';
         _reset.style.color = 'burlywood';
+        _reset.style.textShadow = `0 0 0.75${_view} burlywood`;
+        _reset.style.boxShadow = `0 0 4.75${_view} burlywood inset`;
+        _reset.style.webkitBoxShadow = `0 0 4.75${_view} burlywood inset`;
+        _reset.style.mozBoxShadow = `0 0 4.75${_view} burlywood inset`;
       };
       _logout.onmouseup = (event) => {
         event.preventDefault();
@@ -584,10 +608,10 @@ const game = (() => {
         _thaddeus.style.opacity = '1';
         setTimeout(() => {
           _message.style.opacity = '0';
-          _message.innerHTML = '';
-        }, 4000);
+        }, 5000);
         setTimeout(() => {
           _message.style.opacity = '1';
+          _message.innerHTML = '';
           animate.aiSay(['thanks for playing'], 'message');
         }, 35000);
       }, 250);
@@ -648,7 +672,7 @@ const game = (() => {
         setTimeout(() => {
           _message.style.opacity = '0';
           _message.innerHTML = '';
-        }, 4000);
+        }, 5000);
         setTimeout(() => {
           _message.style.opacity = '1';
           animate.aiSay(['thanks for playing'], 'message');
@@ -681,23 +705,30 @@ const game = (() => {
         device.style.opacity = '1';
         device.style.zIndex = '100';
 
-        return setTimeout(() => {
+        setTimeout(() => {
           device.style.opacity = '0';
           device.style.zIndex = '-1';
           _logo.style.opacity = '1';
           _author.style.opacity = '0.2';
-        }, 325),
+        }, 325);
+
         setTimeout(() => {
           _single.style.visibility = 'visible';
           _vs.style.visibility = 'visible';
           device.style.transition = '250ms';
         }, 750);
+
+        setTimeout(() => {
+          logo.style.transition = '725ms';
+          let _which = (_logo.style.fontSize === '14vh') ? 'vh' : 'vw';
+          _logo.style.textShadow = `0 0 20${_which} blanchedalmond`;
+        }, 825);
       };
       const aiSay = (text, id) => {
         let _screen = document.getElementById(id);
         text.forEach((frame, index) => {
-          let _add = (index === 0) ? 1125 : 3500 * (index + 1);
-          let _remove = (index === 0) ? 7000 : 3500 + _add;
+          let _add = (index === 0) ? 1250 : 1750 * (index + 1);
+          let _remove = (index === 0) ? 3500 : 1750 + _add;
           let _scene = document.createElement('span');
           let _line = frame.split('');
 
@@ -713,19 +744,19 @@ const game = (() => {
           let _lastMils = 0;
 
           _line.forEach((character, id) => {
-            let _milliseconds = Math.floor(Math.random() * 250);
+            let _milliseconds = Math.floor(Math.random() * 125);
             let _letter = document.createElement('span');    
-
+            
             _letter.id = `letter-${id}`;
             _letter.innerText = character;
             _letter.style.backgroundColor = 'burlywood';
-            _letter.style.color = '#111111';
+            _letter.style.color = '#222222';
 
             setTimeout(() => {
               setTimeout(() => {
-                _letter.style.backgroundColor = '#222222';
-                _letter.style.borderRadius = '50%';
-                _letter.style.color = 'blanchedalmond';
+                _letter.style.background = 'none';
+                _letter.style.color = 'burlywood';
+                _letter.style.textShadow = '0 0 3vh burlywood';
               }, 75);
               _scene.appendChild(_letter);
             }, _milliseconds + _lastMils + _add);
@@ -751,7 +782,7 @@ const game = (() => {
 
         if (o !== null) {
           setTimeout(() => {
-            o.style.opacity = '0.7';
+            o.style.opacity = '1';
           }, 125);
         }
 
@@ -768,10 +799,22 @@ const game = (() => {
           log.style.opacity = '1';
           log.style.transition = '2475ms';
           setInterval(() => {
-            let _color = (
-              log.style.borderColor === 'rgb(17, 17, 17)'
-            ) ? 'rgb(255, 235, 205)' : 'rgb(17, 17, 17)';
-            log.style.borderColor = _color; 
+            let _light = (log.style.borderColor === 'rgb(17, 17, 17)');
+            let _which = (log.style.width === '18vh') ? 'vh' : 'vw';
+            let _color = (_light) ? 'rgb(222, 184, 135)' : 'rgb(17, 17, 17)';
+            
+            log.style.borderColor = _color;
+            
+            if (_light) {
+              log.style.boxShadow = `0 0 1${_which} ${_color}`;
+              log.style.webkitBoxShadow = `0 0 1${_which} ${_color}`;
+              log.style.mozBoxShadow = `0 0 1${_which} ${_color}`;
+            }
+            else {
+              log.style.boxShadow = 'none';
+              log.style.webkitBoxShadow = 'none';
+              log.style.mozBoxShadow = 'none';
+            }
           }, 2500);
         }, 275);
       };

@@ -61,6 +61,7 @@ iframe {
   font-weight: bolder;
   text-align: center;
   color: blanchedalmond;
+  text-shadow: 0 0 0.75vh blanchedalmond;
   opacity: 0;
   cursor: default;
   z-index: 666;
@@ -73,6 +74,7 @@ iframe {
   font-size: 4vh;
   text-align: center;
   color: burlywood;
+  text-shadow: 0 0 1vh burlywood;
   opacity: 0;
   cursor: default;
   z-index: 420;
@@ -91,7 +93,6 @@ iframe {
   border-radius: 5vh 5vh 10vh 10vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 8vh;
-  opacity: 0.7;
   cursor: pointer;
 }
 
@@ -101,13 +102,13 @@ iframe {
 }
 
 #one-player {
-  margin: 35vh auto 0 auto;
+  margin: 36vh auto 0 auto;
   border-bottom: none;
   z-index: 1;
 }
 
 #two-player {
-  margin: 51vh auto 0 auto;
+  margin: 52vh auto 0 auto;
   border-top: none;
   z-index: 0;
 }
@@ -115,17 +116,21 @@ iframe {
 #login {
   margin: 70vh auto 0 auto;
   background: none;
-  color: burlywood;
+  color: blanchedalmond;
+  text-shadow: 0 0 3vh blanchedalmond;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
 }
 
 #reset {
-  margin: 54vh auto 0 auto;
+  margin: 56vh auto 0 auto;
   border-bottom: none;
   z-index: 3;
 }
 
 #logout {
-  margin: 70vh auto 0 auto;
+  margin: 72vh auto 0 auto;
   border-top: none;
   z-index: 2;
 }
@@ -139,34 +144,28 @@ iframe {
   position: fixed;
   height: 24vh;
   width: 100vh;
-  padding: 0 5vh;
-  background-color: #222222;
-  border: 4vh double burlywood;
-  border-top: none;
-  border-bottom: none;
+  padding: 0 10vh;
+  background: none;
+  border: 4vh double blanchedalmond;
+  border-top: 0.5vh dashed blanchedalmond;
+  border-bottom: 0.5vh dashed blanchedalmond;
   border-radius: 15vh;
   font-size: 10vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  text-align: center;
   color: burlywood;
-  box-shadow: 0 0 10vh blanchedalmond inset;
-  -webkit-box-shadow: 0 0 10vh blanchedalmond inset;
-  -moz-box-shadow: 0 0 10vh blanchedalmond inset;
-  opacity: 0.7;
+  text-shadow: 0 0 0.75vh burlywood;
+  box-shadow: 0 0 10vh #111111 inset;
+  -webkit-box-shadow: 0 0 10vh #111111 inset;
+  -moz-box-shadow: 0 0 10vh #111111 inset;
   transition: 125ms;
 }
 
 #login-one:focus,
 #login-two:focus,
 #you:focus {
+  background: none;
   padding: 0;
-  padding-left: 10vh;
-  color: blanchedalmond;
-  text-align: left;
-  border-bottom: 0.75vh dashed blanchedalmond;
-  box-shadow: 0 0 10vh #111111 inset;
-  -webkit-box-shadow: 0 0 10vh #111111 inset;
-  -moz-box-shadow: 0 0 10vh #111111 inset;
+  padding-left: 5vh;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
@@ -177,21 +176,19 @@ iframe {
   position: fixed;
   width: 100vh;
   height: 24vh;
-  top: 24%;
-  left: 50%;
-  margin: -12vh 0 0 -50vh;
-  padding: 10vh 4vh 7vh 4vh;
+  margin: 9.5vh auto 0 auto;
+  padding: 9.5vh 4vh 7.5vh 4vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 5.5vh;
   line-height: 5.5vh;
-  border: 4vh double burlywood;
-  border-top: none;
-  border-bottom: none;
+  border: 1vh solid blanchedalmond;
+  border-top: 0.5vh dotted burlywood;
+  border-bottom: 0.5vh dotted burlywood;
   border-radius: 15vh;
   background: none;
-  box-shadow: 0.5vh 1vh 10.25vh blanchedalmond inset;
-  -webkit-box-shadow: 0.5vh 1vh 10.25vh blanchedalmond inset;
-  -moz-box-shadow: 0.5vh 1vh 10.25vh blanchedalmond inset;
+  box-shadow: 0.5vh 1vh 10.25vh burlywood inset;
+  -webkit-box-shadow: 0.5vh 1vh 10.25vh burlywood inset;
+  -moz-box-shadow: 0.5vh 1vh 10.25vh burlywood inset;
   text-align: center;
   cursor: default;
   transition: 2s;
@@ -207,9 +204,9 @@ iframe {
   background: none;
   color: blanchedalmond;
   font-size: 5.5vh;
-  font-weight: bolder;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  opacity: 0.7;
+  /* font-weight: bolder; */
+  font-family: 'Courier New', Courier, monospace;
+  /* opacity: 0.7; */
   cursor: default;
   transition: 1.5s;
 }
@@ -241,8 +238,9 @@ iframe {
   font-size: 24.25vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: blanchedalmond;
+  text-shadow: 0 0 1vh blanchedalmond;
   font-weight: bolder;
-  opacity: 0.6;
+  /* opacity: 0.6; */
 }
 
 #cell-0x0 {
@@ -281,7 +279,7 @@ iframe {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: 10s;
+  transition: 20s;
 }
 
 #meow,
@@ -298,6 +296,8 @@ iframe {
                               no-repeat
                               fixed
                               center;
+  border-radius: 50vh;
+  box-shadow: 0 0 2vh burlywood inset;
 }
 
 #horizon {
@@ -306,6 +306,9 @@ iframe {
   width: 100%;
   height: 700px;
   background-color: #222222;
+  border-top: 0.5vh solid burlywood;
+  border-radius: 5vh 5vh 0 0;
+  opacity: 0.6;
 }
 
 #meow pre,
@@ -350,11 +353,18 @@ iframe {
 .btn-group-active {
   background-color: burlywood;
   color: #222222;
+  box-shadow: 0 0 3.5vh burlywood;
+  -webkit-box-shadow: 0 0 3.5vh burlywood;
+  -moz-box-shadow: 0 0 3.5vh burlywood;
 }
 
 .btn-group-inactive {
   background: none;
   color: burlywood;
+  text-shadow: 0 0 0.75vh burlywood;
+  box-shadow: 0 0 4.75vh burlywood inset;
+  -webkit-box-shadow: 0 0 4.75vh burlywood inset;
+  -moz-box-shadow: 0 0 4.75vh burlywood inset;
 }
 
 .blink {
@@ -413,7 +423,6 @@ iframe {
   #login-one:hover,
   #login-two:hover,
   #you:hover {
-    color: blanchedalmond;
     cursor: text;
     opacity: 0.2;
   }
@@ -486,12 +495,14 @@ iframe {
 
   #logo {
     margin: 20vw auto 0 auto;
-    font-size: 10vw;
+    font-size: 14vw;
+    text-shadow: 0 0 0.75vw blanchedalmond;
   }
 
   #author {
     margin: 55vw auto 0 auto;
     font-size: 4vw;
+    text-shadow: 0 0 1vw burlywood;
   }
 
   #one-player,
@@ -514,40 +525,38 @@ iframe {
   
   #login {
     margin: 70vw auto 0 auto;
+    text-shadow: 0 0 3vw blanchedalmond;
   }
   
   #reset {
-    margin: 54vw auto 0 auto;
+    margin: 56vw auto 0 auto;
   }
   
   #logout {
-    margin: 70vw auto 0 auto;
+    margin: 72vw auto 0 auto;
   }
   
   #login-one,
   #login-two,
   #you {
     height: 24vw;
-    width: 95vw;
-    padding: 0 5vw;
-    border: 4vw double burlywood;
-    border-top: none;
-    border-bottom: none;
+    width: 100vw;
+    padding: 0 10vw;
+    border: 4vw double blanchedalmond;
+    border-top: 0.5vw dashed blanchedalmond;
+    border-bottom: 0.5vw dashed blanchedalmond;
     border-radius: 15vw;
     font-size: 10vw;
-    box-shadow: 0 0 10vw blanchedalmond inset;
-    -webkit-box-shadow: 0 0 10vw blanchedalmond inset;
-    -moz-box-shadow: 0 0 10vw blanchedalmond inset;
+    text-shadow: 0 0 0.75vw burlywood;
+    box-shadow: 0 0 10vw #111111 inset;
+    -webkit-box-shadow: 0 0 10vw #111111 inset;
+    -moz-box-shadow: 0 0 10vw #111111 inset;
   }
   
   #login-one:focus,
   #login-two:focus,
   #you:focus {
-    padding-left: 10vw;
-    border-bottom: 0.75vw dashed blanchedalmond;
-    box-shadow: 0 0 10vw #111111 inset;
-    -webkit-box-shadow: 0 0 10vw #111111 inset;
-    -moz-box-shadow: 0 0 10vw #111111 inset;
+    padding-left: 5vw;
   }
   
   #login-one { margin: 9.5vw auto 0 auto; }
@@ -557,27 +566,26 @@ iframe {
   #you { margin: 39vw auto 0 auto }
   
   #greeting {
-    width: 95vw;
+    width: 100vw;
     height: 24vw;
-    top: 33%;
-    margin: -12vw 0 0 -47.5vw;
-    padding: 10vw 2vw 7vw 2vw;
+    margin: 9.5vw auto 0 auto;
+    padding: 9.5vw 4vw 7.5vw 4vw;
     font-size: 5.5vw;
     line-height: 5.5vw;
-    border: 4vw double burlywood;
-    border-top: none;
-    border-bottom: none;
+    border: 1vw solid blanchedalmond;
+    border-top: 0.5vw dotted burlywood;
+    border-bottom: 0.5vw dotted burlywood;
     border-radius: 15vw;
-    box-shadow: 0.5vw 1vw 10.25vw blanchedalmond inset;
-    -webkit-box-shadow: 0.5vw 1vw 10.25vw blanchedalmond inset;
-    -moz-box-shadow: 0.5vw 1vw 10.25vw blanchedalmond inset;
+    box-shadow: 0.5vw 1vw 10.25vw burlywood inset;
+    -webkit-box-shadow: 0.5vw 1vw 10.25vw burlywood inset;
+    -moz-box-shadow: 0.5vw 1vw 10.25vw burlywood inset;
   }
 
   #message {
     margin: 32.5vw auto 0 auto;
     width: 100vw;
     height: 5.75vw;
-    font-size: 5.5vw; 
+    font-size: 5.5vw;
   }
   
   [id^='cell-'] {
@@ -588,12 +596,14 @@ iframe {
   }
 
   #horizon {
-    top: 53vh;
-    width: 100%;
+    top: 55.5vw;
+    border-top: 0.5vw solid burlywood;
+    border-radius: 5vw 5vw 0 0;
   }
 
   #anim-body {
-    height: 72vw;
+    border-radius: 50vw;
+    box-shadow: 0 0 2vw burlywood inset;
   }
 
   #meow pre {
