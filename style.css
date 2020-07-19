@@ -373,36 +373,38 @@ iframe {
 }
 
 .blink {
-  background-color: burlywood;
+  background-color: #111111;
   border-color: #222222;
-  color: #222222;
+  text-shadow: 0 0 25vh blanchedalmond;
+  color: blanchedalmond;
   opacity: 1;
-  transition: 0.5s;
+  transition: 500ms;
 }
 
 .glow,
 .mark {
-  background-color: blanchedalmond;
   color: burlywood;
 }
 
 .glow {
-  text-shadow: 1px 1px 1px #222222;
-  /* opacity: 0.7; */
-  /* transition: 1s; */
+  background-color: #111111;
+  color: burlywood;
+  text-shadow: 0 0 2vh burlywood;
+  transition: 250ms;
 }
 
 .mark {
+  background-color: blanchedalmond;
   transition: 250ms;
 }
 
 .dim {
   background: none;
   color: #111111;
-  /* opacity: 0.5; */
 }
 
 .blackout {
+  text-shadow: 0 0 25vh burlywood;
   background-color: #111111;
   transition: 1s;
 }
@@ -440,32 +442,6 @@ iframe {
   .hover {
     border-color: blanchedalmond;
     opacity: 1;
-  }
-
-  .blink {
-    background-color: burlywood;
-    border-color: #222222;
-    color: #222222;
-    opacity: 1;
-    transition: 0.5s;
-  }
-  
-  .glow {
-    background-color: blanchedalmond;
-    color: burlywood;
-    text-shadow: 1px 1px 1px #222222;
-    transition: 1s;
-  }
-  
-  .dim {
-    background: none;
-    color: #111111;
-    /* opacity: 0.5; */
-  }
-  
-  .blackout {
-    background-color: #111111;
-    transition: 1s;
   }
 }
 
@@ -588,7 +564,7 @@ iframe {
   }
 
   #message {
-    margin: 50.5vw auto 0 auto;
+    margin: 49.5vw auto 0 auto;
     width: 95vw;
     height: 5.75vw;
     font-size: 4.5vw;
@@ -632,5 +608,17 @@ iframe {
     margin: -36vw 0 0 -31.5vw;
     font-size: 2.2vw;
     line-height: 3.2vw;
+  }
+
+  .blink {
+    text-shadow: 0 0 25vw blanchedalmond;
+  }
+  
+  .glow {
+    text-shadow: 0 0 2vw burlywood;
+  }
+  
+  .blackout {
+    text-shadow: 0 0 25vw burlywood;
   }
 }

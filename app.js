@@ -950,8 +950,10 @@ const game = (() => {
           _cell.classList.remove('blackout');
           _cell.classList.add('blink');
           _cell.style.borderColor = '#222222';
-          _cell.classList.add('glow');
-          _cell.classList.remove('blink');
+          setTimeout(() => {
+            _cell.classList.remove('blink');
+            _cell.classList.add('glow');
+          }, 375);
           setTimeout(() => {
             _cell.classList.add('blackout');
           }, 1315);
