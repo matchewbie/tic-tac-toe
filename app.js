@@ -723,7 +723,7 @@ const game = (() => {
 
         setTimeout(() => {
           let _which = (_logo.style.fontSize === '14vh') ? 'vh' : 'vw';
-          _logo.style.textShadow = `0 0 0.5${_which} blanchedalmond`;
+          _logo.style.textShadow = `0 0 0.75${_which} blanchedalmond`;
         }, 1375);
       };
       const aiSay = (text, id) => {
