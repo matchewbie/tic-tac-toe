@@ -61,7 +61,7 @@ iframe {
   font-weight: bolder;
   text-align: center;
   color: blanchedalmond;
-  text-shadow: 0 0 20vh blanchedalmond;
+  text-shadow: 0 0 2vh blanchedalmond;
   opacity: 0;
   cursor: default;
   z-index: 666;
@@ -496,7 +496,7 @@ iframe {
   #logo {
     margin: 20vw auto 0 auto;
     font-size: 13vw;
-    text-shadow: 0 0 20vw blanchedalmond;
+    text-shadow: 0 0 2vw blanchedalmond;
   }
 
   #author {
