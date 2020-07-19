@@ -149,7 +149,7 @@ iframe {
   border-left: 4vh double blanchedalmond;
   border-right: 1vh solid blanchedalmond;
   border-top: 0.5vh dotted burlywood;
-  border-bottom: 0.6vh dashed burlywood;
+  border-bottom: 0.8vh dashed burlywood;
   border-radius: 15vh;
   font-size: 10vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -166,7 +166,7 @@ iframe {
 #you:focus {
   padding: 0;
   padding-left: 5vh;
-  border-bottom: 0.6vh dashed blanchedalmond;
+  border-bottom: 0.8vh dashed blanchedalmond;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
@@ -201,7 +201,7 @@ iframe {
   position: fixed;
   width: 100vh;
   height: 5.75vh;
-  margin: 49.25vh auto 0 auto;
+  margin: 50.5vh auto 0 auto;
   background: none;
   color: blanchedalmond;
   font-size: 4.5vh;
@@ -388,8 +388,8 @@ iframe {
 
 .glow {
   text-shadow: 1px 1px 1px #222222;
-  opacity: 0.7;
-  transition: 1s;
+  /* opacity: 0.7; */
+  /* transition: 1s; */
 }
 
 .mark {
@@ -399,7 +399,7 @@ iframe {
 .dim {
   background: none;
   color: #111111;
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 .blackout {
@@ -460,7 +460,7 @@ iframe {
   .dim {
     background: none;
     color: #111111;
-    opacity: 0.5;
+    /* opacity: 0.5; */
   }
   
   .blackout {
@@ -549,7 +549,7 @@ iframe {
     border-left: 4vw double blanchedalmond;
     border-right: 1vw solid blanchedalmond;
     border-top: 0.5vw dotted burlywood;
-    border-bottom: 0.6vw dashed burlywood;
+    border-bottom: 0.8vw dashed burlywood;
     border-radius: 15vw;
     font-size: 10vw;
     text-shadow: 0 0 0.75vw burlywood;
@@ -562,7 +562,7 @@ iframe {
   #login-two:focus,
   #you:focus {
     padding-left: 5vw;
-    border-bottom: 0.6vw dashed blanchedalmond;
+    border-bottom: 0.8vw dashed blanchedalmond;
   }
   
   #login-one { margin: 9.5vw auto 0 auto; }
@@ -588,7 +588,7 @@ iframe {
   }
 
   #message {
-    margin: 49.5vw auto 0 auto;
+    margin: 50.5vw auto 0 auto;
     width: 95vw;
     height: 5.75vw;
     font-size: 4.5vw;
