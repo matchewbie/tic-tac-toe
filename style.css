@@ -488,14 +488,14 @@ iframe {
 @media screen and (orientation: portrait) {
 
   #container {
-    margin: -50vw 0 0 -47.5vw;
-    width: 95vw;
+    margin: -50vw 0 0 -50vw;
+    width: 100vw;
     height: 100vw;
   }
 
   #logo {
     margin: 20vw auto 0 auto;
-    font-size: 14vw;
+    font-size: 10vw;
     text-shadow: 0 0 0.75vw blanchedalmond;
   }
 
