@@ -488,14 +488,14 @@ iframe {
 @media screen and (orientation: portrait) {
 
   #container {
-    margin: -50vw 0 0 -49vw;
-    width: 98vw;
+    margin: -50vw 0 0 -47.5vw;
+    width: 95vw;
     height: 100vw;
   }
 
   #logo {
     margin: 20vw auto 0 auto;
-    font-size: 14vw;
+    font-size: 13vw;
     text-shadow: 0 0 0.75vw blanchedalmond;
   }
 
@@ -510,6 +510,7 @@ iframe {
   #login,
   #reset,
   #logout {
+    width: 95vw;
     height: 18vw;
     border-radius: 5vw 5vw 10vw 10vw;
     font-size: 8vw;
@@ -540,7 +541,7 @@ iframe {
   #login-two,
   #you {
     height: 24vw;
-    width: 100vw;
+    width: 95vw;
     padding: 0 10vw;
     border: 4vw double blanchedalmond;
     border-top: 0.5vw dashed blanchedalmond;
@@ -566,7 +567,7 @@ iframe {
   #you { margin: 39vw auto 0 auto }
   
   #greeting {
-    width: 100vw;
+    width: 95vw;
     height: 24vw;
     margin: 9.5vw auto 0 auto;
     padding: 9.5vw 4vw 7.5vw 4vw;
@@ -583,7 +584,7 @@ iframe {
 
   #message {
     margin: 32.5vw auto 0 auto;
-    width: 100vw;
+    width: 95vw;
     height: 5.75vw;
     font-size: 5.5vw;
   }
