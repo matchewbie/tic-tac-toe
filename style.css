@@ -51,7 +51,13 @@ iframe {
   display: inherit;
   width: inherit;
   height: inherit;
+  margin: 0 auto;
   grid-template-rows: repeat(4, 1fr);
+  background-color: rgba(17,17,17,0.3);
+  border-radius: 50vh;
+  box-shadow: 0 0 10vh rgba(222,184,135,0.1) inset;
+  -webkit-box-shadow: 0 0 10vh rgba(222,184,135,0.1) inset;
+  -moz-box-shadow: 0 0 10vh rgba(222,184,135,0.1) inset;
 }
 
 #logo {
@@ -70,8 +76,9 @@ iframe {
 
 #author {
   margin: 55vh auto 0 auto;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 4vh;
+  font-weight: lighter;
   text-align: center;
   color: burlywood;
   text-shadow: 0 0 1vh burlywood;
@@ -114,7 +121,7 @@ iframe {
 }
 
 #login {
-  margin: 70vh auto 0 auto;
+  margin: 66vh auto 0 auto;
   background: none;
   color: blanchedalmond;
   text-shadow: 0 0 3vh blanchedalmond;
@@ -148,7 +155,7 @@ iframe {
   background: none;
   border-left: 4vh double blanchedalmond;
   border-right: 1vh solid blanchedalmond;
-  border-top: 0.5vh dashed rgba(222,184,135,0.5);
+  border-top: 0.6vh dashed rgba(222,184,135,0.5);
   border-bottom: 0.8vh dashed rgba(222,184,135,0.5);
   border-radius: 15vh;
   font-size: 10vh;
@@ -166,16 +173,16 @@ iframe {
 #you:focus {
   padding: 0;
   padding-left: 5vh;
-  border-top: 0.5vh dashed rgba(255,235,205,0.5);
-  border-bottom: 0.8vh dashed rgba(255,235,205,0.5);
-  box-shadow: 0 0 10vh blanchedalmond inset;
-  -webkit-box-shadow: 0 0 10vh blanchedalmond inset;
-  -moz-box-shadow: 0 0 10vh blanchedalmond inset;
+  border-top: 0.6vh dashed rgba(222,184,135,0.5);
+  border-bottom: 0.8vh dashed rgba(222,184,135,0.5);
+  box-shadow: 0 0 10vh burlywood inset;
+  -webkit-box-shadow: 0 0 10vh burlywood inset;
+  -moz-box-shadow: 0 0 10vh burlywood inset;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
 
-#login-two { margin: 39vh auto 0 auto; }
+#login-two { margin: 37vh auto 0 auto; }
 
 #greeting {
   position: fixed;
@@ -187,8 +194,8 @@ iframe {
   font-size: 5.5vh;
   line-height: 5.5vh;
   border: 1vh solid blanchedalmond;
-  border-top: 0.5vh dotted burlywood;
-  border-bottom: 0.5vh dotted burlywood;
+  border-top: 0.5vh dotted rgba(222,184,135,0.5);
+  border-bottom: 0.5vh dotted rgba(222,184,135,0.5);
   border-radius: 15vh;
   background: none;
   box-shadow: 0.5vh 1vh 10.25vh burlywood inset;
@@ -199,7 +206,7 @@ iframe {
   transition: 2s;
 }
 
-#you { margin: 39vh auto 0 auto }
+#you { margin: 37vh auto 0 auto }
 
 #message {
   position: fixed;
@@ -478,6 +485,13 @@ iframe {
     height: 100vw;
   }
 
+  #homescreen {
+    border-radius: 50vw;
+    box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
+    -webkit-box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
+    -moz-box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
+  }
+
   #logo {
     margin: 20vw auto 0 auto;
     font-size: 13vw;
@@ -485,7 +499,7 @@ iframe {
   }
 
   #author {
-    margin: 53vw auto 0 auto;
+    margin: 55vw auto 0 auto;
     font-size: 4vw;
     text-shadow: 0 0 1vw burlywood;
   }
@@ -511,7 +525,7 @@ iframe {
   }
   
   #login {
-    margin: 70vw auto 0 auto;
+    margin: 66vw auto 0 auto;
     text-shadow: 0 0 3vw blanchedalmond;
   }
   
@@ -531,14 +545,15 @@ iframe {
     padding: 0 10vw;
     border-left: 4vw double blanchedalmond;
     border-right: 1vw solid blanchedalmond;
-    border-top: 0.5vw dashed rgba(222,184,135,0.5);
+    border-top: 0.6vw dashed rgba(222,184,135,0.5);
     border-bottom: 0.8vw dashed rgba(222,184,135,0.5);
     border-radius: 15vw;
     font-size: 10vw;
+    color: burlywood;
     text-shadow: 0 0 0.75vw burlywood;
-    box-shadow: 0 0 10vw burlywood inset;
-    -webkit-box-shadow: 0 0 10vw burlywood inset;
-    -moz-box-shadow: 0 0 10vw burlywood inset;
+    box-shadow: 0 0 10vw #111111 inset;
+    -webkit-box-shadow: 0 0 10vw #111111 inset;
+    -moz-box-shadow: 0 0 10vw #111111 inset;
   }
   
   #login-one:focus,
@@ -554,9 +569,9 @@ iframe {
   
   #login-one { margin: 9.5vw auto 0 auto; }
   
-  #login-two { margin: 39vw auto 0 auto; }
+  #login-two { margin: 37vw auto 0 auto; }
   
-  #you { margin: 39vw auto 0 auto }
+  #you { margin: 37vw auto 0 auto }
   
   #greeting {
     width: 95vw;

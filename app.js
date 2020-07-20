@@ -286,7 +286,16 @@ const game = (() => {
       };
       _playerSelect('one');
       _playerSelect('two');
-      [logo, onePlayer, twoPlayer, author].forEach(elem => {
+
+      const _horizon = document.createElement('div');
+      _horizon.id = 'horizon';
+      _horizon.style.width = '100vh';
+      _horizon.style.top = '33vh';
+      _horizon.style.zIndex = '-1';
+      _horizon.style.opacity = '0';
+      _horizon.style.transition = '2000ms';
+
+      [logo, onePlayer, twoPlayer, author, _horizon].forEach(elem => {
         _homescreen.appendChild(elem);
       });
       container.appendChild(_homescreen);
@@ -372,9 +381,14 @@ const game = (() => {
         }, 250);
       };
 
+      const _singleScreen = document.createElement('div');
+      _singleScreen.id = 'homescreen';
+
       [_helloUser, _you, _login].forEach(elem => {
-        container.appendChild(elem);
+        _singleScreen.appendChild(elem);
       });
+
+      container.appendChild(_singleScreen);
 
       animate.loginLoad();
       animate.aiSay(_text, 'greeting');
@@ -454,9 +468,14 @@ const game = (() => {
         }, 250);
       };
 
+      const _vsScreen = document.createElement('div');
+      _vsScreen.id = 'homescreen';
+
       [_playerOne, _playerTwo, _login].forEach(elem => {
-        container.appendChild(elem);
+        _vsScreen.appendChild(elem);
       });
+
+      container.appendChild(_vsScreen);
 
       animate.loginLoad();
     };
@@ -719,23 +738,28 @@ const game = (() => {
         const _author = document.getElementById('author');
         const _single = document.getElementById('one-player');
         const _vs = document.getElementById('two-player');
+        const _horizon = document.getElementById('horizon');
 
         device.style.opacity = '1';
         device.style.zIndex = '100';
 
         setTimeout(() => {
           device.style.opacity = '0';
-          device.style.zIndex = '-1';
+          device.style.zIndex = '-420';
           _logo.style.opacity = '1';
-          _author.style.opacity = '0.2';
+          _author.style.opacity = '0.1';
         }, 325);
 
         setTimeout(() => {
           _single.style.visibility = 'visible';
           _vs.style.visibility = 'visible';
+        
           _logo.style.transition = '725ms';
           let _which = (_logo.style.fontSize === '14vh') ? 'vh' : 'vw';
           _logo.style.textShadow = `0 0 50${_which} blanchedalmond`;
+
+          _horizon.style.opacity = '1'
+
           device.style.transition = '250ms';
         }, 750);
 
