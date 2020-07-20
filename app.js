@@ -291,8 +291,15 @@ const game = (() => {
       _horizon.id = 'horizon';
 
       let _which = (_horizon.style.height === '44.5vh') ? 'vh' : 'vw';
-      _horizon.style.width = `100${_which}`;
-      _horizon.style.top = `33${_which}`;
+      if (_which === 'vh') {
+        _horizon.style.width = `100${_which}`;
+        _horizon.style.top = `33${_which}`;
+      }
+      else {
+        _horizon.style.width = `95${_which}`;
+        _horizon.style.top = `45${_which}`;
+      }
+      
       _horizon.style.zIndex = '-1';
       _horizon.style.opacity = '0';
       _horizon.style.transition = '2000ms';
