@@ -467,8 +467,12 @@ const game = (() => {
       _reset.id = 'reset';
       _reset.innerText = 'r e m a t c h';
       _reset.classList.add('btn-group-active');
-      _reset.onmouseenter = () => _toggle(_reset, _logout);
-      _reset.ontouchstart = () => {
+      _reset.onmouseenter = (event) => {
+        event.preventDefault();
+        _toggle(_reset, _logout);
+      };
+      _reset.ontouchstart = (event) => {
+        event.preventDefault();
         let _view = (_reset.style.height === '18vh') ? 'vh' : 'vw';
         _reset.style.backgroundColor = 'burlywood';
         _reset.style.color = '#222222';
@@ -515,8 +519,12 @@ const game = (() => {
       _logout.id = 'logout';
       _logout.innerText = 'l o g o u t';
       _logout.classList.add('btn-group-inactive');
-      _logout.onmouseenter = () => _toggle(_logout, _reset);
-      _logout.ontouchstart = () => {
+      _logout.onmouseenter = (event) => {
+        event.preventDefault();
+        _toggle(_logout, _reset);
+      };
+      _logout.ontouchstart = (event) => {
+        event.preventDefault();
         let _view = (_reset.style.height === '18vh') ? 'vh' : 'vw';
         _logout.style.backgroundColor = 'burlywood';
         _logout.style.color = '#222222';
