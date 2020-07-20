@@ -383,6 +383,7 @@ const game = (() => {
 
       const _singleScreen = document.createElement('div');
       _singleScreen.id = 'homescreen';
+      _singleScreen.style.background = 'none';
 
       [_helloUser, _you, _login].forEach(elem => {
         _singleScreen.appendChild(elem);
@@ -587,7 +588,7 @@ const game = (() => {
           gameplay.reset(false);
           players.clear();
           device.style.opacity = '0';
-          device.style.zIndex = '-1';
+          device.style.zIndex = '-420';
           device.style.transition = '250ms';
           return nextScreen(home, 0);
         }, 250);
@@ -608,7 +609,7 @@ const game = (() => {
       _thaddeus.src = './meow.html';
       _message.id = 'message';
 
-      let _text = ['that\'s a scratch'];
+      let _text = ['that\'s a scratch.'];
 
       [_thaddeus, _message].forEach(elem => {
         _draw.appendChild(elem);
@@ -624,7 +625,7 @@ const game = (() => {
 
       setTimeout(() => {
         device.style.opacity = '0';
-        device.style.zIndex = '-1';
+        device.style.zIndex = '-420';
       }, 250);
 
       setTimeout(() => {
@@ -644,7 +645,7 @@ const game = (() => {
         setTimeout(() => {
           _message.style.opacity = '1';
           _message.innerHTML = '';
-          animate.aiSay(['thanks for playing'], 'message');
+          animate.aiSay(['thanks for playing.'], 'message');
         }, 35000);
       }, 250);
 
@@ -667,7 +668,7 @@ const game = (() => {
       let _text = null;
 
       if (_winner === 'c0mput3r') {
-        _text = [`${_loser}, don't cry`];
+        _text = [`${_loser}, don't cry.`];
         _win.appendChild(_robot);
       }
       else {
@@ -686,7 +687,7 @@ const game = (() => {
 
       setTimeout(() => {
         device.style.opacity = '0';
-        device.style.zIndex = '-1';
+        device.style.zIndex = '-420';
       }, 250);
 
       setTimeout(() => {
@@ -712,7 +713,7 @@ const game = (() => {
         setTimeout(() => {
           _message.style.opacity = '1';
           _message.innerHTML = '';
-          animate.aiSay(['thanks for playing'], 'message');
+          animate.aiSay(['thanks for playing.'], 'message');
         }, 35000);
       }, 250);
     };
@@ -821,7 +822,7 @@ const game = (() => {
 
         setTimeout(() => {
           device.style.opacity = '0';
-          device.style.zIndex = '-1';
+          device.style.zIndex = '-420';
         }, 250);
 
         if (o !== null) {
@@ -934,7 +935,7 @@ const game = (() => {
               setTimeout(() => {
                 device.style.backgroundColor = '#111111';
                 device.style.opacity = '0';
-                device.style.zIndex = '-1';
+                device.style.zIndex = '-420';
                 device.style.transition = '250ms';
               }, 125);
             }, 1000);
@@ -1128,6 +1129,13 @@ const gameplay = (() => {
   };
   const start = () => {
     game.display.container.innerHTML = '';
+    
+    const _backdrop = document.createElement('div');
+    _backdrop.id = 'homescreen';
+    _backdrop.style.zIndex = '-99';
+    _backdrop.style.position = 'fixed';
+
+    game.display.container.appendChild(_backdrop);
     round.init();
   };
   const reset = (command) => {

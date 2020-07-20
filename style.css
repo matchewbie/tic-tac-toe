@@ -125,6 +125,7 @@ iframe {
   background: none;
   color: blanchedalmond;
   text-shadow: 0 0 3vh blanchedalmond;
+  border-radius: 15vh;
   box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -173,11 +174,11 @@ iframe {
 #you:focus {
   padding: 0;
   padding-left: 5vh;
-  border-top: 0.6vh dashed rgba(222,184,135,0.5);
-  border-bottom: 0.8vh dashed rgba(222,184,135,0.5);
-  box-shadow: 0 0 10vh burlywood inset;
-  -webkit-box-shadow: 0 0 10vh burlywood inset;
-  -moz-box-shadow: 0 0 10vh burlywood inset;
+  border-top: 0.6vh dashed rgba(255,235,205,0.5);
+  border-bottom: 0.8vh dashed rgba(255,235,205,0.5);
+  box-shadow: 0 0 10vh blanchedalmond inset;
+  -webkit-box-shadow: 0 0 10vh blanchedalmond inset;
+  -moz-box-shadow: 0 0 10vh blanchedalmond inset;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
@@ -235,7 +236,6 @@ iframe {
 
 [id^='cell-'] {
   background: none;
-  background-color: #222222;
   color: inherit;
   border: 2px dotted burlywood;
   padding: 0;
@@ -250,7 +250,6 @@ iframe {
   color: blanchedalmond;
   text-shadow: 0 0 1vh blanchedalmond;
   font-weight: bolder;
-  /* opacity: 0.6; */
 }
 
 #cell-0x0 {
@@ -527,6 +526,7 @@ iframe {
   #login {
     margin: 66vw auto 0 auto;
     text-shadow: 0 0 3vw blanchedalmond;
+    border-radius: 15vw;
   }
   
   #reset {
