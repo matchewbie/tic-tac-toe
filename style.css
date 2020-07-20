@@ -526,7 +526,7 @@ iframe {
   #login {
     margin: 71vw auto 0 auto;
     text-shadow: 0 0 3vw blanchedalmond;
-    border-radius: 15vw;
+    border-radius: 5vw 5vw 15vw 15vw;
   }
   
   #reset {
