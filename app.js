@@ -395,11 +395,11 @@ const game = (() => {
       _singleScreen.style.background = 'none';
       let _which = (_singleScreen.style.borderRadius === '50vh') ? 'vh' : 'vw';
       _singleScreen.style.boxShadow =
-        `0 0 5${_which} rgba(255,235,205,0.1) inset`;
+        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
       _singleScreen.style.webkitBoxShadow =
-        `0 0 5${_which} rgba(255,235,205,0.1) inset`;
+        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
       _singleScreen.style.mozBoxShadow =
-        `0 0 5${_which} rgba(255,235,205,0.1) inset;`;
+        `0 0 10${_which} rgba(255,235,205,0.1) inset;`;
 
       [_helloUser, _you, _login].forEach(elem => {
         _singleScreen.appendChild(elem);
@@ -491,11 +491,11 @@ const game = (() => {
 
       let _which = (_vsScreen.style.borderRadius === '50vh') ? 'vh' : 'vw';
       _vsScreen.style.boxShadow =
-        `0 0 5${_which} rgba(255,235,205,0.1) inset`;
+        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
       _vsScreen.style.webkitBoxShadow =
-        `0 0 5${_which} rgba(255,235,205,0.1) inset`;
+        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
       _vsScreen.style.mozBoxShadow =
-        `0 0 5${_which} rgba(255,235,205,0.1) inset;`;
+        `0 0 10${_which} rgba(255,235,205,0.1) inset;`;
 
       [_playerOne, _playerTwo, _login].forEach(elem => {
         _vsScreen.appendChild(elem);
