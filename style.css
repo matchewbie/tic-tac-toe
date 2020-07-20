@@ -124,13 +124,13 @@ iframe {
 }
 
 #reset {
-  margin: 56vh auto 0 auto;
+  margin: 57vh auto 0 auto;
   border-bottom: none;
   z-index: 3;
 }
 
 #logout {
-  margin: 72vh auto 0 auto;
+  margin: 73vh auto 0 auto;
   border-top: none;
   z-index: 2;
 }
@@ -309,11 +309,13 @@ iframe {
   position: fixed;
   top: 55.5vh;
   width: 100%;
-  height: 700px;
-  background: none;
-  border-top: 0.5vh solid burlywood;
-  border-radius: 5vh 5vh 0 0;
-  opacity: 0.4;
+  height: 44.5vh;
+  background-color: #222222;
+  border: 0.5vh solid rgba(222,184,135,0.5);
+  border-left: none;
+  border-right: none;
+  border-radius: 5vh 5vh 10vh 10vh;
+  opacity: 0.8;
 }
 
 #meow pre,
@@ -375,7 +377,7 @@ iframe {
 .blink {
   background-color: #111111;
   border-color: #222222;
-  text-shadow: 0 0 25vh blanchedalmond;
+  text-shadow: 0 0 40vh blanchedalmond;
   color: blanchedalmond;
   opacity: 1;
   transition: 500ms;
@@ -404,7 +406,7 @@ iframe {
 }
 
 .blackout {
-  text-shadow: 0 0 25vh burlywood;
+  text-shadow: 0 0 40vh burlywood;
   background-color: #111111;
   transition: 1s;
 }
@@ -509,11 +511,11 @@ iframe {
   }
   
   #reset {
-    margin: 56vw auto 0 auto;
+    margin: 57vw auto 0 auto;
   }
   
   #logout {
-    margin: 72vw auto 0 auto;
+    margin: 73vw auto 0 auto;
   }
   
   #login-one,
@@ -579,8 +581,11 @@ iframe {
 
   #horizon {
     top: 55.5vw;
-    border-top: 0.5vw solid burlywood;
-    border-radius: 5vw 5vw 0 0;
+    height: 44.5vw;
+    border: 0.5vw solid rgba(222,184,135,0.5);
+    border-left: none;
+    border-right: none;
+    border-radius: 5vw 5vw 10vw 10vw;
   }
 
   #anim-body {
@@ -611,7 +616,7 @@ iframe {
   }
 
   .blink {
-    text-shadow: 0 0 25vw blanchedalmond;
+    text-shadow: 0 0 40vw blanchedalmond;
   }
   
   .glow {
@@ -619,6 +624,6 @@ iframe {
   }
   
   .blackout {
-    text-shadow: 0 0 25vw burlywood;
+    text-shadow: 0 0 40vw burlywood;
   }
 }

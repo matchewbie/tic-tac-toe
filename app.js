@@ -739,8 +739,8 @@ const game = (() => {
       const aiSay = (text, id) => {
         let _screen = document.getElementById(id);
         text.forEach((frame, index) => {
-          let _add = (index === 0) ? 1250 : 1750 * (index + 1);
-          let _remove = (index === 0) ? 3500 : 1750 + _add;
+          let _add = (index === 0) ? 575 : 1675 * (index + 1);
+          let _remove = (index === 0) ? 3350 : 1675 + _add;
           let _scene = document.createElement('span');
           let _line = frame.split('');
 
@@ -949,11 +949,13 @@ const game = (() => {
         if (_tic() || _tac() || _toe()) {
           _cell.classList.remove('blackout');
           _cell.classList.add('blink');
-          _cell.style.borderColor = '#222222';
           setTimeout(() => {
             _cell.classList.remove('blink');
             _cell.classList.add('glow');
           }, 375);
+          setTimeout(() => {
+            _cell.style.borderColor = '#222222';
+          }, 415);
           setTimeout(() => {
             _cell.classList.add('blackout');
           }, 1315);
