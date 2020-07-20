@@ -485,11 +485,21 @@ iframe {
     height: 100vw;
   }
 
+  #homescreen,
+  #login-screen {
+    border-radius: 100vh;
+  }
+
   #homescreen {
-    border-radius: 50vw;
-    box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
-    -webkit-box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
-    -moz-box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
+    box-shadow: 0 0 10vw rgba(222,184,135,0.35) inset;
+    -webkit-box-shadow: 0 0 10vw rgba(222,184,135,0.35) inset;
+    -moz-box-shadow: 0 0 10vw rgba(222,184,135,0.35) inset;
+  }
+
+  #login-screen {
+    box-shadow: 0 0 10vw rgba(255,235,205,0.3) inset;
+    -webkit-box-shadow: 0 0 10vw rgba(255,235,205,0.3) inset;
+    -moz-box-shadow: 0 0 10vw rgba(255,235,205,0.3) inset;
   }
 
   #logo {
