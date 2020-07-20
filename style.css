@@ -54,7 +54,7 @@ iframe {
   margin: 0 auto;
   grid-template-rows: repeat(4, 1fr);
   background-color: rgba(17,17,17,0.3);
-  border-radius: 50vh;
+  border-radius: 100vh;
   box-shadow: 0 0 10vh rgba(222,184,135,0.1) inset;
   -webkit-box-shadow: 0 0 10vh rgba(222,184,135,0.1) inset;
   -moz-box-shadow: 0 0 10vh rgba(222,184,135,0.1) inset;
@@ -485,7 +485,7 @@ iframe {
   }
 
   #homescreen {
-    border-radius: 50vw;
+    border-radius: 100%;
     box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
     -webkit-box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
     -moz-box-shadow: 0 0 10vw rgba(222,184,135,0.1) inset;
@@ -524,7 +524,7 @@ iframe {
   }
   
   #login {
-    margin: 66vw auto 0 auto;
+    margin: 68vw auto 0 auto;
     text-shadow: 0 0 3vw blanchedalmond;
     border-radius: 15vw;
   }
