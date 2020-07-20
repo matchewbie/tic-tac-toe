@@ -297,7 +297,7 @@ const game = (() => {
       }
       else {
         _horizon.style.width = `95${_which}`;
-        _horizon.style.top = `55.5${_which}`;
+        _horizon.style.top = `75.5${_which}`;
       }
       
       _horizon.style.zIndex = '-1';
