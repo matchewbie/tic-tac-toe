@@ -289,8 +289,10 @@ const game = (() => {
 
       const _horizon = document.createElement('div');
       _horizon.id = 'horizon';
-      _horizon.style.width = '100vh';
-      _horizon.style.top = '33vh';
+
+      let _which = (_horizon.style.height === '44.5vh') ? 'vh' : 'vw';
+      _horizon.style.width = `100${_which}`;
+      _horizon.style.top = `33${_which}`;
       _horizon.style.zIndex = '-1';
       _horizon.style.opacity = '0';
       _horizon.style.transition = '2000ms';
