@@ -393,6 +393,13 @@ const game = (() => {
       const _singleScreen = document.createElement('div');
       _singleScreen.id = 'homescreen';
       _singleScreen.style.background = 'none';
+      let _which = (_singleScreen.style.borderRadius === '50vh') ? 'vh' : 'vw';
+      _singleScreen.style.boxShadow =
+        `0 0 2.5${_which} rgba(255,235,205,0.1) inset`;
+      _singleScreen.style.webkitBoxShadow =
+        `0 0 2.5${_which} rgba(255,235,205,0.1) inset`;
+      _singleScreen.style.mozBoxShadow =
+        `0 0 2.5${_which} rgba(255,235,205,0.1) inset;`;
 
       [_helloUser, _you, _login].forEach(elem => {
         _singleScreen.appendChild(elem);
@@ -480,6 +487,15 @@ const game = (() => {
 
       const _vsScreen = document.createElement('div');
       _vsScreen.id = 'homescreen';
+      _vsScreen.style.background = 'none';
+
+      let _which = (_vsScreen.style.borderRadius === '50vh') ? 'vh' : 'vw';
+      _vsScreen.style.boxShadow =
+        `0 0 2.5${_which} rgba(255,235,205,0.1) inset`;
+      _vsScreen.style.webkitBoxShadow =
+        `0 0 2.5${_which} rgba(255,235,205,0.1) inset`;
+      _vsScreen.style.mozBoxShadow =
+        `0 0 2.5${_which} rgba(255,235,205,0.1) inset;`;
 
       [_playerOne, _playerTwo, _login].forEach(elem => {
         _vsScreen.appendChild(elem);
@@ -768,7 +784,7 @@ const game = (() => {
           let _which = (_logo.style.fontSize === '14vh') ? 'vh' : 'vw';
           _logo.style.textShadow = `0 0 50${_which} blanchedalmond`;
 
-          _horizon.style.opacity = '1'
+          _horizon.style.opacity = '0.5'
 
           device.style.transition = '250ms';
         }, 750);
