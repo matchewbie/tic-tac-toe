@@ -89,7 +89,7 @@ iframe {
   position: fixed;
   height: 18vh;
   width: inherit;
-  border: 4px dotted burlywood;
+  border: 0.65vh dotted burlywood;
   border-radius: 5vh 5vh 10vh 10vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 8vh;
@@ -497,6 +497,7 @@ iframe {
   #logout {
     width: 95vw;
     height: 18vw;
+    border: 0.65vw dotted burlywood;
     border-radius: 5vw 5vw 10vw 10vw;
     font-size: 8vw;
   }
