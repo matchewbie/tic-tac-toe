@@ -524,7 +524,7 @@ iframe {
   }
   
   #login {
-    margin: 68vw auto 0 auto;
+    margin: 71vw auto 0 auto;
     text-shadow: 0 0 3vw blanchedalmond;
     border-radius: 15vw;
   }
@@ -568,9 +568,9 @@ iframe {
   
   #login-one { margin: 9.5vw auto 0 auto; }
   
-  #login-two { margin: 37vw auto 0 auto; }
+  #login-two { margin: 42vw auto 0 auto; }
   
-  #you { margin: 37vw auto 0 auto }
+  #you { margin: 42vw auto 0 auto }
   
   #greeting {
     width: 95vw;
