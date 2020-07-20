@@ -58,10 +58,10 @@ iframe {
 }
 
 #homescreen {
-  background-color: rgba(17,17,17,0.6);
-  box-shadow: 0 0 10vh rgba(222,184,135,0.2) inset;
-  -webkit-box-shadow: 0 0 10vh rgba(222,184,135,0.2) inset;
-  -moz-box-shadow: 0 0 10vh rgba(222,184,135,0.2) inset;
+  background-color: rgba(17,17,17,1);
+  box-shadow: 0 0 10vh rgba(222,184,135,0.35) inset;
+  -webkit-box-shadow: 0 0 10vh rgba(222,184,135,0.35) inset;
+  -moz-box-shadow: 0 0 10vh rgba(222,184,135,0.35) inset;
 }
 
 #login-screen {
@@ -122,13 +122,13 @@ iframe {
 #one-player {
   margin: 36vh auto 0 auto;
   border-bottom: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 #two-player {
   margin: 52vh auto 0 auto;
   border-top: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 #login {
@@ -474,25 +474,6 @@ iframe {
   .hover {
     border-color: blanchedalmond;
     opacity: 1;
-  }
-}
-
-@media(any-pointer: coarse) {
-  #one-player {
-    background-color: burlywood;
-    color: #222222;
-  }
-  #two-player {
-    background: none;
-    color: burlywood;
-  }
-  #reset {
-    background-color: burlywood;
-    color: #222222;
-  }
-  #logout {
-    background: none;
-    color: burlywood;
   }
 }
 

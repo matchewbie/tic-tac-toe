@@ -212,6 +212,8 @@ const game = (() => {
     const _toggle = (currentButton, otherButton) => {
       currentButton.classList.remove('btn-group-inactive');
       currentButton.classList.add('btn-group-active');
+      currentButton.style.zIndex = '2';
+      otherButton.style.zIndex = '1';
       otherButton.classList.remove('btn-group-active');
       otherButton.classList.add('btn-group-inactive');
     };
@@ -239,7 +241,7 @@ const game = (() => {
             }, 125);
             setTimeout(() => {
               device.style.opacity = '0';
-              device.style.zIndex = '-1';
+              device.style.zIndex = '-420';
               device.style.transition = '250ms';
               nextScreen(screen, 0);
             }, 250);
@@ -263,19 +265,7 @@ const game = (() => {
         _player.onmouseenter = () => _toggle(_player, _other);
         _player.ontouchstart = (event) => {
           event.preventDefault();
-          let _view = (_player.style.height === '18vh') ? 'vh' : 'vw';
-          _player.style.backgroundColor = 'burlywood';
-          _player.style.color = '#222222';
-          _player.style.boxShadow = `0 0 3.5${_view} burlywood`;
-          _player.style.webkitBoxShadow = `0 0 3.5${_view} burlywood`;
-          _player.style.mozBoxShadow = `0 0 3.5${_view} burlywood`;
-          _player.style.zIndex = '50';
-          _other.style.background = 'none';
-          _other.style.color = 'burlywood';
-          _other.style.textShadow = `0 0 0.75${_view} burlywood`;
-          _other.style.boxShadow = `0 0 4.75${_view} burlywood inset`;
-          _other.style.webkitBoxShadow = `0 0 4.75${_view} burlywood inset`;
-          _other.style.mozBoxShadow = `0 0 4.75${_view} burlywood inset`;
+          _toggle(_player, _other);
         };
         if (_which) {
           _select(single);
@@ -290,7 +280,7 @@ const game = (() => {
       const _horizon = document.createElement('div');
       _horizon.id = 'glow-barrier';
       
-      _horizon.style.zIndex = '-1';
+      _horizon.style.zIndex = '0';
       _horizon.style.opacity = '0';
       _horizon.style.transition = '1000ms';
 
@@ -492,19 +482,7 @@ const game = (() => {
       };
       _reset.ontouchstart = (event) => {
         event.preventDefault();
-        let _view = (_reset.style.height === '18vh') ? 'vh' : 'vw';
-        _reset.style.backgroundColor = 'burlywood';
-        _reset.style.color = '#222222';
-        _reset.style.boxShadow = `0 0 3.5${_view} burlywood`;
-        _reset.style.webkitBoxShadow = `0 0 3.5${_view} burlywood`;
-        _reset.style.mozBoxShadow = `0 0 3.5${_view} burlywood`;
-        _reset.style.zIndex = '50';
-        _logout.style.background = 'none';
-        _logout.style.color = 'burlywood';
-        _logout.style.textShadow = `0 0 0.75${_view} burlywood`;
-        _logout.style.boxShadow = `0 0 4.75${_view} burlywood inset`;
-        _logout.style.webkitBoxShadow = `0 0 4.75${_view} burlywood inset`;
-        _logout.style.mozBoxShadow = `0 0 4.75${_view} burlywood inset`;
+        _toggle(_reset, _logout);
       };
       _reset.onmouseup = (event) => {
         event.preventDefault();
@@ -544,19 +522,7 @@ const game = (() => {
       };
       _logout.ontouchstart = (event) => {
         event.preventDefault();
-        let _view = (_reset.style.height === '18vh') ? 'vh' : 'vw';
-        _logout.style.backgroundColor = 'burlywood';
-        _logout.style.color = '#222222';
-        _logout.style.boxShadow = `0 0 3.5${_view} burlywood`;
-        _logout.style.webkitBoxShadow = `0 0 3.5${_view} burlywood`;
-        _logout.style.mozBoxShadow = `0 0 3.5${_view} burlywood`;
-        _logout.style.zIndex = '50';
-        _reset.style.background = 'none';
-        _reset.style.color = 'burlywood';
-        _reset.style.textShadow = `0 0 0.75${_view} burlywood`;
-        _reset.style.boxShadow = `0 0 4.75${_view} burlywood inset`;
-        _reset.style.webkitBoxShadow = `0 0 4.75${_view} burlywood inset`;
-        _reset.style.mozBoxShadow = `0 0 4.75${_view} burlywood inset`;
+        _toggle(_logout, _reset);
       };
       _logout.onmouseup = (event) => {
         event.preventDefault();
@@ -758,7 +724,7 @@ const game = (() => {
           _logo.style.textShadow = '0 0 15rem blanchedalmond';
 
           
-          _horizon.style.opacity = '0.85'
+          _horizon.style.opacity = '0.65'
 
           device.style.transition = '250ms';
         }, 750);
