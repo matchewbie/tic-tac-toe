@@ -288,26 +288,17 @@ const game = (() => {
       _playerSelect('two');
 
       const _horizon = document.createElement('div');
-      _horizon.id = 'horizon';
-
-      let _which = (_horizon.style.height === '44.5vh') ? 'vh' : 'vw';
-      if (_which === 'vh') {
-        _horizon.style.width = `100${_which}`;
-        _horizon.style.top = `33${_which}`;
-      }
-      else {
-        _horizon.style.width = `95${_which}`;
-        _horizon.style.top = `68.5${_which}`;
-      }
+      _horizon.id = 'glow-barrier';
       
       _horizon.style.zIndex = '-1';
       _horizon.style.opacity = '0';
-      _horizon.style.transition = '2000ms';
+      _horizon.style.transition = '1000ms';
 
       [logo, onePlayer, twoPlayer, author, _horizon].forEach(elem => {
         _homescreen.appendChild(elem);
       });
       container.appendChild(_homescreen);
+
       animate.homeLoad();
     };
     const single = () => {
@@ -391,15 +382,7 @@ const game = (() => {
       };
 
       const _singleScreen = document.createElement('div');
-      _singleScreen.id = 'homescreen';
-      _singleScreen.style.background = 'none';
-      let _which = (_singleScreen.style.borderRadius === '50vh') ? 'vh' : 'vw';
-      _singleScreen.style.boxShadow =
-        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
-      _singleScreen.style.webkitBoxShadow =
-        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
-      _singleScreen.style.mozBoxShadow =
-        `0 0 10${_which} rgba(255,235,205,0.1) inset;`;
+      _singleScreen.id = 'login-screen';
 
       [_helloUser, _you, _login].forEach(elem => {
         _singleScreen.appendChild(elem);
@@ -486,16 +469,7 @@ const game = (() => {
       };
 
       const _vsScreen = document.createElement('div');
-      _vsScreen.id = 'homescreen';
-      _vsScreen.style.background = 'none';
-
-      let _which = (_vsScreen.style.borderRadius === '50vh') ? 'vh' : 'vw';
-      _vsScreen.style.boxShadow =
-        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
-      _vsScreen.style.webkitBoxShadow =
-        `0 0 10${_which} rgba(255,235,205,0.1) inset`;
-      _vsScreen.style.mozBoxShadow =
-        `0 0 10${_which} rgba(255,235,205,0.1) inset;`;
+      _vsScreen.id = 'login-screen';
 
       [_playerOne, _playerTwo, _login].forEach(elem => {
         _vsScreen.appendChild(elem);
@@ -596,7 +570,7 @@ const game = (() => {
           gameplay.reset(false);
           players.clear();
           device.style.opacity = '0';
-          device.style.zIndex = '-1';
+          device.style.zIndex = '-420';
           device.style.transition = '250ms';
           return nextScreen(home, 0);
         }, 250);
@@ -764,7 +738,7 @@ const game = (() => {
         const _author = document.getElementById('author');
         const _single = document.getElementById('one-player');
         const _vs = document.getElementById('two-player');
-        const _horizon = document.getElementById('horizon');
+        const _horizon = document.getElementById('glow-barrier');
 
         device.style.opacity = '1';
         device.style.zIndex = '100';
@@ -780,18 +754,17 @@ const game = (() => {
           _single.style.visibility = 'visible';
           _vs.style.visibility = 'visible';
         
-          _logo.style.transition = '725ms';
-          let _which = (_logo.style.fontSize === '14vh') ? 'vh' : 'vw';
-          _logo.style.textShadow = `0 0 50${_which} blanchedalmond`;
+          _logo.style.transition = '250ms';
+          _logo.style.textShadow = '0 0 15rem blanchedalmond';
 
-          _horizon.style.opacity = '0.5'
+          
+          _horizon.style.opacity = '0.85'
 
           device.style.transition = '250ms';
         }, 750);
 
         setTimeout(() => {
-          let _which = (_logo.style.fontSize === '14vh') ? 'vh' : 'vw';
-          _logo.style.textShadow = `0 0 0.75${_which} blanchedalmond`;
+          _logo.style.textShadow = `0 0 0.75rem blanchedalmond`;
         }, 1375);
       };
       const aiSay = (text, id) => {
