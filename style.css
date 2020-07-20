@@ -549,18 +549,17 @@ iframe {
     border-bottom: 0.8vw dashed rgba(222,184,135,0.5);
     border-radius: 15vw;
     font-size: 10vw;
-    color: burlywood;
     text-shadow: 0 0 0.75vw burlywood;
-    box-shadow: 0 0 10vw #111111 inset;
-    -webkit-box-shadow: 0 0 10vw #111111 inset;
-    -moz-box-shadow: 0 0 10vw #111111 inset;
+    box-shadow: 0 0 10vw burlywood inset;
+    -webkit-box-shadow: 0 0 10vw burlywood inset;
+    -moz-box-shadow: 0 0 10vw burlywood inset;
   }
   
   #login-one:focus,
   #login-two:focus,
   #you:focus {
     padding-left: 5vw;
-    border-top: 0.5vw dashed rgba(255,235,205,0.5);
+    border-top: 0.6vw dashed rgba(255,235,205,0.5);
     border-bottom: 0.8vw dashed rgba(255,235,205,0.5);
     box-shadow: 0 0 10vw blanchedalmond inset;
     -webkit-box-shadow: 0 0 10vw blanchedalmond inset;
@@ -581,8 +580,8 @@ iframe {
     font-size: 5.5vw;
     line-height: 5.5vw;
     border: 1vw solid blanchedalmond;
-    border-top: 0.5vw dotted burlywood;
-    border-bottom: 0.5vw dotted burlywood;
+    border-top: 0.5vw dotted rgba(222,184,135,0.5);
+    border-bottom: 0.5vw dotted rgba(222,184,135,0.5);
     border-radius: 15vw;
     box-shadow: 0.5vw 1vw 10.25vw burlywood inset;
     -webkit-box-shadow: 0.5vw 1vw 10.25vw burlywood inset;
