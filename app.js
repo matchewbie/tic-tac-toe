@@ -705,15 +705,19 @@ const game = (() => {
         const _single = document.getElementById('one-player');
         const _vs = document.getElementById('two-player');
         const _horizon = document.getElementById('glow-barrier');
+        const _screen = document.getElementById('homescreen');
 
         device.style.opacity = '1';
         device.style.zIndex = '100';
+
+        _screen.style.opacity = '0';
 
         setTimeout(() => {
           device.style.opacity = '0';
           device.style.zIndex = '-420';
           _logo.style.opacity = '1';
           _author.style.opacity = '0.1';
+          _screen.style.opacity = '0.25';
         }, 325);
 
         setTimeout(() => {
@@ -721,16 +725,17 @@ const game = (() => {
           _vs.style.visibility = 'visible';
         
           _logo.style.transition = '250ms';
-          _logo.style.textShadow = '0 0 15rem blanchedalmond';
+          _logo.style.textShadow = '0 0 17.25rem blanchedalmond';
 
           
           _horizon.style.opacity = '0.65'
+          _screen.style.opacity = '1';
 
           device.style.transition = '250ms';
         }, 750);
 
         setTimeout(() => {
-          _logo.style.textShadow = `0 0 0.75rem blanchedalmond`;
+          _logo.style.textShadow = `0 0 0.65rem blanchedalmond`;
         }, 1375);
       };
       const aiSay = (text, id) => {
