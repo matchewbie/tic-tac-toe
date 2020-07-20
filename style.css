@@ -60,16 +60,16 @@ iframe {
 
 #homescreen {
   background-color: rgba(17,17,17,1);
-  box-shadow: 0 0 10vh rgba(222,184,135,0.35) inset;
-  -webkit-box-shadow: 0 0 10vh rgba(222,184,135,0.35) inset;
-  -moz-box-shadow: 0 0 10vh rgba(222,184,135,0.35) inset;
+  box-shadow: 4vh 8vh 10vh rgba(222,184,135,0.35) inset;
+  -webkit-box-shadow: 4vh 8vh 10vh rgba(222,184,135,0.35) inset;
+  -moz-box-shadow: 4vh 8vh 10vh rgba(222,184,135,0.35) inset;
 }
 
 #login-screen {
   background: none;
-  box-shadow: 0 0 10vh rgba(255,235,205,0.3) inset;
-  -webkit-box-shadow: 0 0 10vh rgba(255,235,205,0.3) inset;
-  -moz-box-shadow: 0 0 10vh rgba(255,235,205,0.3) inset;
+  box-shadow: -4vh 8vh 10vh rgba(255,235,205,0.3) inset;
+  -webkit-box-shadow: -4vh 8vh 10vh rgba(255,235,205,0.3) inset;
+  -moz-box-shadow: -4vh 8vh 10vh rgba(255,235,205,0.3) inset;
 }
 
 #logo {
@@ -492,15 +492,15 @@ iframe {
   }
 
   #homescreen {
-    box-shadow: 0 0 10vw rgba(222,184,135,0.35) inset;
-    -webkit-box-shadow: 0 0 10vw rgba(222,184,135,0.35) inset;
-    -moz-box-shadow: 0 0 10vw rgba(222,184,135,0.35) inset;
+    box-shadow: 4vw 8vw 10vw rgba(222,184,135,0.35) inset;
+    -webkit-box-shadow: 4vw 8vw 10vw rgba(222,184,135,0.35) inset;
+    -moz-box-shadow: 4vw 8vw 10vw rgba(222,184,135,0.35) inset;
   }
-
+  
   #login-screen {
-    box-shadow: 0 0 10vw rgba(255,235,205,0.3) inset;
-    -webkit-box-shadow: 0 0 10vw rgba(255,235,205,0.3) inset;
-    -moz-box-shadow: 0 0 10vw rgba(255,235,205,0.3) inset;
+    box-shadow: -4vw 8vw 10vw rgba(255,235,205,0.3) inset;
+    -webkit-box-shadow: -4vw 8vw 10vw rgba(255,235,205,0.3) inset;
+    -moz-box-shadow: -4vw 8vw 10vw rgba(255,235,205,0.3) inset;
   }
 
   #logo {
