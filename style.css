@@ -148,8 +148,8 @@ iframe {
   background: none;
   border-left: 4vh double blanchedalmond;
   border-right: 1vh solid blanchedalmond;
-  border-top: 0.5vh dotted burlywood;
-  border-bottom: 0.8vh dashed burlywood;
+  border-top: 0.5vh dashed rgba(222,184,135,0.5);
+  border-bottom: 0.8vh dashed rgba(222,184,135,0.5);
   border-radius: 15vh;
   font-size: 10vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -166,7 +166,11 @@ iframe {
 #you:focus {
   padding: 0;
   padding-left: 5vh;
-  border-bottom: 0.8vh dashed blanchedalmond;
+  border-top: 0.5vh dashed rgba(255,235,205,0.5);
+  border-bottom: 0.8vh dashed rgba(255,235,205,0.5);
+  box-shadow: 0 0 10vh blanchedalmond inset;
+  -webkit-box-shadow: 0 0 10vh blanchedalmond inset;
+  -moz-box-shadow: 0 0 10vh blanchedalmond inset;
 }
 
 #login-one { margin: 9.5vh auto 0 auto; }
@@ -315,7 +319,7 @@ iframe {
   border-left: none;
   border-right: none;
   border-radius: 5vh 5vh 10vh 10vh;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 #meow pre,
@@ -526,8 +530,8 @@ iframe {
     padding: 0 10vw;
     border-left: 4vw double blanchedalmond;
     border-right: 1vw solid blanchedalmond;
-    border-top: 0.5vw dotted burlywood;
-    border-bottom: 0.8vw dashed burlywood;
+    border-top: 0.5vw dashed rgba(222,184,135,0.5);
+    border-bottom: 0.8vw dashed rgba(222,184,135,0.5);
     border-radius: 15vw;
     font-size: 10vw;
     text-shadow: 0 0 0.75vw burlywood;
@@ -540,7 +544,11 @@ iframe {
   #login-two:focus,
   #you:focus {
     padding-left: 5vw;
-    border-bottom: 0.8vw dashed blanchedalmond;
+    border-top: 0.5vw dashed rgba(255,235,205,0.5);
+    border-bottom: 0.8vw dashed rgba(255,235,205,0.5);
+    box-shadow: 0 0 10vw blanchedalmond inset;
+    -webkit-box-shadow: 0 0 10vw blanchedalmond inset;
+    -moz-box-shadow: 0 0 10vw blanchedalmond inset;
   }
   
   #login-one { margin: 9.5vw auto 0 auto; }
