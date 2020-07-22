@@ -445,6 +445,7 @@ const game = (() => {
           _name(_playerTwo, players.playerTwo);
           device.style.opacity = '0';
           device.style.zIndex = '-1';
+          document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
@@ -458,6 +459,7 @@ const game = (() => {
           _name(_playerTwo, players.playerTwo);
           device.style.opacity = '0';
           device.style.zIndex = '-1';
+          document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
@@ -582,8 +584,7 @@ const game = (() => {
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
-      _glowBarrier.id = 'glow-barrier';
-      _glowBarrier.style.top = '77%';
+      _glowBarrier.id = 'glow-barrier-end';
 
       let _text = ['that\'s a scratch.'];
 
@@ -603,7 +604,7 @@ const game = (() => {
       device.style.zIndex = '100';
       device.style.transition = '250ms';
 
-      document.getElementById('glow-barrier').style.opacity = '0';
+      document.getElementById('glow-barrier-end').style.opacity = '0';
 
       setTimeout(() => {
         device.style.opacity = '0';
@@ -617,7 +618,7 @@ const game = (() => {
         _thaddeus.style.opacity = '1';
 
         setTimeout(() => {
-          document.getElementById('glow-barrier').style.opacity = '0.65';
+          document.getElementById('glow-barrier-end').style.opacity = '0.65';
           nav(document.getElementById('end'));
         }, 750);
         
@@ -650,8 +651,7 @@ const game = (() => {
       _champ.id = 'champ';
       _champ.src = './champ.html';
       _message.id = 'message';
-      _glowBarrier.id = 'glow-barrier';
-      _glowBarrier.style.top = '77%';
+      _glowBarrier.id = 'glow-barrier-end';
 
       let _text = null;
 
@@ -678,7 +678,7 @@ const game = (() => {
       device.style.zIndex = '100';
       device.style.transition = '250ms';
       
-      document.getElementById('glow-barrier').style.opacity = '0';
+      document.getElementById('glow-barrier-end').style.opacity = '0';
 
       setTimeout(() => {
         device.style.opacity = '0';
@@ -699,7 +699,7 @@ const game = (() => {
         }
 
         setTimeout(() => {
-          document.getElementById('glow-barrier').style.opacity = '0.65';
+          document.getElementById('glow-barrier-end').style.opacity = '0.65';
           nav(document.getElementById('end'));
         }, 750);
         

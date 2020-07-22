@@ -175,9 +175,10 @@ iframe {
 }
 
 #login {
-  top: 78%;
+  position: relative;
+  top: 71.5%;
   width: 85.5vh;
-  margin: -9vh 0 0 -42.75vh;
+  margin: 0 4.75vh;
   background: none;
   color: rgba(255,235,205,0.6);
   text-shadow: 0 0 3vh blanchedalmond;
@@ -188,13 +189,13 @@ iframe {
 }
 
 #reset {
-  top: 69%;
+  top: 59%;
   border-bottom: none;
   z-index: 3;
 }
 
 #logout {
-  top: 85%;
+  top: 57%;
   border-top: none;
   z-index: 2;
 }
@@ -205,11 +206,10 @@ iframe {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  position: fixed;
-  left: 50%;
+  position: absolute;
   height: 24vh;
   width: 95vh;
-  margin: -12vh 0 0 -47.5vh;
+  margin: 0 auto;
   padding: 0 10vh;
   background: none;
   border-left: 4vh double blanchedalmond;
@@ -239,19 +239,18 @@ iframe {
   -moz-box-shadow: 0 0 10vh blanchedalmond inset;
 }
 
-#login-one { top: 25%; }
+#login-one { top: 11%; }
 
-#login-two { top: 52%; }
+#login-two { top: 40%; }
 
-#you { top: 52%; }
+#you { top: 40%; }
 
 #greeting {
-  position: fixed;
-  top: 25%;
-  left: 50%;
+  position: absolute;
+  top: 11%;
   width: 95vh;
   height: 24vh;
-  margin: -12vh 0 0 -47.5vh;
+  margin: 0 auto;
   padding: 9.5vh 4vh 7.5vh 4vh;
   font-family: 'Courier New', Courier, monospace;
   font-size: 5.5vh;
@@ -270,12 +269,11 @@ iframe {
 }
 
 #message {
-  position: fixed;
-  top: 55.5%;
-  left: 50%;
+  position: absolute;
+  top: 53.5%;
   width: 100vh;
   height: 5.75vh;
-  margin: -2.875vh 0 0 -50vh;
+  margin: 0 auto;
   background: none;
   color: blanchedalmond;
   font-size: 4.5vh;
@@ -377,12 +375,10 @@ iframe {
   box-shadow: 0 0 2vh burlywood inset;
 }
 
-#glow-barrier {
-  position: absolute;
-  top: 45%;
+#glow-barrier,
+#glow-barrier-end {
   width: 90vh;
-  height: 44.5vh;
-  margin: 0 2.5vh;
+  height: 40.5vh;
   background-color: #222222;
   border: 0.5vh solid rgba(222,184,135,0.5);
   border-left: none;
@@ -390,6 +386,18 @@ iframe {
   border-radius: 5vh 5vh 10vh 10vh;
   opacity: 0.85;
   transition: 1s;
+}
+
+#glow-barrier {
+  position: absolute;
+  top: 47%;
+  margin: 0 2.5vh;
+}
+
+#glow-barrier-end {
+  position: absolute;
+  top: 55.5%;
+  margin: 0 5vh;
 }
 
 #meow pre,
@@ -584,25 +592,17 @@ iframe {
   
   #login {
     width: 85.5vw;
-    margin: -9vw 0 0 -42.75vw;
+    margin: 0 4.75vw;
     text-shadow: 0 0 3vw blanchedalmond;
     border-radius: 5vw 5vw 15vw 15vw;
   }
-  
-  /* #reset {
-    top: 20%;
-  }
-  
-  #logout {
-    top: 36%;
-  } */
   
   #login-one,
   #login-two,
   #you {
     height: 24vw;
     width: 95vw;
-    margin: -12vw 0 0 -47.5vw;
+    margin: 0 auto;
     padding: 0 10vw;
     border-left: 4vw double blanchedalmond;
     border-right: 1vw solid blanchedalmond;
@@ -627,16 +627,9 @@ iframe {
     -moz-box-shadow: 0 0 10vw blanchedalmond inset;
   }
   
-  /* #login-one { top: 20% }
-  
-  #login-two { top: 40% }
-  
-  #you { top: 40% } */
-  
   #greeting {
     width: 95vw;
     height: 24vw;
-    margin: -12vw 0 0 -47.5vw;
     padding: 9.5vw 4vw 7.5vw 4vw;
     font-size: 5.5vw;
     line-height: 5.5vw;
@@ -650,9 +643,9 @@ iframe {
   }
 
   #message {
+    top: 52%;
     width: 100vw;
     height: 5.75vw;
-    margin: -2.875vw 0 0 -50vw;
     font-size: 4.5vw;
   }
   
@@ -668,14 +661,24 @@ iframe {
     box-shadow: 0 0 2vw burlywood inset;
   }
 
-  #glow-barrier {
-    width: 90vw;
-    height: 44.5vw;
-    margin: 0 2.5vw;
+  #glow-barrier,
+  #glow-barrier-end {
     border: 0.5vw solid rgba(222,184,135,0.5);
     border-left: none;
     border-right: none;
     border-radius: 5vw 5vw 10vw 10vw;
+  }
+
+  #glow-barrier {
+    width: 90vw;
+    height: 44.5vw;
+    margin: 0 2.5vw;
+  }
+
+  #glow-barrier-end {
+    width: 95vw;
+    height: 40.5vw;
+    margin: 0 2.5vw;
   }
 
   #meow pre {
