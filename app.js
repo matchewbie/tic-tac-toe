@@ -340,12 +340,22 @@ const game = (() => {
       };
       _login.id = 'login';
       _login.innerText = 'l o g i n';
-      _login.style.borderColor = '#111111';
+      _login.classList.add('login-inactive');
       _login.style.opacity = '0';
+      _login.onmouseenter = (event) => {
+        event.preventDefault();
+        _login.classList.remove('login-inactive');
+        _login.classList.add('login-active');
+      };
       _login.ontouchstart = (event) => {
         event.preventDefault();
-        _login.style.backgroundColor = 'burlywood';
-        _login.style.color = '#222222';
+        _login.classList.remove('login-inactive');
+        _login.classList.add('login-active');
+      };
+      _login.onmouseleave = (event) => {
+        event.preventDefault();
+        _login.classList.remove('login-active');
+        _login.classList.add('login-inactive');
       };
       _login.onmouseup = (event) => {
         event.preventDefault();
@@ -428,12 +438,22 @@ const game = (() => {
       };
       _login.id = 'login';
       _login.innerText = 'l o g i n';
-      _login.style.borderColor = '#111111';
+      _login.classList.add('login-inactive');
       _login.style.opacity = '0';
+      _login.onmouseenter = (event) => {
+        event.preventDefault();
+        _login.classList.remove('login-inactive');
+        _login.classList.add('login-active');
+      };
       _login.ontouchstart = (event) => {
         event.preventDefault();
-        _login.style.backgroundColor = 'burlywood';
-        _login.style.color = '#222222';
+        _login.classList.remove('login-inactive');
+        _login.classList.add('login-active');
+      };
+      _login.onmouseleave = (event) => {
+        event.preventDefault();
+        _login.classList.remove('login-active');
+        _login.classList.add('login-inactive');
       };
       _login.onmouseup = (event) => {
         event.preventDefault();
@@ -866,7 +886,6 @@ const game = (() => {
         setTimeout(() => {
           log.style.transition = '1s';
           log.style.opacity = '1';
-          log.style.transition = '2475ms';
 
           container.style.backgroundImage =
                 'radial-gradient(rgba(255,235,205,0.1),' +
@@ -877,24 +896,6 @@ const game = (() => {
                                           'transparent,' +
                                           'transparent,' +
                                           'transparent)';
-
-          setInterval(() => {
-            let _light = (log.style.borderColor === 'rgb(17, 17, 17)');
-            let _color = (_light) ? 'rgba(222, 184, 135, 0.7)' : 'rgb(17, 17, 17)';
-            
-            log.style.borderColor = _color;
-            
-            if (_light) {
-              log.style.boxShadow = `0 0 1.25rem ${_color}`;
-              log.style.webkitBoxShadow = `0 0 1.25rem ${_color}`;
-              log.style.mozBoxShadow = `0 0 1.25rem ${_color}`;
-            }
-            else {
-              log.style.boxShadow = 'none';
-              log.style.webkitBoxShadow = 'none';
-              log.style.mozBoxShadow = 'none';
-            }
-          }, 2500);
         }, 275);
       };
       const gameOpening = (() => {
