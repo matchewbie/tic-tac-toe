@@ -33,7 +33,24 @@ body {
 
 iframe {
   border: none;
+}
+.iframe {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 95vh;
+  height: 95vh;
+  margin: -47.5vh 0 0 -47.5vh;
   border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  overflow: hidden;
+}
+
+.iframe iframe {
+  width: 100%;
+  height: 100%;
 }
 
 #device {
@@ -545,6 +562,7 @@ iframe {
   }
 
   #logo {
+    top: 42%;
     width: 95vw;
     height: 15vw;
     margin: -7.5vw 0 0 -47.5vw;
@@ -554,6 +572,7 @@ iframe {
   }
 
   #author {
+    top: 48%;
     width: 26vw;
     height: 10vw;
     margin: -5vw 0 0 -13vw;
@@ -574,13 +593,13 @@ iframe {
     font-size: 8vw;
   }
 
-  /* #one-player {
-    top: 20%;
+  #one-player {
+    top: 56.5%;
   }
   
   #two-player {
-    top: 36%;
-  } */
+    top: 64%;
+  }
   
   #login {
     width: 85.5vw;
@@ -669,10 +688,13 @@ iframe {
   }
 
   #glow-barrier {
+    top: 60%;
     width: 90vw;
     height: 44.5vw;
     margin: -22.25vw 0 0 -45vw;
     border: 0.5vw solid rgba(222,184,135,0.5);
+    border-left: none;
+    border-right: none;
     border-radius: 5vw 5vw 10vw 10vw;
   }
 
@@ -696,6 +718,12 @@ iframe {
     margin: -36vw 0 0 -31.5vw;
     font-size: 2.2vw;
     line-height: 3.2vw;
+  }
+
+  .iframe {
+    width: 95vw;
+    height: 95vw;
+    margin: -47.5vw 0 0 -47.5vw;
   }
 
   .blink {

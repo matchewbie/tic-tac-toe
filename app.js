@@ -572,11 +572,13 @@ const game = (() => {
     };
     const draw = () => {
       const _draw = document.createElement('div');
+      const _iframeWrap = document.createElement('div');
       const _thaddeus = document.createElement('iframe');
       const _message = document.createElement('p');
       const _glowBarrier = document.createElement('div');
 
       _draw.id = 'end';
+      _iframeWrap.classList.add('iframe');
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
@@ -585,7 +587,9 @@ const game = (() => {
 
       let _text = ['that\'s a scratch.'];
 
-      [_thaddeus, _glowBarrier, _message].forEach(elem => {
+      _iframeWrap.appendChild(_thaddeus);
+
+      [_iframeWrap, _glowBarrier, _message].forEach(elem => {
         _draw.appendChild(elem);
       });
 
@@ -631,6 +635,7 @@ const game = (() => {
     };
     const win = () => {
       const _win = document.createElement('div');
+      const _iframeWrap = document.createElement('div');
       const _robot = document.createElement('iframe');
       const _champ = document.createElement('iframe');
       const _message = document.createElement('p');
@@ -639,6 +644,7 @@ const game = (() => {
       let _loser = players.grab(0).name();
 
       _win.id = 'end';
+      _iframeWrap.classList.add('iframe');
       _robot.id = 'robot';
       _robot.src = './computer.html';
       _champ.id = 'champ';
@@ -651,14 +657,14 @@ const game = (() => {
 
       if (_winner === 'c0mput3r') {
         _text = [`${_loser}, don't cry.`];
-        _win.appendChild(_robot);
+        _iframeWrap.appendChild(_robot);
       }
       else {
         _text = [`${_winner}, the champion.`];
-        _win.appendChild(_champ);
+        _iframeWrap.appendChild(_champ);
       }
 
-      [_glowBarrier, _message].forEach(elem => {
+      [_iframeWrap, _glowBarrier, _message].forEach(elem => {
         _win.appendChild(elem);
       });
 
