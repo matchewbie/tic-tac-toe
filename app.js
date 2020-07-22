@@ -227,7 +227,7 @@ const game = (() => {
 
       const author = document.createElement('p');
       author.id = 'author';
-      author.innerText = 'by matchewbie'
+      author.innerText = 'from matchewbie'
 
       const onePlayer = document.createElement('button');
       const twoPlayer = document.createElement('button');
@@ -287,6 +287,9 @@ const game = (() => {
       [logo, onePlayer, twoPlayer, author, _horizon].forEach(elem => {
         _homescreen.appendChild(elem);
       });
+
+      container.style.backgroundImage = 'none';
+    
       container.appendChild(_homescreen);
 
       animate.homeLoad();
@@ -352,7 +355,6 @@ const game = (() => {
         setTimeout(() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
-          device.style.opacity = '0';
           device.style.zIndex = '-1';
           return animate.gameOpening.start();
         }, 250);
@@ -365,7 +367,6 @@ const game = (() => {
         setTimeout(() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
-          device.style.opacity = '0';
           device.style.zIndex = '-1';
           return animate.gameOpening.start();
         }, 250);
@@ -378,6 +379,7 @@ const game = (() => {
         _singleScreen.appendChild(elem);
       });
 
+      container.style.backgroundImage = 'none';
       container.appendChild(_singleScreen);
 
       animate.loginLoad();
@@ -493,7 +495,7 @@ const game = (() => {
         device.style.transition = '125ms';
         setTimeout(() => {
           gameplay.reset();
-          device.style.opacity = '0';
+          device.style.backgroundColor = '#111111';
           device.style.zIndex = '-1';
           device.style.transition = '250ms';
         }, 125);
@@ -507,7 +509,7 @@ const game = (() => {
         device.style.transition = '125ms';
         setTimeout(() => {
           gameplay.reset();
-          device.style.opacity = '0';
+          device.style.backgroundColor = '#111111';
           device.style.zIndex = '-1';
           device.style.transition = '250ms';
         }, 125);
@@ -568,15 +570,18 @@ const game = (() => {
       const _draw = document.createElement('div');
       const _thaddeus = document.createElement('iframe');
       const _message = document.createElement('p');
+      const _glowBarrier = document.createElement('div');
 
       _draw.id = 'end';
       _thaddeus.id = 'thaddeus';
       _thaddeus.src = './meow.html';
       _message.id = 'message';
+      _glowBarrier.id = 'glow-barrier';
+      _glowBarrier.style.top = '77%';
 
       let _text = ['that\'s a scratch.'];
 
-      [_thaddeus, _message].forEach(elem => {
+      [_thaddeus, _glowBarrier, _message].forEach(elem => {
         _draw.appendChild(elem);
       });
 
@@ -587,6 +592,8 @@ const game = (() => {
       device.style.opacity = '1';
       device.style.zIndex = '100';
       device.style.transition = '250ms';
+
+      document.getElementById('glow-barrier').style.opacity = '0';
 
       setTimeout(() => {
         device.style.opacity = '0';
@@ -600,8 +607,9 @@ const game = (() => {
         _thaddeus.style.opacity = '1';
 
         setTimeout(() => {
-          nav(document.getElementById('end'));  
-        }, 2750);
+          document.getElementById('glow-barrier').style.opacity = '0.65';
+          nav(document.getElementById('end'));
+        }, 750);
         
 
         setTimeout(() => {
@@ -620,6 +628,7 @@ const game = (() => {
       const _robot = document.createElement('iframe');
       const _champ = document.createElement('iframe');
       const _message = document.createElement('p');
+      const _glowBarrier = document.createElement('div');
       let _winner = players.winner.grab().name();
       let _loser = players.grab(0).name();
 
@@ -629,6 +638,8 @@ const game = (() => {
       _champ.id = 'champ';
       _champ.src = './champ.html';
       _message.id = 'message';
+      _glowBarrier.id = 'glow-barrier';
+      _glowBarrier.style.top = '77%';
 
       let _text = null;
 
@@ -640,7 +651,10 @@ const game = (() => {
         _text = [`${_winner}, the champion.`];
         _win.appendChild(_champ);
       }
-      _win.appendChild(_message);
+
+      [_glowBarrier, _message].forEach(elem => {
+        _win.appendChild(elem);
+      });
 
       container.appendChild(_win);
 
@@ -648,7 +662,9 @@ const game = (() => {
 
       device.style.opacity = '1';
       device.style.zIndex = '100';
-      device.style.transition = '250ms';      
+      device.style.transition = '250ms';
+      
+      document.getElementById('glow-barrier').style.opacity = '0';
 
       setTimeout(() => {
         device.style.opacity = '0';
@@ -669,8 +685,9 @@ const game = (() => {
         }
 
         setTimeout(() => {
+          document.getElementById('glow-barrier').style.opacity = '0.65';
           nav(document.getElementById('end'));
-        }, 2750);
+        }, 750);
         
         setTimeout(() => {
           _message.style.opacity = '0';
@@ -716,7 +733,7 @@ const game = (() => {
           device.style.opacity = '0';
           device.style.zIndex = '-420';
           _logo.style.opacity = '1';
-          _author.style.opacity = '0.1';
+          _author.style.opacity = '0.3';
           _screen.style.opacity = '0.25';
         }, 325);
 
@@ -726,16 +743,40 @@ const game = (() => {
         
           _logo.style.transition = '250ms';
           _logo.style.textShadow = '0 0 17.25rem blanchedalmond';
+          _logo.style.color = 'rgba(255,235,205,0.6)';
 
-          
-          _horizon.style.opacity = '0.65'
+          _horizon.style.opacity = '0.55'
           _screen.style.opacity = '1';
+
+          container.style.borderRadius = '50%';
+
+          container.style.backgroundImage =
+            'radial-gradient(  rgba(17,17,17,0.8),' +
+                              'rgba(17,17,17,0.6),' +
+                              'rgba(17,17,17,0.2),' +
+                             'rgba(17,17,17,0.05),' +
+                          'rgba(222,184,135,0.05),' +
+                           'rgba(222,184,135,0.1),' +
+                          'rgba(255,235,205,0.07),' +
+                                     'transparent,' +
+                                     'transparent,' +
+                                     'transparent)';
 
           device.style.transition = '250ms';
         }, 750);
 
         setTimeout(() => {
           _logo.style.textShadow = `0 0 0.65rem blanchedalmond`;
+          _logo.style.color = 'rgba(255,235,205,0.8)';
+          container.style.backgroundImage =
+            'radial-gradient(rgba(255,235,205,0.35),' +
+                            'rgba(255,235,205,0.35),' +
+                            'rgba(255,235,205,0.35),' +
+                            'rgba(255,235,205,0.35),' +
+                            'rgba(255,235,205,0.35),' +
+                                           'transparent,' +
+                                           'transparent,' +
+                                           'transparent)';
         }, 1375);
       };
       const aiSay = (text, id) => {
@@ -812,17 +853,27 @@ const game = (() => {
           log.style.transition = '1s';
           log.style.opacity = '1';
           log.style.transition = '2475ms';
+
+          container.style.backgroundImage =
+                'radial-gradient(rgba(255,235,205,0.1),' +
+                                'rgba(255,235,205,0.1),' +
+                                'rgba(255,235,205,0.1),' +
+                                'rgba(255,235,205,0.1),' +
+                                'rgba(255,235,205,0.1),' +
+                                          'transparent,' +
+                                          'transparent,' +
+                                          'transparent)';
+
           setInterval(() => {
             let _light = (log.style.borderColor === 'rgb(17, 17, 17)');
-            let _which = (log.style.width === '18vh') ? 'vh' : 'vw';
-            let _color = (_light) ? 'rgb(222, 184, 135)' : 'rgb(17, 17, 17)';
+            let _color = (_light) ? 'rgba(222, 184, 135, 0.7)' : 'rgb(17, 17, 17)';
             
             log.style.borderColor = _color;
             
             if (_light) {
-              log.style.boxShadow = `0 0 1${_which} ${_color}`;
-              log.style.webkitBoxShadow = `0 0 1${_which} ${_color}`;
-              log.style.mozBoxShadow = `0 0 1${_which} ${_color}`;
+              log.style.boxShadow = `0 0 1.25rem ${_color}`;
+              log.style.webkitBoxShadow = `0 0 1.25rem ${_color}`;
+              log.style.mozBoxShadow = `0 0 1.25rem ${_color}`;
             }
             else {
               log.style.boxShadow = 'none';
@@ -892,19 +943,20 @@ const game = (() => {
         }
         if (cell.innerText === 'E') {
           return setTimeout(() => {
-            container.style.opacity = '0';
-            device.style.backgroundColor = 'blanchedalmond';
-            device.style.opacity = '0';
             device.style.transition = '125ms';
             setTimeout(() => {
+              container.style.opacity = '0';
               gameplay.reset();
               container.style.opacity = '1';
-              device.style.opacity = '1';
+              device.style.backgroundColor = 'blanchedalmond';
+              device.style.transition = '250ms';
               device.style.zIndex = '100';
               setTimeout(() => {
                 device.style.backgroundColor = '#111111';
-                device.style.opacity = '0';
                 device.style.zIndex = '-420';
+              }, 125);
+              setTimeout(() => {
+                device.style.opacity = '1';
                 device.style.transition = '250ms';
               }, 125);
             }, 1000);
@@ -972,6 +1024,7 @@ const game = (() => {
         if (_command === 'opening') _ticTacToe(_cell, _champCell2());
         if (_command === 'coords') {
           device.style.backgroundColor = '#111111';
+          
           setTimeout(() => {
             device.style.opacity = '1';
             device.style.zIndex = '100';
@@ -1097,14 +1150,14 @@ const gameplay = (() => {
     game.matrix.command({is: 'enable-click'});
   };
   const start = () => {
-    game.display.container.innerHTML = '';
-    
-    const _backdrop = document.createElement('div');
-    _backdrop.id = 'homescreen';
-    _backdrop.style.zIndex = '-99';
-    _backdrop.style.position = 'fixed';
-
-    game.display.container.appendChild(_backdrop);
+    let _container = game.display.container;
+    _container.innerHTML = '';
+    _container.style.backgroundImage = 'none';
+    _container.style.boxShadow = 'none';
+    _container.style.webkitBoxShadow = 'none';
+    _container.style.mozBoxShadow = 'none';
+    _container.style.borderRadius = 'none';
+  
     round.init();
   };
   const reset = (command) => {
