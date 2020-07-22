@@ -17,6 +17,7 @@ body {
 }
 
 body {
+  position: fixed;
   background-color: #222222;
   line-height: 1.5em;
   box-shadow: 0 0 35vh rgba(17,17,17,1) inset;
@@ -47,7 +48,6 @@ iframe {
   -o-border-radius: 50%;
   overflow: hidden;
 }
-
 .iframe iframe {
   width: 100%;
   height: 100%;
@@ -105,12 +105,11 @@ iframe {
 }
 
 #logo {
-  position: fixed;
-  top: 33%;
-  left: 50%;
+  position: absolute;
+  top: 23%;
   width: 95vh;
   height: 15vh;
-  margin: -7.5vh 0 0 -47.5vh;
+  margin: 0 auto;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 13.5vh;
   line-height: 13.5vh;
@@ -125,15 +124,11 @@ iframe {
 }
 
 #author {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: fixed;
-  top: 47%;
-  left: 50%;
-  width: 26vh;
+  position: absolute;
+  top: 40%;
+  width: 95vh;
   height: 10vh;
-  margin: -5vh 0 0 -13vh;
+  margin: 0 auto;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 3.5vh;
   text-align: center;
@@ -150,11 +145,10 @@ iframe {
 #login,
 #reset,
 #logout {
-  position: fixed;
-  left: 50%;
+  position: relative;
   height: 18vh;
   width: 95vh;
-  margin: -9vh 0 0 -47.5vh;
+  margin: 0 auto;
   border: 0.65vh dotted rgba(222,184,135,0.5);
   border-radius: 5vh 5vh 10vh 10vh;
   font-family: 'Courier New', Courier, monospace;
@@ -168,13 +162,13 @@ iframe {
 }
 
 #one-player {
-  top: 64%;
+  top: 55.5%;
   border-bottom: none;
   z-index: 2;
 }
 
 #two-player {
-  top: 80%;
+  top: 53.5%;
   border-top: none;
   z-index: 1;
 }
@@ -383,12 +377,11 @@ iframe {
 }
 
 #glow-barrier {
-  position: fixed;
-  top: 72%;
-  left: 50%;
+  position: absolute;
+  top: 50%;
   width: 90vh;
   height: 44.5vh;
-  margin: -22.25vh 0 0 -45vh;
+  margin: 0 2.5vh;
   background-color: #222222;
   border: 0.5vh solid rgba(222,184,135,0.5);
   border-left: none;
@@ -562,20 +555,16 @@ iframe {
   }
 
   #logo {
-    top: 42%;
     width: 95vw;
     height: 15vw;
-    margin: -7.5vw 0 0 -47.5vw;
     font-size: 13.5vw;
     line-height: 12.5vw;
     text-shadow: 0 0 2vw blanchedalmond;
   }
 
   #author {
-    top: 48%;
-    width: 26vw;
+    width: 95vw;
     height: 10vw;
-    margin: -5vw 0 0 -13vw;
     font-size: 2.5vw;
     text-shadow: 0 0 0.4vw rgba(222,184,135,1);
   }
@@ -587,18 +576,9 @@ iframe {
   #logout {
     height: 18vw;
     width: 95vw;
-    margin: -9vw 0 0 -47.5vw;
     border: 0.65vw dotted rgba(222,184,135,0.5);
     border-radius: 5vw 5vw 10vw 10vw;
     font-size: 8vw;
-  }
-
-  #one-player {
-    top: 56.5%;
-  }
-  
-  #two-player {
-    top: 64%;
   }
   
   #login {
@@ -688,10 +668,9 @@ iframe {
   }
 
   #glow-barrier {
-    top: 60%;
     width: 90vw;
     height: 44.5vw;
-    margin: -22.25vw 0 0 -45vw;
+    margin: 0 2.5vw;
     border: 0.5vw solid rgba(222,184,135,0.5);
     border-left: none;
     border-right: none;
