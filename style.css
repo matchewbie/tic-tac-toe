@@ -663,6 +663,8 @@ iframe {
 
   #glow-barrier,
   #glow-barrier-end {
+    width: 90vw;
+    height: 40.5vw;
     border: 0.5vw solid rgba(222,184,135,0.5);
     border-left: none;
     border-right: none;
@@ -670,15 +672,11 @@ iframe {
   }
 
   #glow-barrier {
-    width: 90vw;
-    height: 44.5vw;
     margin: 0 2.5vw;
   }
 
   #glow-barrier-end {
-    width: 95vw;
-    height: 40.5vw;
-    margin: 0 2.5vw;
+    margin: 0 4.5vw;
   }
 
   #meow pre {
