@@ -125,13 +125,14 @@ iframe {
 
 #author {
   position: absolute;
-  top: 41%;
+  top: 37.7%;
   width: 95vh;
   height: 10vh;
   margin: 0 auto;
+  padding-right: 4.5%;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 3.5vh;
-  text-align: center;
+  text-align: right;
   color: rgba(222,184,135,0.1);
   text-shadow: 0 0 0.4vh rgba(222,184,135,1);
   opacity: 0;
@@ -162,13 +163,13 @@ iframe {
 }
 
 #one-player {
-  top: 53.5%;
+  top: 50.5%;
   border-bottom: none;
   z-index: 2;
 }
 
 #two-player {
-  top: 51.5%;
+  top: 48.5%;
   border-top: none;
   z-index: 1;
 }
@@ -378,7 +379,7 @@ iframe {
 
 #glow-barrier {
   position: absolute;
-  top: 48%;
+  top: 45%;
   width: 90vh;
   height: 44.5vh;
   margin: 0 2.5vh;
