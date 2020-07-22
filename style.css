@@ -450,9 +450,9 @@ iframe {
   background: none;
   color: burlywood;
   text-shadow: 0 0 0.75rem burlywood;
-  box-shadow: 0 0 1.75rem rgba(222,184,135,0.3) inset;
-  -webkit-box-shadow: 0 0 1.75rem rgba(222,184,135,0.3) inset;
-  -moz-box-shadow: 0 0 1.75rem rgba(222,184,135,0.3) inset;
+  box-shadow: 0 0 1.75rem rgba(222,184,135,0.7) inset;
+  -webkit-box-shadow: 0 0 1.75rem rgba(222,184,135,0.7) inset;
+  -moz-box-shadow: 0 0 1.75rem rgba(222,184,135,0.7) inset;
 }
 
 .login-active {
