@@ -24,6 +24,13 @@ body {
   -moz-box-shadow: 0 0 35vh rgba(17,17,17,1) inset;
 }
 
+.game-bg {
+  background-color: #111111;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
 iframe {
   border: none;
   border-radius: 50%;

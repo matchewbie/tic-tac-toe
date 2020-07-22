@@ -356,6 +356,7 @@ const game = (() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
           device.style.zIndex = '-1';
+          document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
@@ -368,6 +369,7 @@ const game = (() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
           device.style.zIndex = '-1';
+          document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
@@ -493,9 +495,10 @@ const game = (() => {
         device.style.opacity = '1';
         device.style.zIndex = '100';
         device.style.transition = '125ms';
+        document.querySelector('body').classList.add('game-bg');
         setTimeout(() => {
           gameplay.reset();
-          device.style.backgroundColor = '#111111';
+          device.style.opacity = '0';
           device.style.zIndex = '-1';
           device.style.transition = '250ms';
         }, 125);
@@ -507,9 +510,10 @@ const game = (() => {
         device.style.opacity = '1';
         device.style.zIndex = '100';
         device.style.transition = '125ms';
+        document.querySelector('body').classList.add('game-bg');
         setTimeout(() => {
           gameplay.reset();
-          device.style.backgroundColor = '#111111';
+          device.style.opacity = '0';
           device.style.zIndex = '-1';
           device.style.transition = '250ms';
         }, 125);
@@ -589,6 +593,8 @@ const game = (() => {
 
       animate.aiSay(_text, 'message');
 
+      document.querySelector('body').classList.remove('game-bg');
+
       device.style.opacity = '1';
       device.style.zIndex = '100';
       device.style.transition = '250ms';
@@ -659,6 +665,8 @@ const game = (() => {
       container.appendChild(_win);
 
       animate.aiSay(_text, 'message');
+
+      document.querySelector('body').classList.remove('game-bg');
 
       device.style.opacity = '1';
       device.style.zIndex = '100';
@@ -948,11 +956,13 @@ const game = (() => {
               container.style.opacity = '0';
               gameplay.reset();
               container.style.opacity = '1';
+              device.style.opacity = '1';
               device.style.backgroundColor = 'blanchedalmond';
               device.style.transition = '250ms';
               device.style.zIndex = '100';
               setTimeout(() => {
                 device.style.backgroundColor = '#111111';
+                device.style.opacity = '0';
                 device.style.zIndex = '-420';
               }, 125);
               setTimeout(() => {
@@ -1001,24 +1011,42 @@ const game = (() => {
         let _cell = cell.grab(row, column);
   
         if (_tic() || _tac() || _toe()) {
-          _cell.classList.remove('blackout');
-          _cell.classList.add('blink');
-          setTimeout(() => {
-            _cell.classList.remove('blink');
-            _cell.classList.add('glow');
-          }, 375);
-          setTimeout(() => {
-            _cell.style.borderColor = '#222222';
-          }, 415);
-          setTimeout(() => {
-            _cell.classList.add('blackout');
-          }, 1315);
-          setTimeout(() => {
-            _cell.style.opacity = 0;
-          }, 2325);
+          const _animateCell = () => {
+            _cell.classList.remove('blackout');
+            _cell.classList.add('blink');
+            setTimeout(() => {
+              _cell.classList.remove('blink');
+              _cell.classList.add('glow');
+            }, 375);
+            setTimeout(() => {
+              _cell.style.borderColor = '#222222';
+            }, 415);
+            setTimeout(() => {
+              _cell.classList.add('blackout');
+            }, 1315);
+            setTimeout(() => {
+              _cell.style.opacity = 0;
+            }, 2325);
+          };
+
+          if (row === 0 && column === 0) {
+            setTimeout(() => {
+              _animateCell();
+            }, 1);
+          }
+          else {
+            _animateCell();
+          }
         }
         else {
-          _blackout(_cell, [row, column], 2523);
+          if (row === 0 && column === 0){
+            setTimeout(() => {
+              _blackout(_cell, [row, column], 2523);    
+            }, 1);
+          }
+          else {
+            _blackout(_cell, [row, column], 2523);
+          }
         }
   
         if (_command === 'opening') _ticTacToe(_cell, _champCell2());
