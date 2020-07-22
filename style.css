@@ -567,7 +567,7 @@ iframe {
     height: 15vw;
     margin: -7.5vw 0 0 -47.5vw;
     font-size: 13.5vw;
-    line-height: 13.5vw;
+    line-height: 12.5vw;
     text-shadow: 0 0 2vw blanchedalmond;
   }
 
@@ -576,7 +576,7 @@ iframe {
     width: 26vw;
     height: 10vw;
     margin: -5vw 0 0 -13vw;
-    font-size: 3.5vw;
+    font-size: 2.5vw;
     text-shadow: 0 0 0.4vw rgba(222,184,135,1);
   }
 
