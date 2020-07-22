@@ -125,7 +125,7 @@ iframe {
 
 #author {
   position: absolute;
-  top: 40%;
+  top: 41%;
   width: 95vh;
   height: 10vh;
   margin: 0 auto;
@@ -557,7 +557,7 @@ iframe {
   #logo {
     width: 95vw;
     height: 15vw;
-    font-size: 13.5vw;
+    font-size: 12.5vw;
     line-height: 12.5vw;
     text-shadow: 0 0 2vw blanchedalmond;
   }
