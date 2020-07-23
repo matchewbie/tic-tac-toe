@@ -107,8 +107,9 @@ iframe {
   background: none;
   border: none;
   border-radius: 100%;
-  transition: 250ms ease-in;
+  transition: 125ms ease-in;
   cursor: pointer;
+  z-index: 42;
 }
 
 .back-active {
