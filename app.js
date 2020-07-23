@@ -198,6 +198,18 @@ const game = (() => {
         renderMark
       }
     })();
+    const thanksTimeout = (() => {
+      let _timeout = null;
+      const save = (thanks) => {
+        _timeout = thanks;
+      };
+      const clear = () => clearTimeout(_timeout);
+
+      return {
+        save,
+        clear
+      }
+    })();
     const nextScreen = (screen, milliseconds) => {
       setTimeout(() => {
         container.innerHTML = '';
@@ -548,7 +560,10 @@ const game = (() => {
       };
       _reset.onmouseup = (event) => {
         event.preventDefault();
+        
+        thanksTimeout.clear();
         animate.navClick(_reset);
+
         device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
         device.style.zIndex = '100';
@@ -563,7 +578,10 @@ const game = (() => {
       }
       _reset.ontouchend = (event) => {
         event.preventDefault();
+
+        thanksTimeout.clear();
         animate.navClick(_reset);
+        
         device.style.backgroundColor = 'blanchedalmond';
         device.style.opacity = '1';
         device.style.zIndex = '100';
@@ -590,7 +608,10 @@ const game = (() => {
       };
       _logout.onmouseup = (event) => {
         event.preventDefault();
+
+        thanksTimeout.clear();
         animate.navClick(_logout);
+        
         device.style.backgroundColor = '#111111';
         device.style.opacity = '1';
         device.style.zIndex = '100';
@@ -607,7 +628,10 @@ const game = (() => {
       };
       _logout.ontouchend = (event) => {
         event.preventDefault();
+
+        thanksTimeout.clear();
         animate.navClick(_logout);
+        
         device.style.backgroundColor = '#111111';
         device.style.opacity = '1';
         device.style.zIndex = '100';
@@ -682,11 +706,14 @@ const game = (() => {
         setTimeout(() => {
           _message.style.opacity = '0';
         }, 5000);
-        setTimeout(() => {
+
+        let _thankYou = setTimeout(() => {
           _message.style.opacity = '1';
           _message.innerHTML = '';
           animate.aiSay(['thanks for playing.'], 'message');
-        }, 35000);
+        }, 35000)
+        thanksTimeout.save(_thankYou);
+
       }, 250);
 
     };
@@ -745,6 +772,8 @@ const game = (() => {
         let _message = document.getElementById('message');
         let _robot = document.getElementById('robot');
         let _champ = document.getElementById('champ');
+        let _reset = document.getElementById('reset');
+        let _logout = document.getElementById('logout');
 
         if (_robot !== null) {
           _robot.style.opacity = '1';
@@ -762,11 +791,14 @@ const game = (() => {
         setTimeout(() => {
           _message.style.opacity = '0';
         }, 5000);
-        setTimeout(() => {
+
+        let _thankYou = setTimeout(() => {
           _message.style.opacity = '1';
           _message.innerHTML = '';
           animate.aiSay(['thanks for playing.'], 'message');
         }, 35000);
+        thanksTimeout.save(_thankYou);
+
       }, 250);
     };
     const animate = (() => {
