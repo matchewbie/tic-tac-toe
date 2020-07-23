@@ -1287,14 +1287,16 @@ const gameplay = (() => {
       if (_coord) {
         _matrix[ _coord[0] ][ _coord[1] ] = _otherMark;
 
-        if (game.matrix.command(_otherMark.repeat(3))[3] !== 'coords') {
+        let _symbol = _otherMark.repeat(3);
+
+        if (game.matrix.command({is: _symbol})[3] !== 'coords') {
           return tieOrAutoWin(_otherMark);
         }
         else {
           let _turn = (_which) ? 1 : 0;
           game.players.winner.save(_turn);
           game.display.cell.renderMark(_coord[0], _coord[1], _otherMark);
-          let coords = game.matrix.command(_otherMark.repeat(3));
+          let coords = game.matrix.command({is: _symbol});
           return game.matrix.command({is: 'champ', coords});
         }
       }
