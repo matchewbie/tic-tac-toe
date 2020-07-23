@@ -101,20 +101,19 @@ iframe {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 32vh;
-  height: 32vh;
+  width: 38vh;
+  height: 38vh;
   margin: 0;
   background: none;
   border: none;
   border-radius: 100%;
   transition: 125ms ease-in;
   cursor: pointer;
-  overflow: hidden;
   z-index: 42;
 }
 
 .back-active {
-  padding-right: 15.5vh;
+  padding-right: 48%;
   font-size: 28.5vh;
   line-height: 28.5vh;
   text-align: right;
@@ -124,13 +123,13 @@ iframe {
 }
 
 .back-inactive {
-  padding: auto 0 auto 2.5vh;
+  padding-left: 2.5vh;
   font-size: 9.5vh;
   line-height: 9.5vh;
   text-align: left;
   color: rgba(222,184,135,0.05);
   text-shadow: 0 0 2vh rgba(222,184,135,0.5);
-  box-shadow: 0 0 5.5vh rgba(255,235,205,0.05) inset;
+  box-shadow: 0 0 5.5vh rgba(222,184,135,0.03) inset;
 }
 
 #login-screen {
@@ -597,12 +596,11 @@ iframe {
   }
   
   #back {
-    width: 32vw;
-    height: 32vw;
+    width: 38vw;
+    height: 38vw;
   }
   
   .back-active {
-    padding-right: 15.5vw;
     font-size: 28.5vw;
     line-height: 28.5vw;
     text-shadow: 0 0 1vw rgba(255,235,205,1);
@@ -610,11 +608,11 @@ iframe {
   }
   
   .back-inactive {
-    padding: auto 0 auto 2.5vw;
+    padding-left: 2.5vw;
     font-size: 9.5vw;
-    line-height: 9.5vw;
+    line-height: 9.5vw; 
     text-shadow: 0 0 2vw rgba(222,184,135,0.5);
-    box-shadow: 0 0 5.5vw rgba(255,235,205,0.05) inset;
+    box-shadow: 0 0 5.5vw rgba(222,184,135,0.03) inset;
   }
 
   #login-screen {
