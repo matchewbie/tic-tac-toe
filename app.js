@@ -329,6 +329,10 @@ const game = (() => {
       }
       _you.style.visibility = 'hidden';
 
+      const _singleScreen = document.createElement('div');
+      _singleScreen.id = 'login-screen';
+      _singleScreen.classList.add('login-screen-inactive');
+
       const _login = document.createElement('button');
       const _name = (user, createPlayer) => {
         if (user.value === '') {
@@ -344,48 +348,53 @@ const game = (() => {
       _login.style.opacity = '0';
       _login.onmouseenter = (event) => {
         event.preventDefault();
+        _singleScreen.classList.remove('login-screen-inactive');
         _login.classList.remove('login-inactive');
+        _singleScreen.classList.add('login-screen-active');
         _login.classList.add('login-active');
       };
       _login.ontouchstart = (event) => {
         event.preventDefault();
+        _singleScreen.classList.remove('login-screen-inactive');
         _login.classList.remove('login-inactive');
+        _singleScreen.classList.add('login-screen-active');
         _login.classList.add('login-active');
       };
       _login.onmouseleave = (event) => {
         event.preventDefault();
+        _singleScreen.classList.remove('login-screen-active');
         _login.classList.remove('login-active');
+        _singleScreen.classList.add('login-screen-inactive');
         _login.classList.add('login-inactive');
       };
       _login.onmouseup = (event) => {
         event.preventDefault();
-        animate.navClick(_login);
+        animate.navClick(_singleScreen);
         device.style.opacity = '1';
         device.style.zIndex = '100';
         setTimeout(() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
-          device.style.zIndex = '-1';
+          device.style.opacity = '0';
+          device.style.zIndex = '-420';
           document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
       _login.ontouchend = (event) => {
         event.preventDefault();
-        animate.navClick(_login);
+        animate.navClick(_singleScreen);
         device.style.opacity = '1';
         device.style.zIndex = '100';
         setTimeout(() => {
           _name(_you, players.playerOne);
           players.playerTwo('c0mput3r');
-          device.style.zIndex = '-1';
+          device.style.opacity = '0';
+          device.style.zIndex = '-666';
           document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
-
-      const _singleScreen = document.createElement('div');
-      _singleScreen.id = 'login-screen';
 
       [_helloUser, _you, _login].forEach(elem => {
         _singleScreen.appendChild(elem);
@@ -398,6 +407,20 @@ const game = (() => {
       animate.aiSay(_text, 'greeting');
     };
     const vs = () => {
+      const _helloPlayers = document.createElement('div');
+
+      _helloPlayers.id = 'greeting';
+      _helloPlayers.style.opacity = '0';
+
+      let _text = [
+        'hello, Player X',
+        'welcome, Player O',
+        'enter an alias below',
+        'or do not, Player X',
+        'will you, Player O?',
+        '...login, play tic tac toe!'
+      ];
+
       const _playerOne = document.createElement('input');
       const _playerTwo = document.createElement('input');
       const _stylePrompt = (mark) => {
@@ -427,6 +450,10 @@ const game = (() => {
       _stylePrompt('X');
       _stylePrompt('O');
 
+      const _vsScreen = document.createElement('div');
+      _vsScreen.id = 'login-screen';
+      _vsScreen.classList.add('login-screen-inactive');
+
       const _login = document.createElement('button');
       const _name = (user, createPlayer) => {
         if (user.value === '') {
@@ -442,58 +469,62 @@ const game = (() => {
       _login.style.opacity = '0';
       _login.onmouseenter = (event) => {
         event.preventDefault();
+        _vsScreen.classList.remove('login-screen-inactive');
         _login.classList.remove('login-inactive');
+        _vsScreen.classList.add('login-screen-active');
         _login.classList.add('login-active');
       };
       _login.ontouchstart = (event) => {
         event.preventDefault();
+        _vsScreen.classList.remove('login-screen-inactive');
         _login.classList.remove('login-inactive');
+        _vsScreen.classList.add('login-screen-active');
         _login.classList.add('login-active');
       };
       _login.onmouseleave = (event) => {
         event.preventDefault();
+        _vsScreen.classList.remove('login-screen-active');
         _login.classList.remove('login-active');
+        _vsScreen.classList.add('login-screen-inactive');
         _login.classList.add('login-inactive');
       };
       _login.onmouseup = (event) => {
         event.preventDefault();
-        animate.navClick(_login);
+        animate.navClick(_vsScreen);
         device.style.opacity = '1';
         device.style.zIndex = '100';
         setTimeout(() => {
           _name(_playerOne, players.playerOne);
           _name(_playerTwo, players.playerTwo);
           device.style.opacity = '0';
-          device.style.zIndex = '-1';
+          device.style.zIndex = '-420';
           document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
       _login.ontouchend = (event) => {
         event.preventDefault();
-        animate.navClick(_login);
+        animate.navClick(_vsScreen);
         device.style.opacity = '1';
         device.style.zIndex = '100';
         setTimeout(() => {
           _name(_playerOne, players.playerOne);
           _name(_playerTwo, players.playerTwo);
           device.style.opacity = '0';
-          device.style.zIndex = '-1';
+          device.style.zIndex = '-666';
           document.querySelector('body').classList.add('game-bg');
           return animate.gameOpening.start();
         }, 250);
       };
 
-      const _vsScreen = document.createElement('div');
-      _vsScreen.id = 'login-screen';
-
-      [_playerOne, _playerTwo, _login].forEach(elem => {
+      [_helloPlayers, _playerOne, _playerTwo, _login].forEach(elem => {
         _vsScreen.appendChild(elem);
       });
 
       container.appendChild(_vsScreen);
 
       animate.loginLoad();
+      animate.aiSay(_text, 'greeting');
     };
     const nav = (drawOrWin) => {
       const _reset = document.createElement('button');
@@ -959,21 +990,18 @@ const game = (() => {
         if (cell.innerText === 'E') {
           return setTimeout(() => {
             device.style.transition = '125ms';
+            device.style.zIndex = '100';
             setTimeout(() => {
               container.style.opacity = '0';
-              gameplay.reset();
-              container.style.opacity = '1';
               device.style.opacity = '1';
+              gameplay.reset();
               device.style.backgroundColor = 'blanchedalmond';
-              device.style.transition = '250ms';
-              device.style.zIndex = '100';
+              device.style.opacity = '1';
               setTimeout(() => {
-                device.style.backgroundColor = '#111111';
+                container.style.opacity = '1';
                 device.style.opacity = '0';
+                device.style.backgroundColor = '#111111';
                 device.style.zIndex = '-420';
-              }, 125);
-              setTimeout(() => {
-                device.style.opacity = '1';
                 device.style.transition = '250ms';
               }, 125);
             }, 1000);
