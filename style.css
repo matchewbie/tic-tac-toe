@@ -101,17 +101,18 @@ iframe {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 18vh;
-  height: 18vh;
-  margin: 1.5vh 0 0 3.25vh;
-  padding-right: 2vh;
+  width: 22vh;
+  height: 22vh;
+  margin: 0;
+  padding-left: 5vh;
   background: none;
   border: none;
   border-radius: 100%;
   font-size: 12vh;
+  line-height: 12vh;
+  text-align: left;
   transition: 250ms;
   cursor: pointer;
-  z-index: 42;
 }
 
 .back-active {
@@ -121,9 +122,9 @@ iframe {
 }
 
 .back-inactive {
-  color: rgba(222,184,135,0.1);
-  text-shadow: 0 0 2vh rgba(222,184,135,1);
-  box-shadow: 0 0 5.5vh rgba(255,235,205,0.1) inset;
+  color: rgba(222,184,135,0.05);
+  text-shadow: 0 0 2vh rgba(222,184,135,0.5);
+  box-shadow: 0 0 5.5vh rgba(255,235,205,0.05) inset;
 }
 
 #login-screen {
@@ -590,11 +591,11 @@ iframe {
   }
   
   #back {
-    width: 18vw;
-    height: 18vw;
-    margin: 1.5vw 0 0 3.25vw;
-    padding-right: 2vw;
+    width: 22vw;
+    height: 22vw;
+    padding-left: 5vw;
     font-size: 10vw;
+    line-height: 10vw;
   }
   
   .back-active {
@@ -603,8 +604,8 @@ iframe {
   }
   
   .back-inactive {
-    text-shadow: 0 0 2vw rgba(222,184,135,1);
-    box-shadow: 0 0 5.5vw rgba(255,235,205,0.1) inset;
+    text-shadow: 0 0 2vw rgba(222,184,135,0.5);
+    box-shadow: 0 0 5.5vw rgba(255,235,205,0.05) inset;
   }
 
   #login-screen {
