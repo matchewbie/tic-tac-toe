@@ -104,24 +104,26 @@ iframe {
   width: 22vh;
   height: 22vh;
   margin: 0;
-  padding-left: 5vh;
   background: none;
   border: none;
   border-radius: 100%;
-  font-size: 12vh;
-  line-height: 12vh;
-  text-align: left;
-  transition: 250ms;
+  line-height: 22vh;
+  transition: 250ms ease-out;
   cursor: pointer;
 }
 
 .back-active {
+  padding-right: 7.3vh;
+  font-size: 22vh;
+  text-align: right;
   color: rgba(255,235,205,0.3);
   text-shadow: 0 0 1vh rgba(255,235,205,1);
   box-shadow: 0 0 5.5vh rgba(222,184,135,0.1) inset;
 }
 
 .back-inactive {
+  font-size: 7.3vh;
+  text-align: center;
   color: rgba(222,184,135,0.05);
   text-shadow: 0 0 2vh rgba(222,184,135,0.5);
   box-shadow: 0 0 5.5vh rgba(255,235,205,0.05) inset;
@@ -593,17 +595,18 @@ iframe {
   #back {
     width: 22vw;
     height: 22vw;
-    padding-left: 5vw;
-    font-size: 10vw;
-    line-height: 10vw;
+    line-height: 22vw;
   }
   
   .back-active {
+    padding-right: 7.3vw;
+    font-size: 22vw;
     text-shadow: 0 0 1vw rgba(255,235,205,1);
     box-shadow: 0 0 5.5vw rgba(222,184,135,0.1) inset;
   }
   
   .back-inactive {
+    font-size: 7.3vw;
     text-shadow: 0 0 2vw rgba(222,184,135,0.5);
     box-shadow: 0 0 5.5vw rgba(255,235,205,0.05) inset;
   }
