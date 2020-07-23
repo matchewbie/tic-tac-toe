@@ -109,6 +109,7 @@ iframe {
   border-radius: 100%;
   transition: 125ms ease-in;
   cursor: pointer;
+  overflow: hidden;
   z-index: 42;
 }
 
