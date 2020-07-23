@@ -311,28 +311,37 @@ const game = (() => {
       animate.homeLoad();
     };
     const addBackButton = (fromSingleOrVs) => {
+      const _sphere = document.getElementById('login-screen');
       const _back = document.createElement('button');
       _back.id = 'back';
       _back.innerHTML = '&#10094;'
       _back.classList.add('back-inactive');
       _back.onmouseenter = (event) => {
         event.preventDefault();
+        _back.innerHTML = `${_back.innerHTML} b a c k`;
         _back.classList.remove('back-inactive');
+        _sphere.classList.remove('login-screen-inactive');
         _back.classList.add('back-active');
+        _sphere.classList.add('back-sphere-active');
       };
       _back.ontouchstart = (event) => {
         event.preventDefault();
         _back.classList.remove('back-inactive');
+        _sphere.classList.remove('login-screen-inactive');
         _back.classList.add('back-active');
+        _sphere.classList.add('back-sphere-active');
       };
       _back.onmouseleave = (event) => {
         event.preventDefault();
+        _back.innerHTML = '&#10094;'
         _back.classList.remove('back-active');
+        _sphere.classList.remove('back-sphere-active');
         _back.classList.add('back-inactive');
+        _sphere.classList.add('login-screen-inactive');
       };
       _back.onmouseup = (event) => {
         event.preventDefault();
-        animate.navClick(_back);
+        animate.navClick(_sphere);
         device.style.opacity = '1';
         device.style.zIndex = '100';
         setTimeout(() => {
