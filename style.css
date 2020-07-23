@@ -101,16 +101,17 @@ iframe {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 12vh;
-  height: 12vh;
-  margin: 3vh 0 0 1vh;
+  width: 18vh;
+  height: 18vh;
+  margin: 1.5vh 0 0 3.25vh;
   padding-right: 2vh;
   background: none;
   border: none;
   border-radius: 100%;
-  font-size: 7vh;
+  font-size: 12vh;
   transition: 250ms;
   cursor: pointer;
+  z-index: 42;
 }
 
 .back-active {
@@ -589,11 +590,11 @@ iframe {
   }
   
   #back {
-    width: 12vw;
-    height: 12vw;
-    margin: 3vw 0 0 1vw;
+    width: 18vw;
+    height: 18vw;
+    margin: 1.5vw 0 0 3.25vw;
     padding-right: 2vw;
-    font-size: 7vw;
+    font-size: 12vw;
   }
   
   .back-active {
