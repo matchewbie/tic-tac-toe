@@ -101,20 +101,20 @@ iframe {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  width: 22vh;
-  height: 22vh;
+  width: 32vh;
+  height: 32vh;
   margin: 0;
   background: none;
   border: none;
   border-radius: 100%;
-  line-height: 22vh;
-  transition: 250ms ease-out;
+  transition: 250ms ease-in;
   cursor: pointer;
 }
 
 .back-active {
-  padding-right: 7.3vh;
-  font-size: 22vh;
+  padding-right: 15.5vh;
+  font-size: 28.5vh;
+  line-height: 28.5vh;
   text-align: right;
   color: rgba(255,235,205,0.3);
   text-shadow: 0 0 1vh rgba(255,235,205,1);
@@ -122,8 +122,10 @@ iframe {
 }
 
 .back-inactive {
-  font-size: 7.3vh;
-  text-align: center;
+  padding: auto 0 auto 2.5vh;
+  font-size: 9.5vh;
+  line-height: 9.5vh;
+  text-align: left;
   color: rgba(222,184,135,0.05);
   text-shadow: 0 0 2vh rgba(222,184,135,0.5);
   box-shadow: 0 0 5.5vh rgba(255,235,205,0.05) inset;
@@ -593,20 +595,22 @@ iframe {
   }
   
   #back {
-    width: 22vw;
-    height: 22vw;
-    line-height: 22vw;
+    width: 32vw;
+    height: 32vw;
   }
   
   .back-active {
-    padding-right: 7.3vw;
-    font-size: 22vw;
+    padding-right: 15.5vw;
+    font-size: 28.5vw;
+    line-height: 28.5vw;
     text-shadow: 0 0 1vw rgba(255,235,205,1);
     box-shadow: 0 0 5.5vw rgba(222,184,135,0.1) inset;
   }
   
   .back-inactive {
-    font-size: 7.3vw;
+    padding: auto 0 auto 2.5vw;
+    font-size: 9.5vw;
+    line-height: 9.5vw;
     text-shadow: 0 0 2vw rgba(222,184,135,0.5);
     box-shadow: 0 0 5.5vw rgba(255,235,205,0.05) inset;
   }
