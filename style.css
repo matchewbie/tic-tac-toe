@@ -97,6 +97,34 @@ iframe {
   -moz-box-shadow: 2vh -3.5vh 2.25vh rgba(255,235,205,0.5) inset;
 }
 
+#back {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 12vh;
+  height: 12vh;
+  margin: 3vh 0 0 1vh;
+  padding-right: 2vh;
+  background: none;
+  border: none;
+  border-radius: 100%;
+  font-size: 7vh;
+  transition: 250ms;
+  cursor: pointer;
+}
+
+.back-active {
+  color: rgba(255,235,205,0.3);
+  text-shadow: 0 0 1vh rgba(255,235,205,1);
+  box-shadow: 0 0 5.5vh rgba(222,184,135,0.1) inset;
+}
+
+.back-inactive {
+  color: rgba(222,184,135,0.1);
+  text-shadow: 0 0 2vh rgba(222,184,135,1);
+  box-shadow: 0 0 5.5vh rgba(255,235,205,0.1) inset;
+}
+
 #login-screen {
   box-shadow: -4vh 8vh 10vh rgba(255,235,205,0.3) inset;
   -webkit-box-shadow: -4vh 8vh 10vh rgba(255,235,205,0.3) inset;
@@ -560,6 +588,24 @@ iframe {
     -moz-box-shadow: 2vw -3.5vw 2.25vw rgba(255,235,205,0.5) inset;
   }
   
+  #back {
+    width: 12vw;
+    height: 12vw;
+    margin: 3vw 0 0 1vw;
+    padding-right: 2vw;
+    font-size: 7vw;
+  }
+  
+  .back-active {
+    text-shadow: 0 0 1vw rgba(255,235,205,1);
+    box-shadow: 0 0 5.5vw rgba(222,184,135,0.1) inset;
+  }
+  
+  .back-inactive {
+    text-shadow: 0 0 2vw rgba(222,184,135,1);
+    box-shadow: 0 0 5.5vw rgba(255,235,205,0.1) inset;
+  }
+
   #login-screen {
     box-shadow: -4vw 8vw 10vw rgba(255,235,205,0.3) inset;
     -webkit-box-shadow: -4vw 8vw 10vw rgba(255,235,205,0.3) inset;

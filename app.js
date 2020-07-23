@@ -310,6 +310,52 @@ const game = (() => {
 
       animate.homeLoad();
     };
+    const addBackButton = (fromSingleOrVs) => {
+      const _back = document.createElement('button');
+      _back.id = 'back';
+      _back.innerHTML = '&#10094;'
+      _back.classList.add('back-inactive');
+      _back.onmouseenter = (event) => {
+        event.preventDefault();
+        _back.classList.remove('back-inactive');
+        _back.classList.add('back-active');
+      };
+      _back.ontouchstart = (event) => {
+        event.preventDefault();
+        _back.classList.remove('back-inactive');
+        _back.classList.add('back-active');
+      };
+      _back.onmouseleave = (event) => {
+        event.preventDefault();
+        _back.classList.remove('back-active');
+        _back.classList.add('back-inactive');
+      };
+      _back.onmouseup = (event) => {
+        event.preventDefault();
+        animate.navClick(_back);
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
+        setTimeout(() => {
+          device.style.opacity = '0';
+          device.style.zIndex = '-420';
+          return nextScreen(home, 0);
+        }, 125);
+      };
+      _back.ontouchend = (event) => {
+        event.preventDefault();
+        animate.navClick(_back);
+        device.style.opacity = '1';
+        device.style.zIndex = '100';
+        setTimeout(() => {
+          device.style.opacity = '0';
+          device.style.zIndex = '-420';
+          return nextScreen(home, 0);
+        }, 125);
+      };
+
+      fromSingleOrVs.appendChild(_back);
+
+    };
     const single = () => {
       const _helloUser = document.createElement('div');
       const _you = document.createElement('input');
@@ -419,6 +465,7 @@ const game = (() => {
 
       container.style.backgroundImage = 'none';
       container.appendChild(_singleScreen);
+      addBackButton(container);
 
       animate.loginLoad();
       animate.aiSay(_text, 'greeting');
@@ -539,6 +586,7 @@ const game = (() => {
       });
 
       container.appendChild(_vsScreen);
+      addBackButton(container);
 
       animate.loginLoad();
       animate.aiSay(_text, 'greeting');
@@ -631,7 +679,7 @@ const game = (() => {
 
         thanksTimeout.clear();
         animate.navClick(_logout);
-        
+
         device.style.backgroundColor = '#111111';
         device.style.opacity = '1';
         device.style.zIndex = '100';
