@@ -678,6 +678,7 @@ iframe {
   }
 
   #meow pre {
+    top: 45%;
     width: 74vw;
     margin: -36vw 0 0 -32vw;
     font-size: 2.5vw;
@@ -685,6 +686,7 @@ iframe {
   }
 
   #computer pre {
+    top: 45.5%;
     width: 86vw;
     margin: -36vw 0 0 -41.5vw;
     font-size: 2.2vw;
@@ -692,7 +694,7 @@ iframe {
   }
 
   #champion pre {
-    top: 38%;
+    top: 41%;
     width: 63vw;
     margin: -36vw 0 0 -31.5vw;
     font-size: 2.2vw;
