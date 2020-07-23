@@ -384,7 +384,7 @@ const game = (() => {
           _input().value = _value.replace(_nonAlpha, '');
         }
         
-        if (_value.length > 12) {
+        if (_value.length > 10) {
           let _text = _value;
           _text = _text.substring(0, _text.length - 1);
           _input().value = _text;
@@ -502,7 +502,7 @@ const game = (() => {
             _input().value = _value.replace(_nonAlpha, '');
           }
           
-          if (_value.length > 12) {
+          if (_value.length > 10) {
             let _text = _value;
             _text = _text.substring(0, _text.length - 1);
             _input().value = _text;
@@ -976,6 +976,9 @@ const game = (() => {
         const u = document.getElementById('you');
         const o = document.getElementById('greeting');
         const log = document.getElementById('login');
+        const back = document.getElementById('back');
+
+        back.style.opacity = '0';
   
         device.style.opacity = '1';
         device.style.zIndex = '100';
@@ -1002,6 +1005,7 @@ const game = (() => {
         setTimeout(() => {
           log.style.transition = '1s';
           log.style.opacity = '1';
+          back.style.opacity = '1';
 
           container.style.backgroundImage =
                 'radial-gradient(rgba(255,235,205,0.1),' +

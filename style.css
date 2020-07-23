@@ -215,13 +215,13 @@ iframe {
 }
 
 #reset {
-  top: 59%;
+  top: 61%;
   border-bottom: none;
   z-index: 3;
 }
 
 #logout {
-  top: 57%;
+  top: 59%;
   border-top: none;
   z-index: 2;
 }
@@ -293,7 +293,7 @@ iframe {
 
 #message {
   position: absolute;
-  top: 53.5%;
+  top: 55.5%;
   width: 100vh;
   height: 5.75vh;
   margin: 0 auto;
@@ -419,7 +419,7 @@ iframe {
 
 #glow-barrier-end {
   position: absolute;
-  top: 55.5%;
+  top: 57.5%;
   margin: 0 5vh;
   background-color: #222222;
 }
@@ -637,6 +637,10 @@ iframe {
     border-radius: 5vw 5vw 10vw 10vw;
     font-size: 8vw;
   }
+
+  #reset { top: 59%; }
+
+  #logout { top: 57%; }
   
   #login {
     width: 80.5vw;
@@ -721,6 +725,7 @@ iframe {
   }
 
   #glow-barrier-end {
+    top: 55.5%;
     margin: 0 4.5vw;
   }
 
