@@ -217,6 +217,7 @@ iframe {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: burlywood;
   text-shadow: 0 0 0.75vh burlywood;
+  text-transform: uppercase;
   box-shadow: 0 0 10vh rgba(222,184,135,0.05) inset;
   -webkit-box-shadow: 0 0 10vh rgba(222,184,135,0.05) inset;
   -moz-box-shadow: 0 0 10vh rgba(222,184,135,0.05) inset;
@@ -348,6 +349,7 @@ iframe {
 #computer,
 #champion {
   transition: 15s;
+  margin: 0;
 }
 
 #anim-body {
@@ -405,7 +407,7 @@ iframe {
 }
 
 #meow pre {
-  top: 43%;
+  top: 40%;
   width: 74vh;
   margin: -36vh 0 0 -32vh;
   font-size: 2.5vh;
@@ -413,7 +415,7 @@ iframe {
 }
 
 #computer pre {
-  top: 43.5%;
+  top: 39.5%;
   width: 86vh;
   margin: -36vh 0 0 -41.5vh;
   font-size: 1vh;
@@ -421,7 +423,7 @@ iframe {
 }
 
 #champion pre {
-  top: 39%;
+  top: 38%;
   width: 63vh;
   margin: -36vh 0 0 -31.5vh;
   font-size: 2.2vh;

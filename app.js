@@ -126,9 +126,13 @@ const game = (() => {
     let _players = [];
     const grab = (index) => _players[index];
     const playerOne = (name) => {
+      name = name.toUpperCase();
       _players.push(Player(name, 'X'));
     };
     const playerTwo = (name) => {
+      if (name !== 'c0mput3r') {
+        name = name.toUpperCase();
+      }
       _players.push(Player(name, 'O'));
     };
     const winner = (() => {
@@ -314,6 +318,7 @@ const game = (() => {
       _you.oninput = () => {
 
         let _input = () => document.getElementById(_you.id);
+
         const _nonAlpha = /[^a-z]/gi;
         let _value = _input().value;
 
