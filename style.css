@@ -92,9 +92,9 @@ iframe {
 
 #homescreen {
   background-color: rgba(17,17,17,1);
-  box-shadow: 4vh -8vh 3vh rgba(255,235,205,0.5) inset;
-  -webkit-box-shadow: 4vh -8vh 3vh rgba(255,235,205,0.5) inset;
-  -moz-box-shadow: 4vh -8vh 3vh rgba(255,235,205,0.5) inset;
+  box-shadow: 2vh -3.5vh 2.25vh rgba(255,235,205,0.5) inset;
+  -webkit-box-shadow: 2vh -3.5vh 2.25vh rgba(255,235,205,0.5) inset;
+  -moz-box-shadow: 2vh -3.5vh 2.25vh rgba(255,235,205,0.5) inset;
 }
 
 #login-screen {
@@ -133,8 +133,8 @@ iframe {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 3.5vh;
   text-align: right;
-  color: rgba(222,184,135,0.1);
-  text-shadow: 0 0 0.4vh rgba(222,184,135,1);
+  color: rgba(255,235,205,0.01);
+  text-shadow: 0 0 0.4vh rgba(255,235,205,0.7);
   opacity: 0;
   cursor: default;
   z-index: 420;
@@ -378,7 +378,6 @@ iframe {
 #glow-barrier-end {
   width: 90vh;
   height: 40.5vh;
-  background-color: #222222;
   border: 0.5vh solid rgba(222,184,135,0.5);
   border-left: none;
   border-right: none;
@@ -391,12 +390,14 @@ iframe {
   position: absolute;
   top: 47%;
   margin: 0 2.5vh;
+  background: none;
 }
 
 #glow-barrier-end {
   position: absolute;
   top: 55.5%;
   margin: 0 5vh;
+  background-color: #222222;
 }
 
 #meow pre,
@@ -550,9 +551,9 @@ iframe {
   }
 
   #homescreen {
-    box-shadow: 4vw -8vw 3vw rgba(255,235,205,0.5) inset;
-    -webkit-box-shadow: 4vw -8vw 3vw rgba(255,235,205,0.5) inset;
-    -moz-box-shadow: 4vw -8vw 3vw rgba(255,235,205,0.5) inset;
+    box-shadow: 2vw -3.5vw 2.25vw rgba(255,235,205,0.5) inset;
+    -webkit-box-shadow: 2vw -3.5vw 2.25vw rgba(255,235,205,0.5) inset;
+    -moz-box-shadow: 2vw -3.5vw 2.25vw rgba(255,235,205,0.5) inset;
   }
   
   #login-screen {
@@ -573,7 +574,7 @@ iframe {
     width: 95vw;
     height: 10vw;
     font-size: 3.5vw;
-    text-shadow: 0 0 0.7vw rgba(222,184,135,1);
+    text-shadow: 0 0 0.4vw rgba(255,235,205,0.7);
   }
 
   #one-player,
