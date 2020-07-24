@@ -105,6 +105,9 @@ iframe {
   height: 17vh;
   margin: 2vh 12.5vh 0 12.5vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 7.5vh;
+  line-height: 7.5vh;
+  text-align: center;
   background: none;
   border: none;
   border-radius: 50vh 50vh 5vh 5vh;
@@ -115,17 +118,11 @@ iframe {
 
 .back-active {
   padding-right: 25vh;
-  font-size: 9.5vh;
-  line-height: 9.5vh;
-  text-align: center;
   color: rgba(255,235,205,0.3);
   text-shadow: 0 0 1vh rgba(222,184,135,1);
 }
 
 .back-inactive {
-  font-size: 9.5vh;
-  line-height: 9.5vh;
-  text-align: center;
   color: rgba(222,184,135,0.5);
   text-shadow: 0 0 2vh rgba(222,184,135,0.5);
 }
@@ -601,20 +598,17 @@ iframe {
     width: 75vw;
     height: 17vw;
     margin: 2vw 12.5vw 0 12.5vw;
+    font-size: 7.5vw;
+    line-height: 7.5vw;
     border-radius: 50vw 50vw 5vw 5vw;
   }
   
   .back-active {
     padding-right: 25vw;
-    font-size: 9.5vw;
-    line-height: 9.5vw;
     text-shadow: 0 0 1vw rgba(222,184,135,1);
   }
   
   .back-inactive {
-    padding-right: 3.5vw;
-    font-size: 9.5vw;
-    line-height: 9.5vw;
     text-shadow: 0 0 2vw rgba(222,184,135,0.5);
   }
 
