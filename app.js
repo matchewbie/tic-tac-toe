@@ -374,10 +374,10 @@ const game = (() => {
       _helloUser.style.opacity = '0';
 
       let _text = [
-        'hello, User',
+        'hello, USER',
         'my name is O',
         'enter an alias below',
-        'or do not, User',
+        'or do not, USER',
         'you shall not defeat O'
       ];
 
@@ -487,11 +487,11 @@ const game = (() => {
       _helloPlayers.style.opacity = '0';
 
       let _text = [
-        'hello, Player X',
-        'welcome, Player O',
+        'hello, PLAYER X',
+        'welcome, PLAYER O',
         'enter an alias below',
-        'or do not, Player X',
-        'will you, Player O?',
+        'or do not, PLAYER X',
+        'will you, PLAYER O?',
         '...login, play tic tac toe!'
       ];
 
