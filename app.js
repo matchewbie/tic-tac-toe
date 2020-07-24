@@ -934,9 +934,9 @@ const game = (() => {
                             'rgba(255,235,205,0.35),' +
                             'rgba(255,235,205,0.35),' +
                             'rgba(255,235,205,0.35),' +
-                                           'transparent,' +
-                                           'transparent,' +
-                                           'transparent)';
+                                       'transparent,' +
+                                       'transparent,' +
+                                       'transparent)';
         }, 1375);
       };
       const aiSay = (text, id) => {

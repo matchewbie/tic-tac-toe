@@ -91,10 +91,10 @@ iframe {
 }
 
 #homescreen {
-  background-color: rgba(17,17,17,1);
-  box-shadow: 2vh -3.5vh 2.25vh rgba(255,235,205,0.5) inset;
-  -webkit-box-shadow: 2vh -3.5vh 2.25vh rgba(255,235,205,0.5) inset;
-  -moz-box-shadow: 2vh -3.5vh 2.25vh rgba(255,235,205,0.5) inset;
+  background-color: rgba(17,17,17,0.85);
+  box-shadow: 0 0 2vh rgba(222,184,135,0.7) inset;
+  -webkit-box-shadow: 0 0 2vh rgba(222,184,135,0.7) inset;
+  -moz-box-shadow: 0 0 2vh rgba(222,184,135,0.7) inset;
 }
 
 #back {
@@ -397,7 +397,9 @@ iframe {
                               fixed
                               center;
   border-radius: 50vh;
-  box-shadow: 0 0 2vh burlywood inset;
+  box-shadow: 0 0 2vh rgba(222,184,135,1) inset;
+  -webkit-box-shadow: 0 0 2vh rgba(222,184,135,1) inset;
+  -moz-box-shadow: 0 0 2vh rgba(222,184,135,1) inset;
 }
 
 #glow-barrier,
@@ -589,9 +591,9 @@ iframe {
   }
 
   #homescreen {
-    box-shadow: 2vw -3.5vw 2.25vw rgba(255,235,205,0.5) inset;
-    -webkit-box-shadow: 2vw -3.5vw 2.25vw rgba(255,235,205,0.5) inset;
-    -moz-box-shadow: 2vw -3.5vw 2.25vw rgba(255,235,205,0.5) inset;
+    box-shadow: 0 0 2vw rgba(222,184,135,0.7) inset;
+    -webkit-box-shadow: 0 0 2vw rgba(222,184,135,0.7) inset;
+    -moz-box-shadow: 0 0 2vw rgba(222,184,135,0.7) inset;
   }
   
   #back {
@@ -601,7 +603,6 @@ iframe {
     font-size: 7.5vw;
     line-height: 7.5vw;
     border-radius: 50vw 50vw 5vw 5vw;
-    transition: none;
   }
   
   .back-active {
@@ -655,6 +656,7 @@ iframe {
     margin: 0 7.25vw;
     border-radius: 5vw 5vw 50vw 50vw;
     font-size: 8vw;
+    color: rgba(222,184,135,1);
     text-shadow: 0 0 3vw blanchedalmond;
   }
   
@@ -714,7 +716,9 @@ iframe {
 
   #anim-body {
     border-radius: 50vw;
-    box-shadow: 0 0 2vw burlywood inset;
+    box-shadow: 0 0 2vw rgba(222,184,135,1) inset;
+    -webkit-box-shadow: 0 0 2vw rgba(222,184,135,1) inset;
+    -moz-box-shadow: 0 0 2vw rgba(222,184,135,1) inset;
   }
 
   #glow-barrier,
