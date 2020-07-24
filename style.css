@@ -108,7 +108,7 @@ iframe {
   background: none;
   border: none;
   border-radius: 50vh 50vh 5vh 5vh;
-  transition: 750ms ease-in;
+  transition: 125ms ease-in;
   cursor: pointer;
   z-index: 42;
 }
@@ -123,7 +123,6 @@ iframe {
 }
 
 .back-inactive {
-  padding-right: 3.5vh;
   font-size: 9.5vh;
   line-height: 9.5vh;
   text-align: center;

@@ -326,6 +326,7 @@ const game = (() => {
       };
       _back.ontouchstart = (event) => {
         event.preventDefault();
+        _back.innerHTML = `${_back.innerHTML} b a c k`;
         _back.classList.remove('back-inactive');
         _sphere.classList.remove('login-screen-inactive');
         _back.classList.add('back-active');
@@ -352,7 +353,7 @@ const game = (() => {
       };
       _back.ontouchend = (event) => {
         event.preventDefault();
-        animate.navClick(_back);
+        animate.navClick(_sphere);
         device.style.opacity = '1';
         device.style.zIndex = '100';
         setTimeout(() => {
