@@ -942,19 +942,20 @@ const game = (() => {
       const aiSay = (text, id) => {
         let _screen = document.getElementById(id);
         text.forEach((frame, index) => {
-          let _add = (index === 0) ? 575 : 1675 * (index + 1);
-          let _remove = (index === 0) ? 3350 : 1675 + _add;
+          let _add = (index === 0) ? 750 : 1725 * (index + 1);
+
           let _scene = document.createElement('span');
+          _scene.id = `scene-${index}`;
+          let _previous = (index > 0) ? `scene-${index-1}` : null;
+
           let _line = frame.split('');
 
           setTimeout(() => {
             _screen.appendChild(_scene);
+            if (_previous !== null) {
+              _screen.removeChild(document.getElementById(_previous));
+            }
           }, _add);
-          if (index !== text.length - 1) {
-            setTimeout(() => {
-              _screen.removeChild(_scene);
-            }, _remove);
-          }
 
           let _lastMils = 0;
 

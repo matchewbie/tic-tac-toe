@@ -601,6 +601,7 @@ iframe {
     font-size: 7.5vw;
     line-height: 7.5vw;
     border-radius: 50vw 50vw 5vw 5vw;
+    transition: none;
   }
   
   .back-active {
