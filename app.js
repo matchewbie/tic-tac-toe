@@ -326,7 +326,7 @@ const game = (() => {
       };
       _back.ontouchstart = (event) => {
         event.preventDefault();
-        _back.innerHTML = `${_back.innerHTML} b a c k`;
+        _back.innerHTML = 'b a c k';
         _back.classList.remove('back-inactive');
         _sphere.classList.remove('login-screen-inactive');
         _back.classList.add('back-active');
