@@ -110,14 +110,14 @@ iframe {
   background: none;
   border: none;
   border-radius: 50vh 50vh 5vh 5vh;
-  transition: none;
+  transition: 250ms;
   cursor: pointer;
   z-index: 42;
 }
 
 .back-active {
-  text-align: left;
-  padding-left: 4vh;
+  text-align: center;
+  padding-right: 26vh;
   color: rgba(255,235,205,0.3);
   text-shadow: 0 0 1vh rgba(222,184,135,1);
 }
@@ -605,9 +605,11 @@ iframe {
     font-size: 7.5vw;
     line-height: 7.5vw;
     border-radius: 50vw 50vw 5vw 5vw;
+    transition: none;
   }
   
   .back-active {
+    padding: none;
     text-align: center;
     text-shadow: 0 0 1vw rgba(222,184,135,1);
   }
