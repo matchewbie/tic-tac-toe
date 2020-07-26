@@ -609,7 +609,7 @@ iframe {
   }
   
   .back-active {
-    padding: none;
+    padding-right: none;
     text-align: center;
     text-shadow: 0 0 1vw rgba(222,184,135,1);
   }
