@@ -55,8 +55,8 @@ iframe {
 
 #device {
   position: fixed;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   background-color: #111111;
@@ -116,8 +116,8 @@ iframe {
 }
 
 .back-active {
-  text-align: center;
-  padding-right: 26vh;
+  text-align: left;
+  padding-left: 4vh;
   color: rgba(255,235,205,0.3);
   text-shadow: 0 0 1vh rgba(222,184,135,1);
 }
@@ -609,7 +609,6 @@ iframe {
   }
   
   .back-active {
-    padding-right: none;
     text-align: center;
     text-shadow: 0 0 1vw rgba(222,184,135,1);
   }
